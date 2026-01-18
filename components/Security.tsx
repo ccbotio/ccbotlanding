@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 
 const securityFeatures = [
   {
-    icon: "shield_lock",
+    icon: "encrypted",
     title: "Non-Custodial Architecture",
     description: "Your private keys are generated and stored locally on your device. We never have access to your funds or seed phrase.",
     highlights: ["Local Key Storage", "Passkey Protection", "PIN Encryption"],
   },
   {
-    icon: "lan",
+    icon: "dns",
     title: "Canton Network Security",
     description: "Built on Canton Network, a privacy-first blockchain with atomic transactions and smart contract safety guarantees.",
     highlights: ["Privacy by Design", "Atomic Transactions", "Enterprise-Grade"],

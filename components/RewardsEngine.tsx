@@ -3,16 +3,16 @@
 import { motion } from "framer-motion";
 
 const dailyMissions = [
-  { title: "Daily Login", reward: "CC Tokens", icon: "check_circle", completed: true },
-  { title: "Complete a Transfer", reward: "CC Tokens", icon: "arrow_outward", completed: false },
-  { title: "Invite a Friend", reward: "CC Tokens", icon: "group_add", completed: false },
+  { title: "Daily Login", reward: "CC Tokens", icon: "login", completed: true },
+  { title: "Complete a Transfer", reward: "CC Tokens", icon: "send", completed: false },
+  { title: "Invite a Friend", reward: "CC Tokens", icon: "person_add", completed: false },
 ];
 
 const achievements = [
-  { title: "First Steps", icon: "flag", unlocked: true },
-  { title: "Streak Master", icon: "local_fire_department", unlocked: true },
-  { title: "Networker", icon: "share", unlocked: false },
-  { title: "CC Holder", icon: "verified_user", unlocked: false },
+  { title: "First Steps", icon: "start", unlocked: true },
+  { title: "Streak Master", icon: "bolt", unlocked: true },
+  { title: "Networker", icon: "group", unlocked: false },
+  { title: "CC Holder", icon: "verified", unlocked: false },
 ];
 
 export default function RewardsEngine() {
@@ -48,10 +48,10 @@ export default function RewardsEngine() {
             {/* Reward Features */}
             <div className="space-y-4">
               {[
-                { icon: "local_fire_department", title: "Daily Streaks", desc: "Earn bonus rewards for consecutive daily logins" },
-                { icon: "military_tech", title: "Achievement Badges", desc: "Unlock exclusive badges and recognition" },
-                { icon: "trending_up", title: "Leaderboard", desc: "Compete with other users and climb the ranks" },
-                { icon: "savings", title: "Staking Rewards", desc: "Stake your CC tokens to earn passive rewards" },
+                { icon: "bolt", title: "Daily Streaks", desc: "Earn bonus rewards for consecutive daily logins" },
+                { icon: "workspace_premium", title: "Achievement Badges", desc: "Unlock exclusive badges and recognition" },
+                { icon: "leaderboard", title: "Leaderboard", desc: "Compete with other users and climb the ranks" },
+                { icon: "account_balance", title: "Staking Rewards", desc: "Stake your CC tokens to earn passive rewards" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -89,7 +89,7 @@ export default function RewardsEngine() {
                   <div className="text-2xl font-bold gradient-text">Earn Daily</div>
                 </div>
                 <div className="flex items-center gap-1.5 bg-[#F3FF97]/10 text-[#F3FF97] px-2.5 py-1 rounded-full text-sm">
-                  <span className="material-symbols-outlined text-base">whatshot</span>
+                  <span className="material-symbols-outlined text-base">bolt</span>
                   <span className="font-medium">Active Streak</span>
                 </div>
               </div>

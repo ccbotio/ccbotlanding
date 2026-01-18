@@ -7,19 +7,19 @@ const steps = [
     number: "01",
     title: "Launch the Bot",
     description: "Open @ccbotio_bot in Telegram and tap Start. Your wallet is created instantly.",
-    icon: "open_in_new",
+    icon: "rocket_launch",
   },
   {
     number: "02",
     title: "Secure with Passkey",
     description: "Set up Passkey authentication with Face ID, Touch ID, or PIN for maximum security.",
-    icon: "passkey",
+    icon: "fingerprint",
   },
   {
     number: "03",
     title: "Start Using",
     description: "Send to @usernames, register your CNS name, and earn rewards with daily tasks.",
-    icon: "arrow_forward",
+    icon: "check_circle",
   },
 ];
 

@@ -4,32 +4,32 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    icon: "arrow_outward",
+    icon: "send",
     title: "Send by Username",
     description: "Transfer crypto to any Telegram user using just their @username. No complex wallet addresses required.",
   },
   {
-    icon: "lan",
+    icon: "hub",
     title: "Canton Network Native",
     description: "Built on Canton Network, the privacy-first blockchain designed for institutional-grade transactions.",
   },
   {
-    icon: "id_card",
+    icon: "alternate_email",
     title: "Canton Name Service",
     description: "Register your unique CNS name for easy-to-remember wallet addresses and seamless transfers.",
   },
   {
-    icon: "passkey",
+    icon: "fingerprint",
     title: "Passkey Security",
     description: "Secure your wallet with Passkey, Face ID, Touch ID, or PIN. Next-gen authentication for your assets.",
   },
   {
-    icon: "shield_lock",
+    icon: "lock",
     title: "Non-Custodial",
     description: "Your keys, your crypto. Private keys are stored locally and never leave your device.",
   },
   {
-    icon: "token",
+    icon: "toll",
     title: "Task Rewards",
     description: "Complete daily tasks, maintain streaks, and earn CC tokens while using the wallet.",
   },
