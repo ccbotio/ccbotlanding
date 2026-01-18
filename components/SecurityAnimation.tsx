@@ -1,466 +1,586 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
-const phases = [
+const securityLayers = [
   {
     id: 1,
-    phase: "01/04",
-    icon: "fingerprint",
     title: "Passkey Authentication",
-    description: "Your device's biometric secures your wallet. Private keys are stored in the secure enclave - they never leave your device. No seed phrases to lose, no passwords to steal.",
-    features: [
-      "Face ID / Touch ID protected",
-      "Hardware-backed key storage",
-      "Phishing-resistant by design",
-    ],
+    description: "Your device's biometric secures your wallet. Private keys stored in secure enclave.",
+    icon: "fingerprint",
+    badge: "ACTIVE",
+    color: "#F3FF97",
   },
   {
     id: 2,
-    phase: "02/04",
-    icon: "verified_user",
     title: "Human Verification",
-    description: "15-second biometric liveness check proves you're a unique human. No KYC documents, no personal data stored. Cryptographic proof without compromising privacy.",
-    features: [
-      "Zero personal data collection",
-      "Sybil attack prevention",
-      "Privacy-preserving proof",
-    ],
+    description: "15-second biometric liveness check. Zero personal data collection.",
+    icon: "verified_user",
+    badge: "VERIFIED",
+    color: "#D5A5E3",
   },
   {
     id: 3,
-    phase: "03/04",
-    icon: "shield",
     title: "Anti-Bot Defense",
-    description: "Multi-layer protection against automated attacks and reward farmers. Behavioral analysis, rate limiting, and verification gates ensure only real humans participate.",
-    features: [
-      "Real-time bot detection",
-      "Behavior pattern analysis",
-      "Automated threat blocking",
-    ],
+    description: "Multi-layer protection against automated attacks and reward farmers.",
+    icon: "shield",
+    badge: "PROTECTED",
+    color: "#875CFF",
   },
   {
     id: 4,
-    phase: "04/04",
+    title: "Canton Privacy",
+    description: "Configurable transaction privacy. Your data, your control.",
     icon: "visibility_off",
-    title: "Canton Privacy Layer",
-    description: "Built on the only public blockchain with configurable privacy. Your transactions, your control. Selective disclosure means you share only what you choose.",
-    features: [
-      "Configurable transaction privacy",
-      "Selective data disclosure",
-      "Institutional-grade compliance",
-    ],
+    badge: "PRIVATE",
+    color: "#F3FF97",
   },
 ];
 
-// Isometric Layer Component
-function IsometricLayer({
-  index,
+// Hexagon Node Component
+function HexNode({
+  x,
+  y,
+  size,
+  delay,
   isActive,
-  phase
+  pulseColor
 }: {
-  index: number;
+  x: number;
+  y: number;
+  size: number;
+  delay: number;
   isActive: boolean;
-  phase: number;
+  pulseColor: string;
 }) {
-  const sizes = [200, 220, 240, 260];
-  const offsets = [0, -70, -140, -210];
-  const opacities = [1, 0.5, 0.3, 0.15];
-
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2"
-      style={{
-        width: sizes[index],
-        height: sizes[index],
-        marginLeft: -sizes[index] / 2,
-        marginTop: offsets[index] - sizes[index] / 2,
-        transform: "rotateX(60deg) rotateZ(-45deg)",
-        transformStyle: "preserve-3d",
-      }}
+      className="absolute"
+      style={{ left: x, top: y }}
+      initial={{ scale: 0, opacity: 0 }}
       animate={{
-        scale: isActive ? 1.08 : 1,
-        opacity: isActive ? 1 : 0.3,
-        z: isActive ? 20 : 0,
+        scale: isActive ? [1, 1.2, 1] : 1,
+        opacity: isActive ? 1 : 0.3
       }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: 2,
+        delay,
+        repeat: isActive ? Infinity : 0,
+        repeatType: "reverse"
+      }}
     >
-      {/* Layer background */}
-      <motion.div
-        className="absolute inset-0 rounded-lg"
+      <div
+        className="relative"
         style={{
-          background: `rgba(243, 255, 151, ${opacities[index]})`,
-          border: `2px solid rgba(243, 255, 151, ${isActive ? 0.8 : 0.3})`,
-          boxShadow: isActive
-            ? `0 ${30 - index * 5}px ${60 - index * 10}px rgba(0,0,0,0.4), 0 0 40px rgba(243, 255, 151, 0.3)`
-            : `0 ${30 - index * 5}px ${60 - index * 10}px rgba(0,0,0,0.2)`,
+          width: size,
+          height: size * 1.15,
+          clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+          background: isActive
+            ? `linear-gradient(135deg, ${pulseColor}40, ${pulseColor}10)`
+            : "rgba(255,255,255,0.05)",
+          border: `1px solid ${isActive ? pulseColor : "rgba(255,255,255,0.1)"}`,
         }}
-        animate={{
-          boxShadow: isActive
-            ? `0 ${30 - index * 5}px ${60 - index * 10}px rgba(0,0,0,0.4), 0 0 60px rgba(243, 255, 151, 0.5)`
-            : `0 ${30 - index * 5}px ${60 - index * 10}px rgba(0,0,0,0.2)`,
-        }}
-        transition={{ duration: 0.6 }}
-      />
-
-      {/* Layer content based on index */}
-      {index === 0 && <PasskeyLayerContent isActive={isActive} />}
-      {index === 1 && <HumanVerificationContent isActive={isActive} />}
-      {index === 2 && <AntiBotContent isActive={isActive} />}
-      {index === 3 && <PrivacyLayerContent isActive={isActive} />}
+      >
+        {isActive && (
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+              background: `radial-gradient(circle at center, ${pulseColor}30, transparent)`,
+            }}
+            animate={{ opacity: [0.3, 0.8, 0.3] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        )}
+      </div>
     </motion.div>
   );
 }
 
-// Layer 1: Passkey icons
-function PasskeyLayerContent({ isActive }: { isActive: boolean }) {
-  const icons = ["fingerprint", "face", "key", "smartphone"];
-
+// Data Stream Particle
+function DataParticle({ startX, startY, endX, endY, delay, color }: {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+  delay: number;
+  color: string;
+}) {
   return (
-    <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-2 p-4">
-      {icons.map((icon, i) => (
-        <motion.div
-          key={icon}
-          className="flex items-center justify-center"
-          animate={{
-            scale: isActive ? [1, 1.2, 1] : 1,
-            opacity: isActive ? 1 : 0.5,
-          }}
-          transition={{
-            duration: 0.5,
-            delay: isActive ? i * 0.2 : 0,
-            repeat: isActive ? Infinity : 0,
-            repeatDelay: 1.5,
-          }}
-        >
-          <span
-            className="material-symbols-outlined text-[#0A0A0A]"
-            style={{ fontSize: "28px" }}
-          >
-            {icon}
-          </span>
-        </motion.div>
-      ))}
-    </div>
+    <motion.div
+      className="absolute w-2 h-2 rounded-full"
+      style={{
+        background: color,
+        boxShadow: `0 0 10px ${color}, 0 0 20px ${color}`,
+        left: startX,
+        top: startY,
+      }}
+      animate={{
+        left: [startX, endX],
+        top: [startY, endY],
+        opacity: [0, 1, 1, 0],
+        scale: [0.5, 1, 1, 0.5],
+      }}
+      transition={{
+        duration: 2,
+        delay,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+    />
   );
 }
 
-// Layer 2: Concentric rings
-function HumanVerificationContent({ isActive }: { isActive: boolean }) {
+// Scanning Line Effect
+function ScanLine({ isActive }: { isActive: boolean }) {
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      {[0, 1, 2].map((ring) => (
-        <motion.div
-          key={ring}
-          className="absolute rounded-full border-2 border-[#F3FF97]"
-          style={{
-            width: `${40 + ring * 30}%`,
-            height: `${40 + ring * 30}%`,
-          }}
-          animate={{
-            scale: isActive ? [1, 1.1, 1] : 1,
-            opacity: isActive ? [0.3, 0.8, 0.3] : 0.3,
-          }}
-          transition={{
-            duration: 2,
-            delay: ring * 0.3,
-            repeat: Infinity,
-          }}
-        />
-      ))}
-      {isActive && (
+    <motion.div
+      className="absolute left-0 right-0 h-px pointer-events-none"
+      style={{
+        background: "linear-gradient(90deg, transparent, #F3FF97, transparent)",
+        boxShadow: "0 0 20px #F3FF97, 0 0 40px #F3FF97",
+      }}
+      initial={{ top: "0%", opacity: 0 }}
+      animate={isActive ? {
+        top: ["0%", "100%"],
+        opacity: [0, 1, 1, 0],
+      } : {}}
+      transition={{
+        duration: 3,
+        repeat: Infinity,
+        ease: "linear",
+      }}
+    />
+  );
+}
+
+// Central Core
+function SecurityCore({ activeLayer }: { activeLayer: number }) {
+  const currentLayer = securityLayers[activeLayer];
+
+  return (
+    <div className="relative w-48 h-48">
+      {/* Outer rotating ring */}
+      <motion.div
+        className="absolute inset-0 rounded-full"
+        style={{
+          border: "2px solid transparent",
+          borderTopColor: currentLayer.color,
+          borderRightColor: `${currentLayer.color}50`,
+        }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      />
+
+      {/* Middle pulsing ring */}
+      <motion.div
+        className="absolute inset-4 rounded-full"
+        style={{
+          border: `1px solid ${currentLayer.color}30`,
+        }}
+        animate={{
+          scale: [1, 1.05, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+
+      {/* Inner core */}
+      <motion.div
+        className="absolute inset-8 rounded-full flex items-center justify-center"
+        style={{
+          background: `radial-gradient(circle at center, ${currentLayer.color}20, transparent)`,
+          border: `1px solid ${currentLayer.color}40`,
+        }}
+        animate={{
+          boxShadow: [
+            `0 0 20px ${currentLayer.color}20, inset 0 0 20px ${currentLayer.color}10`,
+            `0 0 40px ${currentLayer.color}40, inset 0 0 40px ${currentLayer.color}20`,
+            `0 0 20px ${currentLayer.color}20, inset 0 0 20px ${currentLayer.color}10`,
+          ],
+        }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
         <motion.span
-          className="material-symbols-outlined text-[#0A0A0A] z-10"
-          style={{ fontSize: "32px" }}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.3 }}
+          key={activeLayer}
+          className="material-symbols-outlined text-4xl"
+          style={{ color: currentLayer.color }}
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 200 }}
         >
-          person
+          {currentLayer.icon}
         </motion.span>
-      )}
-    </div>
-  );
-}
+      </motion.div>
 
-// Layer 3: Rotating squares
-function AntiBotContent({ isActive }: { isActive: boolean }) {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      {[0, 1, 2].map((sq) => (
-        <motion.div
-          key={sq}
-          className="absolute border-2 border-[#F3FF97]/70"
-          style={{
-            width: `${80 - sq * 15}%`,
-            height: `${80 - sq * 15}%`,
-          }}
-          animate={{
-            rotate: isActive
-              ? sq % 2 === 0 ? 360 : -360
-              : sq * 15,
-          }}
-          transition={{
-            duration: 8 - sq * 2,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-// Layer 4: Grid of dots
-function PrivacyLayerContent({ isActive }: { isActive: boolean }) {
-  return (
-    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 gap-1 p-4">
-      {Array.from({ length: 16 }).map((_, i) => (
+      {/* Orbiting dots */}
+      {[0, 1, 2, 3].map((i) => (
         <motion.div
           key={i}
-          className="rounded-full bg-[#F3FF97]/50 border border-[#F3FF97]/30"
+          className="absolute w-2 h-2 rounded-full"
+          style={{
+            background: i === activeLayer ? currentLayer.color : "#333",
+            boxShadow: i === activeLayer ? `0 0 10px ${currentLayer.color}` : "none",
+            left: "50%",
+            top: "50%",
+          }}
           animate={{
-            opacity: isActive ? [0.3, 1, 0.3] : 0.3,
-            scale: isActive ? [1, 1.2, 1] : 1,
+            x: Math.cos((i / 4) * Math.PI * 2 + Date.now() / 2000) * 90 - 4,
+            y: Math.sin((i / 4) * Math.PI * 2 + Date.now() / 2000) * 90 - 4,
           }}
-          transition={{
-            duration: 1.5,
-            delay: isActive ? (i % 4) * 0.1 + Math.floor(i / 4) * 0.1 : 0,
-            repeat: isActive ? Infinity : 0,
-            repeatDelay: 0.5,
-          }}
+          transition={{ duration: 0.1 }}
         />
       ))}
     </div>
   );
 }
 
-// Floating particles
-function Particles({ activePhase }: { activePhase: number }) {
+// Security Layer Card
+function SecurityCard({
+  layer,
+  index,
+  isActive,
+  onClick
+}: {
+  layer: typeof securityLayers[0];
+  index: number;
+  isActive: boolean;
+  onClick: () => void;
+}) {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {Array.from({ length: 20 }).map((_, i) => (
+    <motion.div
+      className="relative cursor-pointer group"
+      onClick={onClick}
+      initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+    >
+      {/* Connection line to center */}
+      <motion.div
+        className="absolute top-1/2 h-px"
+        style={{
+          width: 60,
+          left: index % 2 === 0 ? "100%" : "auto",
+          right: index % 2 === 0 ? "auto" : "100%",
+          background: isActive
+            ? `linear-gradient(${index % 2 === 0 ? "90deg" : "270deg"}, ${layer.color}, transparent)`
+            : "linear-gradient(90deg, #333, transparent)",
+        }}
+        animate={{ opacity: isActive ? 1 : 0.3 }}
+      />
+
+      {/* Card */}
+      <motion.div
+        className="relative p-6 rounded-2xl backdrop-blur-sm overflow-hidden"
+        style={{
+          background: isActive ? `${layer.color}08` : "rgba(13, 13, 13, 0.8)",
+          border: `1px solid ${isActive ? `${layer.color}50` : "#1f1f1f"}`,
+        }}
+        whileHover={{ scale: 1.02 }}
+        animate={{
+          boxShadow: isActive
+            ? `0 0 30px ${layer.color}20, inset 0 0 30px ${layer.color}05`
+            : "none",
+        }}
+      >
+        {/* Accent bar */}
         <motion.div
-          key={i}
-          className="absolute w-1 h-1 rounded-full bg-[#F3FF97]"
-          style={{
-            left: `${45 + Math.random() * 10}%`,
-            bottom: "10%",
-          }}
-          animate={{
-            y: [0, -400 - Math.random() * 200],
-            opacity: [0, 1, 0],
-            x: [0, (Math.random() - 0.5) * 50],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            delay: i * 0.2,
-            repeat: Infinity,
-            ease: "easeOut",
-          }}
+          className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
+          style={{ background: layer.color }}
+          animate={{ opacity: isActive ? 1 : 0.3 }}
         />
-      ))}
-    </div>
+
+        {/* Scan effect */}
+        {isActive && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `linear-gradient(180deg, ${layer.color}10, transparent, ${layer.color}05)`,
+            }}
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+        )}
+
+        <div className="relative flex items-start gap-4">
+          {/* Icon */}
+          <motion.div
+            className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{
+              background: `${layer.color}15`,
+              border: `1px solid ${layer.color}30`,
+            }}
+            animate={{
+              scale: isActive ? [1, 1.05, 1] : 1,
+            }}
+            transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
+          >
+            <span
+              className="material-symbols-outlined text-2xl"
+              style={{ color: layer.color }}
+            >
+              {layer.icon}
+            </span>
+          </motion.div>
+
+          {/* Content */}
+          <div className="flex-1">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="text-lg font-semibold text-white">{layer.title}</h4>
+              <motion.span
+                className="text-xs font-semibold px-3 py-1 rounded-full"
+                style={{
+                  background: isActive ? layer.color : "transparent",
+                  color: isActive ? "#0A0A0A" : layer.color,
+                  border: `1px solid ${layer.color}50`,
+                }}
+                animate={{ scale: isActive ? [1, 1.05, 1] : 1 }}
+                transition={{ duration: 1, repeat: isActive ? Infinity : 0 }}
+              >
+                {layer.badge}
+              </motion.span>
+            </div>
+            <p className="text-sm text-[#A89F91] leading-relaxed">
+              {layer.description}
+            </p>
+          </div>
+        </div>
+
+        {/* Active indicator particles */}
+        {isActive && (
+          <>
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 rounded-full"
+                style={{
+                  background: layer.color,
+                  left: `${20 + i * 15}%`,
+                  bottom: 0,
+                }}
+                animate={{
+                  y: [0, -30, 0],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  delay: i * 0.2,
+                  repeat: Infinity,
+                }}
+              />
+            ))}
+          </>
+        )}
+      </motion.div>
+    </motion.div>
   );
 }
 
 export default function SecurityAnimation() {
-  const [activePhase, setActivePhase] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [isInView, setIsInView] = useState(false);
+  const [activeLayer, setActiveLayer] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const PHASE_DURATION = 6000; // 6 seconds per phase
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-  const nextPhase = useCallback(() => {
-    setActivePhase((prev) => (prev + 1) % 4);
-    setProgress(0);
-  }, []);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-  // Auto-advance phases
+  // Auto-advance layers
   useEffect(() => {
-    if (isPaused || !isInView) return;
+    if (!isAutoPlaying) return;
 
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          nextPhase();
-          return 0;
-        }
-        return prev + (100 / (PHASE_DURATION / 50));
-      });
-    }, 50);
+    const interval = setInterval(() => {
+      setActiveLayer((prev) => (prev + 1) % 4);
+    }, 4000);
 
-    return () => clearInterval(progressInterval);
-  }, [isPaused, isInView, nextPhase]);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
-  const currentPhase = phases[activePhase];
+  const currentLayer = securityLayers[activeLayer];
 
   return (
     <section
-      id="security-animation"
-      className="py-24 relative overflow-hidden bg-[#0A0A0A]"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      ref={containerRef}
+      className="relative py-32 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #030206 0%, #0A0A0A 50%, #030206 100%)" }}
+      onMouseEnter={() => setIsAutoPlaying(false)}
+      onMouseLeave={() => setIsAutoPlaying(true)}
     >
+      {/* Background grid */}
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(135, 92, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(135, 92, 255, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
+
+      {/* Floating hexagons background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <HexNode
+            key={i}
+            x={Math.random() * 100 + "%"}
+            y={Math.random() * 100 + "%"}
+            size={30 + Math.random() * 40}
+            delay={Math.random() * 2}
+            isActive={Math.floor(i / 5) === activeLayer}
+            pulseColor={securityLayers[Math.floor(i / 5) % 4].color}
+          />
+        ))}
+      </div>
+
+      {/* Scan line */}
+      <ScanLine isActive={true} />
+
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        onViewportEnter={() => setIsInView(true)}
-        onViewportLeave={() => setIsInView(false)}
-        viewport={{ once: false, amount: 0.3 }}
         className="relative max-w-7xl mx-auto px-6"
+        style={{ opacity }}
       >
-        <div className="grid lg:grid-cols-5 gap-12 items-center min-h-[600px]">
-          {/* Left Side - Animated Visual (60%) */}
-          <div className="lg:col-span-3 relative h-[500px]" style={{ perspective: "1000px" }}>
-            {/* Vertical connecting line */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-[300px] bg-gradient-to-b from-transparent via-[#F3FF97]/30 to-transparent" />
-
-            {/* Particles */}
-            <Particles activePhase={activePhase} />
-
-            {/* Isometric Layers */}
-            <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
-              {[0, 1, 2, 3].map((index) => (
-                <IsometricLayer
-                  key={index}
-                  index={index}
-                  isActive={activePhase === index}
-                  phase={activePhase}
-                />
-              ))}
-            </div>
-
-            {/* Active indicator glow */}
+        {/* Header */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+            style={{
+              background: "rgba(135, 92, 255, 0.1)",
+              border: "1px solid rgba(135, 92, 255, 0.3)",
+            }}
+          >
             <motion.div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full pointer-events-none"
-              style={{
-                background: "radial-gradient(circle, rgba(243, 255, 151, 0.15) 0%, transparent 70%)",
-              }}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-              }}
+              className="w-2 h-2 rounded-full bg-[#F3FF97]"
+              animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
             />
+            <span className="text-sm text-[#A89F91] tracking-wider uppercase">
+              Security Architecture
+            </span>
+          </motion.div>
+
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+            Four Layers of{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: `linear-gradient(135deg, ${currentLayer.color}, #875CFF)`,
+              }}
+            >
+              Protection
+            </span>
+          </h2>
+
+          <p className="text-[#A89F91] text-lg max-w-2xl mx-auto">
+            Enterprise-grade security stack protecting your assets at every level
+          </p>
+        </motion.div>
+
+        {/* Main content - Cards on sides, Core in center */}
+        <div className="grid lg:grid-cols-3 gap-8 items-center">
+          {/* Left cards */}
+          <div className="space-y-6">
+            {securityLayers.slice(0, 2).map((layer, i) => (
+              <SecurityCard
+                key={layer.id}
+                layer={layer}
+                index={i}
+                isActive={activeLayer === i}
+                onClick={() => setActiveLayer(i)}
+              />
+            ))}
           </div>
 
-          {/* Right Side - Text Explanation (40%) */}
-          <div className="lg:col-span-2">
-            {/* Section Header */}
-            <div className="mb-8">
-              <span className="text-[#F3FF97] text-xs font-semibold tracking-[3px] uppercase">
-                Security Architecture
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">
-                Four Layers of Protection
-              </h2>
-            </div>
-
-            {/* Dynamic Explanation Card */}
-            <motion.div
-              className="bg-[#0D0D0D] border border-[#1F1F1F] rounded-3xl p-8"
-              layout
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activePhase}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Phase indicator */}
-                  <span className="text-[#F3FF97] text-sm font-semibold">
-                    {currentPhase.phase}
-                  </span>
-
-                  {/* Icon */}
-                  <div className="w-14 h-14 rounded-2xl bg-[#F3FF97]/10 border border-[#F3FF97]/20 flex items-center justify-center my-4">
-                    <span className="material-symbols-outlined text-[#F3FF97] text-3xl">
-                      {currentPhase.icon}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-2xl font-semibold text-white mb-3">
-                    {currentPhase.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-[#A89F91] text-base leading-relaxed mb-6">
-                    {currentPhase.description}
-                  </p>
-
-                  {/* Features */}
-                  <div className="space-y-2">
-                    {currentPhase.features.map((feature, i) => (
-                      <motion.div
-                        key={feature}
-                        className="flex items-center gap-2"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                      >
-                        <span className="material-symbols-outlined text-[#F3FF97] text-lg">
-                          check
-                        </span>
-                        <span className="text-[#A89F91] text-sm">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Progress Bar */}
-              <div className="mt-8">
-                <div className="h-1 bg-[#1F1F1F] rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-[#F3FF97] rounded-full"
-                    style={{ width: `${progress}%` }}
-                    transition={{ duration: 0.05 }}
-                  />
-                </div>
+          {/* Center - Core visualization */}
+          <div className="flex items-center justify-center py-12">
+            <div className="relative">
+              {/* Data streams to center */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(8)].map((_, i) => {
+                  const angle = (i / 8) * Math.PI * 2;
+                  const radius = 150;
+                  return (
+                    <DataParticle
+                      key={i}
+                      startX={Math.cos(angle) * radius + 96}
+                      startY={Math.sin(angle) * radius + 96}
+                      endX={96}
+                      endY={96}
+                      delay={i * 0.3}
+                      color={securityLayers[i % 4].color}
+                    />
+                  );
+                })}
               </div>
 
-              {/* Navigation Dots */}
-              <div className="flex justify-center gap-3 mt-6">
-                {phases.map((_, i) => (
-                  <button
+              <SecurityCore activeLayer={activeLayer} />
+
+              {/* Layer indicator dots */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex gap-3">
+                {securityLayers.map((layer, i) => (
+                  <motion.button
                     key={i}
-                    onClick={() => {
-                      setActivePhase(i);
-                      setProgress(0);
+                    className="w-3 h-3 rounded-full transition-all"
+                    style={{
+                      background: activeLayer === i ? layer.color : "#333",
+                      boxShadow: activeLayer === i ? `0 0 15px ${layer.color}` : "none",
                     }}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      activePhase === i
-                        ? "bg-[#F3FF97] shadow-[0_0_10px_rgba(243,255,151,0.5)]"
-                        : "bg-[#1F1F1F] hover:bg-[#2F2F2F]"
-                    }`}
+                    onClick={() => setActiveLayer(i)}
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
                   />
                 ))}
               </div>
-            </motion.div>
+            </div>
+          </div>
 
-            {/* CTA Button */}
-            <motion.a
-              href="https://t.me/ccbotio_bot"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#F3FF97] text-[#0A0A0A] px-6 py-3 rounded-full font-semibold mt-8 hover:bg-[#e8f085] transition-all duration-200"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="material-symbols-outlined text-lg">lock</span>
-              Experience Secure Wallet
-            </motion.a>
+          {/* Right cards */}
+          <div className="space-y-6">
+            {securityLayers.slice(2, 4).map((layer, i) => (
+              <SecurityCard
+                key={layer.id}
+                layer={layer}
+                index={i + 2}
+                isActive={activeLayer === i + 2}
+                onClick={() => setActiveLayer(i + 2)}
+              />
+            ))}
           </div>
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          className="text-center mt-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <motion.a
+            href="https://t.me/ccbotio_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-lg"
+            style={{
+              background: `linear-gradient(135deg, ${currentLayer.color}, #875CFF)`,
+              color: "#0A0A0A",
+            }}
+            whileHover={{ scale: 1.05, boxShadow: `0 0 40px ${currentLayer.color}50` }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="material-symbols-outlined">lock</span>
+            Experience Secure Wallet
+          </motion.a>
+        </motion.div>
       </motion.div>
     </section>
   );
