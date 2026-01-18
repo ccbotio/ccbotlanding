@@ -316,30 +316,6 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             />
           )}
 
-          {/* Corner decorations */}
-          <div className="absolute top-8 left-8">
-            <motion.div
-              className="flex items-center gap-2"
-              initial={{ opacity: 0, x: -20 }}
-              animate={phase >= 3 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="w-2 h-2 rounded-full bg-[#F3FF97] animate-pulse" />
-              <span className="text-[#A89F91] text-xs font-mono">SYS.INIT</span>
-            </motion.div>
-          </div>
-
-          <div className="absolute bottom-8 right-8">
-            <motion.div
-              className="text-right"
-              initial={{ opacity: 0, x: 20 }}
-              animate={phase >= 3 ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.7 }}
-            >
-              <div className="text-[#875CFF] text-xs font-mono">v2.0.0</div>
-              <div className="text-[#A89F91] text-[10px] font-mono">QUANTUM.READY</div>
-            </motion.div>
-          </div>
 
           {/* Loading bar */}
           <motion.div
