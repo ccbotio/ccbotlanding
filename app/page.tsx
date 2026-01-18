@@ -8,8 +8,6 @@ import PartnerBar from "@/components/PartnerBar";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import RewardsEngine from "@/components/RewardsEngine";
-import Security from "@/components/Security";
-import SecurityAnimation from "@/components/SecurityAnimation";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -65,7 +63,6 @@ export default function Home() {
             <Features />
             <HowItWorks />
             <RewardsEngine />
-            <SecurityAnimation />
             <Partners />
             <CTA />
             <Footer />
