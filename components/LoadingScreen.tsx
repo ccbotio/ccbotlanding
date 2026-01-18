@@ -31,8 +31,8 @@ const Particle = ({ delay, index }: { delay: number; index: number }) => {
         scale: [0, 1.5, 0],
       }}
       transition={{
-        duration: 1.5,
-        delay: delay + 0.8,
+        duration: 0.75,
+        delay: delay + 0.4,
         ease: [0.25, 0.1, 0.25, 1],
       }}
     />
@@ -58,7 +58,7 @@ const NetworkLine = ({ delay, startAngle, endAngle }: { delay: number; startAngl
       strokeWidth="1"
       initial={{ x2: x1, y2: y1, opacity: 0 }}
       animate={{ x2, y2, opacity: [0, 1, 0.5] }}
-      transition={{ duration: 0.8, delay: delay + 1.2, ease: "easeOut" }}
+      transition={{ duration: 0.4, delay: delay + 0.6, ease: "easeOut" }}
     />
   );
 };
@@ -112,15 +112,15 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 100),      // Genesis spark
-      setTimeout(() => setPhase(2), 800),      // Particle explosion
-      setTimeout(() => setPhase(3), 1800),     // Network formation
-      setTimeout(() => setPhase(4), 2600),     // Logo reveal
-      setTimeout(() => setPhase(5), 3400),     // Final pulse
+      setTimeout(() => setPhase(1), 50),       // Genesis spark
+      setTimeout(() => setPhase(2), 400),      // Particle explosion
+      setTimeout(() => setPhase(3), 900),      // Network formation
+      setTimeout(() => setPhase(4), 1300),     // Logo reveal
+      setTimeout(() => setPhase(5), 1700),     // Final pulse
       setTimeout(() => {
         setShowContent(false);
-        setTimeout(onComplete, 500);
-      }, 4000),
+        setTimeout(onComplete, 250);
+      }, 2000),
     ];
 
     return () => timers.forEach(clearTimeout);
@@ -153,7 +153,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                 opacity: [0, 1, 1],
               } : {}}
               exit={{ opacity: 0, scale: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               <div className="relative">
                 {/* Core glow */}
@@ -166,7 +166,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                       "0 0 20px #F3FF97, 0 0 40px #F3FF97, 0 0 60px #875CFF",
                     ],
                   } : {}}
-                  transition={{ duration: 0.8, repeat: Infinity }}
+                  transition={{ duration: 0.4, repeat: Infinity }}
                 />
 
                 {/* Pulse rings */}
@@ -176,19 +176,19 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                       className="absolute inset-0 rounded-full border-2 border-[#875CFF]"
                       initial={{ scale: 1, opacity: 1 }}
                       animate={{ scale: 8, opacity: 0 }}
-                      transition={{ duration: 1.2, ease: "easeOut" }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
                     />
                     <motion.div
                       className="absolute inset-0 rounded-full border border-[#D5A5E3]"
                       initial={{ scale: 1, opacity: 1 }}
                       animate={{ scale: 12, opacity: 0 }}
-                      transition={{ duration: 1.4, delay: 0.2, ease: "easeOut" }}
+                      transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
                     />
                     <motion.div
                       className="absolute inset-0 rounded-full border border-[#F3FF97]"
                       initial={{ scale: 1, opacity: 0.5 }}
                       animate={{ scale: 16, opacity: 0 }}
-                      transition={{ duration: 1.6, delay: 0.4, ease: "easeOut" }}
+                      transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                     />
                   </>
                 )}
@@ -241,7 +241,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                     fill="#875CFF"
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 1.5 + i * 0.1, duration: 0.3 }}
+                    transition={{ delay: 0.75 + i * 0.05, duration: 0.15 }}
                     style={{ filter: "drop-shadow(0 0 6px #875CFF)" }}
                   />
                 );
@@ -257,7 +257,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                 className="absolute inset-0 flex items-center justify-center"
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <motion.div
                   animate={{
@@ -267,7 +267,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                       "drop-shadow(0 0 20px rgba(135, 92, 255, 0.5))",
                     ],
                   }}
-                  transition={{ duration: 2, repeat: Infinity }}
+                  transition={{ duration: 1, repeat: Infinity }}
                 >
                   <motion.img
                     src="/images/ccbotlogo.png"
@@ -275,7 +275,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                     className="w-28 h-28 rounded-3xl"
                     initial={{ rotateY: 180, opacity: 0 }}
                     animate={{ rotateY: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                   />
                 </motion.div>
               </motion.div>
@@ -286,15 +286,15 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
                 style={{ top: "calc(50% + 100px)" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 2.8, duration: 0.4 }}
+                transition={{ delay: 1.4, duration: 0.2 }}
               >
                 <div className="flex flex-col items-center gap-3">
-                  <GlitchText text="CC BOT WALLET" delay={2.8} />
+                  <GlitchText text="CC BOT WALLET" delay={1.4} />
                   <motion.p
                     className="text-[#A89F91] text-xs tracking-[0.3em] uppercase"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 3.2, duration: 0.4 }}
+                    transition={{ delay: 1.6, duration: 0.2 }}
                   >
                     Initializing
                   </motion.p>
@@ -309,7 +309,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
               className="absolute inset-0 pointer-events-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 0.3, 0] }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.4 }}
               style={{
                 background: "radial-gradient(circle at center, rgba(243, 255, 151, 0.3) 0%, transparent 70%)",
               }}
@@ -327,7 +327,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
               className="h-full bg-gradient-to-r from-[#875CFF] via-[#D5A5E3] to-[#F3FF97] rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
-              transition={{ duration: 3, ease: "easeInOut" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
             />
           </motion.div>
         </motion.div>
