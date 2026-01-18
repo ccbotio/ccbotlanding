@@ -8,6 +8,7 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import RewardsEngine from "@/components/RewardsEngine";
 import CTA from "@/components/CTA";
+import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import Partners from "@/components/Partners";
@@ -63,6 +64,7 @@ export default function Home() {
             <RewardsEngine />
             <Partners />
             <CTA />
+            <ContactForm />
             <Footer />
           </motion.main>
         )}

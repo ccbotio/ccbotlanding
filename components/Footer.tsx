@@ -64,7 +64,7 @@ export default function Footer() {
                   <li key={i}>
                     <a
                       href={link.href}
-                      className="text-[#A89F91] text-sm hover:text-[#875CFF] transition-colors duration-200"
+                      className="text-[#FFFFFF] text-sm hover:text-[#875CFF] transition-colors duration-200"
                     >
                       {link.label}
                     </a>
@@ -74,7 +74,7 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Brand + Social - Right */}
+          {/* Brand + Contact Us - Right */}
           <div className="col-span-2 md:col-span-1 md:text-right">
             <a href="#" className="inline-flex items-center gap-2 mb-4 md:justify-end">
               <img
@@ -84,9 +84,16 @@ export default function Footer() {
               />
               <span className="text-lg font-semibold text-white">CC Bot Wallet</span>
             </a>
-            <p className="text-[#A89F91] text-sm mb-4">
+            <p className="text-white text-sm mb-4">
               The most user-friendly crypto wallet for Telegram.
             </p>
+            <h4 className="text-white font-medium mb-2 md:text-right">Contact Us</h4>
+            <a
+              href="mailto:support@ccbot.io"
+              className="text-white text-sm hover:text-[#875CFF] transition-colors duration-200 block mb-3 md:text-right"
+            >
+              support@ccbot.io
+            </a>
             <div className="flex gap-3 md:justify-end">
               {socialLinks.map((social, i) => (
                 <motion.a
@@ -96,7 +103,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-[#A89F91] hover:text-[#875CFF] hover:border-[#875CFF]/30 transition-colors duration-200"
+                  className="w-9 h-9 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-white hover:text-[#875CFF] hover:border-[#875CFF]/30 transition-colors duration-200"
                   aria-label={social.label}
                 >
                   {social.svg}
@@ -106,38 +113,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="glass-card rounded-2xl p-6 mb-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h4 className="text-white font-medium mb-1">Stay Updated</h4>
-              <p className="text-[#A89F91] text-sm">Get the latest news and updates delivered to your inbox.</p>
-            </div>
-            <div className="flex w-full md:w-auto gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 md:w-64 bg-[#1a1a1a] border border-[#2a2a2a] rounded-full px-5 py-3 text-white text-sm placeholder:text-[#A89F91] focus:outline-none focus:border-[#875CFF]/50 transition-colors duration-200"
-              />
-              <button className="bg-[#F3FF97] text-[#030206] px-6 py-3 rounded-full font-medium hover:bg-[#e8f085] transition-all duration-200 whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-[#1f1f1f]">
-          <p className="text-[#A89F91] text-sm">
+          <p className="text-white text-sm">
             &copy; {new Date().getFullYear()} CC Bot Wallet. All rights reserved.
           </p>
 
           {/* Right - Legal Links */}
           <div className="flex items-center gap-6">
-            <a href="/privacy" className="text-[#A89F91] text-sm hover:text-[#875CFF] transition-colors duration-200">
+            <a href="/privacy" className="text-white text-sm hover:text-[#875CFF] transition-colors duration-200">
               Privacy Policy
             </a>
-            <a href="/terms" className="text-[#A89F91] text-sm hover:text-[#875CFF] transition-colors duration-200">
+            <a href="/terms" className="text-white text-sm hover:text-[#875CFF] transition-colors duration-200">
               Terms of Service
             </a>
           </div>

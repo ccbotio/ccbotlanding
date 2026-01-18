@@ -2,6 +2,52 @@
 
 import { motion } from "framer-motion";
 
+// Custom minimalist SVG icons
+const FeatureIcons = {
+  send: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <path d="M12 19V5M12 5l-4 4M12 5l4 4" />
+      <circle cx="12" cy="19" r="2" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  network: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <circle cx="12" cy="12" r="3" />
+      <circle cx="12" cy="4" r="1.5" fill="currentColor" />
+      <circle cx="19" cy="8" r="1.5" fill="currentColor" />
+      <circle cx="19" cy="16" r="1.5" fill="currentColor" />
+      <circle cx="12" cy="20" r="1.5" fill="currentColor" />
+      <circle cx="5" cy="16" r="1.5" fill="currentColor" />
+      <circle cx="5" cy="8" r="1.5" fill="currentColor" />
+      <path d="M12 9V5.5M14.6 10.5l3-1.75M14.6 13.5l3 1.75M12 15v3.5M9.4 13.5l-3 1.75M9.4 10.5l-3-1.75" />
+    </svg>
+  ),
+  at: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M16 12v1a3 3 0 006 0v-1a10 10 0 10-4 8" />
+    </svg>
+  ),
+  passkey: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <rect x="3" y="11" width="18" height="10" rx="2" />
+      <circle cx="12" cy="16" r="2" />
+      <path d="M7 11V7a5 5 0 0110 0v4" />
+    </svg>
+  ),
+  shield: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <path d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  ),
+  rewards: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+      <polygon points="12,2 15,8.5 22,9.5 17,14.5 18,21.5 12,18 6,21.5 7,14.5 2,9.5 9,8.5" />
+    </svg>
+  ),
+};
+
 const features = [
   {
     icon: "send",
@@ -9,27 +55,27 @@ const features = [
     description: "Transfer crypto to any Telegram user using just their @username. No complex wallet addresses required.",
   },
   {
-    icon: "hub",
+    icon: "network",
     title: "Canton Network Native",
     description: "Built on Canton Network, the privacy-first blockchain designed for institutional-grade transactions.",
   },
   {
-    icon: "alternate_email",
+    icon: "at",
     title: "Canton Name Service",
     description: "Register your unique CNS name for easy-to-remember wallet addresses and seamless transfers.",
   },
   {
-    icon: "fingerprint",
+    icon: "passkey",
     title: "Passkey Security",
     description: "Secure your wallet with Passkey, Face ID, Touch ID, or PIN. Next-gen authentication for your assets.",
   },
   {
-    icon: "lock",
+    icon: "shield",
     title: "Non-Custodial",
     description: "Your keys, your crypto. Private keys are stored locally and never leave your device.",
   },
   {
-    icon: "toll",
+    icon: "rewards",
     title: "Task Rewards",
     description: "Complete daily tasks, maintain streaks, and earn CC tokens while using the wallet.",
   },
@@ -89,10 +135,8 @@ export default function Features() {
               variants={cardVariants}
               className="group glass-card rounded-2xl p-6 card-hover"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#875CFF]/20 to-[#D5A5E3]/10 border border-[#875CFF]/20 flex items-center justify-center mb-4 group-hover:border-[#875CFF]/40 transition-colors duration-300">
-                <span className="material-symbols-outlined text-[#875CFF] text-2xl">
-                  {feature.icon}
-                </span>
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D5A5E3]/15 to-[#D5A5E3]/5 border border-[#D5A5E3]/20 flex items-center justify-center mb-4 group-hover:border-[#D5A5E3]/40 transition-colors duration-300 text-[#D5A5E3]">
+                {FeatureIcons[feature.icon as keyof typeof FeatureIcons]}
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">
                 {feature.title}
