@@ -3,6 +3,27 @@
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useAnimationFrame } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
 
+// Custom hook to detect mobile/touch devices
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(
+        window.innerWidth < 768 ||
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0
+      );
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+}
+
 // Aurora Borealis Background Effect
 export function AuroraBackground() {
   const { scrollYProgress } = useScroll();
@@ -43,8 +64,9 @@ export function AuroraBackground() {
   );
 }
 
-// Floating Particles System
+// Floating Particles System - Optimized for mobile
 export function FloatingParticles() {
+  const isMobile = useIsMobile();
   const [particles, setParticles] = useState<Array<{
     id: number;
     x: number;
@@ -55,7 +77,9 @@ export function FloatingParticles() {
   }>>([]);
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
+    // Reduce particle count on mobile (50 → 12)
+    const particleCount = isMobile ? 12 : 50;
+    const newParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -64,7 +88,7 @@ export function FloatingParticles() {
       delay: Math.random() * 5,
     }));
     setParticles(newParticles);
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -77,6 +101,7 @@ export function FloatingParticles() {
             top: `${particle.y}%`,
             width: particle.size,
             height: particle.size,
+            willChange: 'transform, opacity',
           }}
           animate={{
             y: [0, -100, 0],
@@ -152,8 +177,9 @@ export function LiquidTransition() {
   );
 }
 
-// Interactive Ripple Effect
+// Interactive Ripple Effect - Disabled on mobile
 export function RippleEffect() {
+  const isMobile = useIsMobile();
   const [ripples, setRipples] = useState<Array<{
     id: number;
     x: number;
@@ -161,6 +187,9 @@ export function RippleEffect() {
   }>>([]);
 
   useEffect(() => {
+    // Don't create ripples on mobile
+    if (isMobile) return;
+
     const handleScroll = () => {
       const id = Date.now();
       const x = 50 + (Math.random() - 0.5) * 30;
@@ -171,7 +200,10 @@ export function RippleEffect() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
+
+  // Don't render on mobile
+  if (isMobile) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -183,6 +215,7 @@ export function RippleEffect() {
             left: `${ripple.x}%`,
             top: `${ripple.y}%`,
             transform: 'translate(-50%, -50%)',
+            willChange: 'transform, opacity',
           }}
           initial={{ width: 0, height: 0, opacity: 0.5 }}
           animate={{ width: 300, height: 300, opacity: 0 }}
@@ -196,8 +229,9 @@ export function RippleEffect() {
   );
 }
 
-// Magnetic Mouse Follower
+// Magnetic Mouse Follower - Disabled on mobile/touch devices
 export function MagneticMouse() {
+  const isMobile = useIsMobile();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -205,6 +239,9 @@ export function MagneticMouse() {
   const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
   useEffect(() => {
+    // Don't add event listeners on mobile/touch devices
+    if (isMobile) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -212,7 +249,10 @@ export function MagneticMouse() {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
+
+  // Don't render on mobile/touch devices
+  if (isMobile) return null;
 
   return (
     <>
@@ -225,6 +265,7 @@ export function MagneticMouse() {
           translateX: '-50%',
           translateY: '-50%',
           background: 'radial-gradient(circle, rgba(243, 255, 151, 0.06) 0%, transparent 70%)',
+          willChange: 'transform',
         }}
       />
       {/* Inner dot */}
@@ -235,6 +276,7 @@ export function MagneticMouse() {
           y: smoothY,
           translateX: '-50%',
           translateY: '-50%',
+          willChange: 'transform',
         }}
       />
     </>
@@ -371,8 +413,13 @@ export function ScrambleText({
   );
 }
 
-// Morphing Background Blobs
+// Morphing Background Blobs - Optimized for mobile (reduced blur)
 export function MorphingBlobs() {
+  const isMobile = useIsMobile();
+
+  // On mobile, don't render to save performance
+  if (isMobile) return null;
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-50">
       <motion.div
@@ -392,6 +439,7 @@ export function MorphingBlobs() {
         style={{
           background: 'radial-gradient(circle, rgba(243, 255, 151, 0.1) 0%, transparent 70%)',
           filter: 'blur(40px)',
+          willChange: 'border-radius',
         }}
       />
       <motion.div
@@ -411,19 +459,22 @@ export function MorphingBlobs() {
         style={{
           background: 'radial-gradient(circle, rgba(243, 255, 151, 0.08) 0%, transparent 70%)',
           filter: 'blur(40px)',
+          willChange: 'border-radius',
         }}
       />
     </div>
   );
 }
 
-// Scroll Velocity Text
+// Scroll Velocity Text - Disabled on mobile
 export function VelocityText() {
+  const isMobile = useIsMobile();
   const { scrollY } = useScroll();
   const [velocity, setVelocity] = useState(0);
   const prevScrollY = useRef(0);
 
   useAnimationFrame(() => {
+    if (isMobile) return;
     const currentScrollY = scrollY.get();
     const newVelocity = currentScrollY - prevScrollY.current;
     setVelocity(newVelocity);
@@ -431,6 +482,9 @@ export function VelocityText() {
   });
 
   const skewX = useSpring(velocity * 0.5, { stiffness: 100, damping: 30 });
+
+  // Don't render on mobile
+  if (isMobile) return null;
 
   return (
     <motion.div
@@ -473,8 +527,13 @@ export function ScrollLightBeam() {
   );
 }
 
-// Floating Geometric Shapes
+// Floating Geometric Shapes - Disabled on mobile
 export function FloatingShapes() {
+  const isMobile = useIsMobile();
+
+  // Don't render on mobile
+  if (isMobile) return null;
+
   const shapes = [
     { type: 'circle', size: 60, x: 10, delay: 0 },
     { type: 'square', size: 40, x: 85, delay: 2 },
@@ -487,7 +546,7 @@ export function FloatingShapes() {
         <motion.div
           key={i}
           className="absolute"
-          style={{ left: `${shape.x}%`, top: '20%' }}
+          style={{ left: `${shape.x}%`, top: '20%', willChange: 'transform, opacity' }}
           animate={{
             y: [0, -30, 0],
             rotate: [0, 180, 360],
