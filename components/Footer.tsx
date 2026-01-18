@@ -54,23 +54,8 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] border-t border-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
-          {/* Brand - Left */}
-          <div className="col-span-2 md:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <img
-                src="/images/ccbotlogo.png"
-                alt="CC Bot Wallet"
-                className="w-12 h-12 rounded-xl object-contain"
-              />
-              <span className="text-xl font-semibold text-white">CC Bot Wallet</span>
-            </a>
-            <p className="text-[#A89F91] text-sm max-w-xs">
-              The most user-friendly crypto wallet for Telegram. Secure, fast, and designed for everyone.
-            </p>
-          </div>
-
-          {/* Links - Middle */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+          {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h4 className="text-white font-medium mb-4 hover:text-[#875CFF] transition-colors duration-200 cursor-pointer">{category}</h4>
@@ -89,11 +74,18 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Social - Right */}
+          {/* Brand + Social - Right */}
           <div className="col-span-2 md:col-span-1 md:text-right">
-            <h4 className="text-white font-medium mb-4">Follow Us</h4>
+            <a href="#" className="inline-flex items-center gap-2 mb-4 md:justify-end">
+              <img
+                src="/images/ccbotlogo.png"
+                alt="CC Bot Wallet"
+                className="w-10 h-10 rounded-xl object-contain"
+              />
+              <span className="text-lg font-semibold text-white">CC Bot Wallet</span>
+            </a>
             <p className="text-[#A89F91] text-sm mb-4">
-              Stay connected with the latest updates and announcements.
+              The most user-friendly crypto wallet for Telegram.
             </p>
             <div className="flex gap-3 md:justify-end">
               {socialLinks.map((social, i) => (
