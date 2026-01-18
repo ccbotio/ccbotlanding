@@ -12,6 +12,7 @@ import Security from "@/components/Security";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+import Partners from "@/components/Partners";
 import {
   GlowingScrollProgress,
   MagneticMouse,
@@ -64,6 +65,7 @@ export default function Home() {
             <HowItWorks />
             <RewardsEngine />
             <Security />
+            <Partners />
             <CTA />
             <Footer />
           </motion.main>

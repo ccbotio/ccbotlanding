@@ -7,7 +7,7 @@ const footerLinks = {
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Rewards", href: "#rewards" },
-    { label: "Pricing", href: "#" },
+    { label: "Partners", href: "#partners" },
   ],
   Resources: [
     { label: "Getting Started", href: "/docs/getting-started" },
@@ -55,7 +55,7 @@ export default function Footer() {
     <footer className="bg-[#0a0a0a] border-t border-[#1f1f1f]">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
-          {/* Brand */}
+          {/* Brand - Left */}
           <div className="col-span-2">
             <a href="#" className="flex items-center gap-2 mb-4">
               <img
@@ -68,26 +68,9 @@ export default function Footer() {
             <p className="text-[#A89F91] text-sm mb-6 max-w-xs">
               The most user-friendly crypto wallet for Telegram. Secure, fast, and designed for everyone.
             </p>
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {socialLinks.map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-[#A89F91] hover:text-[#875CFF] hover:border-[#875CFF]/30 transition-colors duration-200"
-                  aria-label={social.label}
-                >
-                  {social.svg}
-                </motion.a>
-              ))}
-            </div>
           </div>
 
-          {/* Links */}
+          {/* Links - Middle */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h4 className="text-white font-medium mb-4 hover:text-[#875CFF] transition-colors duration-200 cursor-pointer">{category}</h4>
@@ -132,6 +115,8 @@ export default function Footer() {
           <p className="text-[#A89F91] text-sm">
             &copy; {new Date().getFullYear()} CC Bot Wallet. All rights reserved.
           </p>
+
+          {/* Center - Legal Links */}
           <div className="flex items-center gap-6">
             <a href="/privacy" className="text-[#A89F91] text-sm hover:text-[#875CFF] transition-colors duration-200">
               Privacy Policy
@@ -139,6 +124,24 @@ export default function Footer() {
             <a href="/terms" className="text-[#A89F91] text-sm hover:text-[#875CFF] transition-colors duration-200">
               Terms of Service
             </a>
+          </div>
+
+          {/* Right - Social Links */}
+          <div className="flex gap-3">
+            {socialLinks.map((social, i) => (
+              <motion.a
+                key={i}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-9 h-9 rounded-lg bg-[#1a1a1a] border border-[#2a2a2a] flex items-center justify-center text-[#A89F91] hover:text-[#875CFF] hover:border-[#875CFF]/30 transition-colors duration-200"
+                aria-label={social.label}
+              >
+                {social.svg}
+              </motion.a>
+            ))}
           </div>
         </div>
       </div>
