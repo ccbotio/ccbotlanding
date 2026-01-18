@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #F3FF97;
+  --color-black: #030206;
+  --color-white: #FFFFFC;
+  --color-lilac: #D5A5E3;
+  --color-purple: #875CFF;
+  --color-taupe: #A89F91;
+  --color-surface: #0d0d0d;
+  --color-card: #111111;
+  --color-border: #1f1f1f;
+  --font-display: "Space Grotesk", sans-serif;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2.5rem;
+}
+
+:root {
+  --background: #030206;
+  --foreground: #FFFFFC;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, #030206 0%, #0a0a0f 50%, #0d0d12 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: "Space Grotesk", sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Glass Navigation */
+.glass-nav {
+  background: rgba(3, 2, 6, 0.8);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-bottom: 1px solid rgba(135, 92, 255, 0.15);
+}
+
+/* Gradient Orb Background Effect - Purple & Lilac Glow */
+.neon-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(135, 92, 255, 0.2) 0%, rgba(213, 165, 227, 0.12) 40%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+/* Grid Pattern Background */
+.grid-pattern {
+  background-image: radial-gradient(rgba(135, 92, 255, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* 3D Perspective for Cards */
+.perspective-card {
+  perspective: 1000px;
+}
+
+.rotated-surface {
+  transform: rotateY(-15deg) rotateX(10deg);
+  transform-style: preserve-3d;
+}
+
+/* Gradient Text - Yellow accent */
+.gradient-text {
+  background: linear-gradient(135deg, #F3FF97 0%, #d4e157 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Effect - Yellow for buttons */
+.glow-primary {
+  box-shadow: 0 0 30px rgba(243, 255, 151, 0.25);
+}
+
+.glow-primary-hover:hover {
+  box-shadow: 0 0 50px rgba(135, 92, 255, 0.4);
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(135, 92, 255, 0.4);
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(243, 255, 151, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(243, 255, 151, 0.3);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030206;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* Premium Smooth Scroll */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Lenis-like smooth scrolling feel */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+/* Section Reveal Animation */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(135, 92, 255, 0.1);
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(243, 255, 151, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Magnetic Hover Effect */
+.magnetic-hover {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Text Gradient Animation - Yellow */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient-text {
+  background: linear-gradient(135deg, #F3FF97 0%, #d4e157 25%, #F3FF97 50%, #d4e157 75%, #F3FF97 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* Smooth Border Glow - Purple */
+.border-glow {
+  position: relative;
+}
+
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(135, 92, 255, 0.4), transparent, rgba(213, 165, 227, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.border-glow:hover::before {
+  opacity: 1;
+}
+
+/* Elastic Scale on Click */
+.elastic-click:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
