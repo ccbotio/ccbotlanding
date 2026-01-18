@@ -19,7 +19,7 @@ const footerLinks = {
     { label: "About", href: "#" },
     { label: "Careers", href: "#" },
     { label: "Press Kit", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "mailto:support@ccbot.io" },
   ],
   Legal: [
     { label: "Privacy Policy", href: "/privacy" },
