@@ -84,26 +84,6 @@ export default function Partners() {
           ))}
         </div>
 
-        {/* Interested in Partnering? */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-center mt-8"
-        >
-          <p className="text-[#A89F91]">
-            Interested in partnering with CC Bot Wallet?{" "}
-            <a
-              href="https://t.me/ccbotio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#875CFF] hover:text-[#D5A5E3] transition-colors"
-            >
-              Get in touch
-            </a>
-          </p>
-        </motion.div>
       </div>
     </section>
   );
