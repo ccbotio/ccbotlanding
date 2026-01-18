@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import PartnerBar from "@/components/PartnerBar";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import RewardsEngine from "@/components/RewardsEngine";
@@ -59,7 +58,6 @@ export default function Home() {
             {/* Main Content */}
             <Header />
             <Hero />
-            <PartnerBar />
             <Features />
             <HowItWorks />
             <RewardsEngine />
