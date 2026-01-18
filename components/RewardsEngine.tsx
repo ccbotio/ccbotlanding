@@ -51,6 +51,7 @@ export default function RewardsEngine() {
                 { icon: "local_fire_department", title: "Daily Streaks", desc: "Earn bonus rewards for consecutive daily logins" },
                 { icon: "military_tech", title: "Achievement Badges", desc: "Unlock exclusive badges and recognition" },
                 { icon: "trending_up", title: "Leaderboard", desc: "Compete with other users and climb the ranks" },
+                { icon: "savings", title: "Staking Rewards", desc: "Stake your CC tokens to earn passive rewards" },
               ].map((item, i) => (
                 <motion.div
                   key={i}

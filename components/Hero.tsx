@@ -86,20 +86,6 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Powered By */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-3 mt-12 justify-center lg:justify-start"
-            >
-              <span className="text-[#A89F91] text-sm">Powered by</span>
-              <img
-                src="/images/cantonlogo.png"
-                alt="Canton Network"
-                className="h-8 opacity-80 hover:opacity-100 transition-opacity"
-              />
-            </motion.div>
           </div>
 
           {/* Right Content - Phone Mockup */}
