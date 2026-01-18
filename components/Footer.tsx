@@ -58,7 +58,7 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="text-white font-medium mb-4 hover:text-[#875CFF] transition-colors duration-200 cursor-pointer">{category}</h4>
+              <h4 className="text-white text-lg font-semibold mb-4 hover:text-[#875CFF] transition-colors duration-200 cursor-pointer">{category}</h4>
               <ul className="space-y-3">
                 {links.map((link, i) => (
                   <li key={i}>
@@ -83,16 +83,6 @@ export default function Footer() {
                 className="w-10 h-10 rounded-xl object-contain"
               />
               <span className="text-lg font-semibold text-white">CC Bot Wallet</span>
-            </a>
-            <p className="text-white text-sm mb-4">
-              The most user-friendly crypto wallet for Telegram.
-            </p>
-            <h4 className="text-white font-medium mb-2 md:text-right">Contact Us</h4>
-            <a
-              href="mailto:support@ccbot.io"
-              className="text-white text-sm hover:text-[#875CFF] transition-colors duration-200 block mb-3 md:text-right"
-            >
-              support@ccbot.io
             </a>
             <div className="flex gap-3 md:justify-end">
               {socialLinks.map((social, i) => (
