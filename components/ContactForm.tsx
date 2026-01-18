@@ -1,8 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const { name, email, subject, message } = formData;
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+    const mailtoLink = `mailto:support@ccbot.io?subject=${encodeURIComponent(subject || "Contact Form Submission")}&body=${body}`;
+
+    window.location.href = mailtoLink;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-20" />
@@ -36,13 +58,17 @@ export default function ContactForm() {
           viewport={{ once: true }}
           className="glass-card rounded-2xl p-8 md:p-10"
         >
-          <form className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-white text-sm font-medium mb-2">Your Name</label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="John Doe"
+                  required
                   className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-5 py-4 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#875CFF]/50 transition-colors duration-200"
                 />
               </div>
@@ -50,7 +76,11 @@ export default function ContactForm() {
                 <label className="block text-white text-sm font-medium mb-2">Your Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="john@example.com"
+                  required
                   className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-5 py-4 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#875CFF]/50 transition-colors duration-200"
                 />
               </div>
@@ -60,6 +90,9 @@ export default function ContactForm() {
               <label className="block text-white text-sm font-medium mb-2">Subject</label>
               <input
                 type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
                 placeholder="How can we help?"
                 className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-5 py-4 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#875CFF]/50 transition-colors duration-200"
               />
@@ -68,8 +101,12 @@ export default function ContactForm() {
             <div>
               <label className="block text-white text-sm font-medium mb-2">Message</label>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Write your message here..."
                 rows={5}
+                required
                 className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-5 py-4 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#875CFF]/50 transition-colors duration-200 resize-none"
               />
             </div>
