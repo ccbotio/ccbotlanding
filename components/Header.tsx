@@ -38,27 +38,27 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8">
           <a
             href="#features"
-            className="text-[#A89F91] hover:text-[#875CFF] transition-colors duration-200"
+            className="text-white text-base font-medium hover:text-[#F3FF97] transition-colors duration-200"
           >
             Features
           </a>
           <a
             href="#how-it-works"
-            className="text-[#A89F91] hover:text-[#875CFF] transition-colors duration-200"
+            className="text-white text-base font-medium hover:text-[#F3FF97] transition-colors duration-200"
           >
             How It Works
           </a>
           <a
             href="#rewards"
-            className="text-[#A89F91] hover:text-[#875CFF] transition-colors duration-200"
+            className="text-white text-base font-medium hover:text-[#F3FF97] transition-colors duration-200"
           >
             Rewards
           </a>
           <a
-            href="#security"
-            className="text-[#A89F91] hover:text-[#875CFF] transition-colors duration-200"
+            href="#partners"
+            className="text-white text-base font-medium hover:text-[#F3FF97] transition-colors duration-200"
           >
-            Security
+            Partners
           </a>
         </nav>
 
