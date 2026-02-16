@@ -60,7 +60,7 @@ export default function Header() {
 
         {/* CTA Button */}
         <a
-          href="https://t.me/ccbotio_bot"
+          href="https://t.me/ccbotwallet_bot"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:flex items-center gap-2 bg-[#F3FF97] text-[#030206] px-4 py-2 rounded-full text-sm font-medium hover:bg-[#e8f085] transition-all duration-200"
@@ -108,7 +108,7 @@ export default function Header() {
                 </motion.a>
               ))}
               <motion.a
-                href="https://t.me/ccbotio_bot"
+                href="https://t.me/ccbotwallet_bot"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobileMenu}

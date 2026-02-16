@@ -67,7 +67,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
               <a
-                href="https://t.me/ccbotio_bot"
+                href="https://t.me/ccbotwallet_bot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#F3FF97] text-[#030206] px-6 py-3 rounded-full font-semibold hover:bg-[#e8f085] transition-all duration-200 glow-primary"

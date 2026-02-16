@@ -6,7 +6,7 @@ const steps = [
   {
     number: "01",
     title: "Launch the Bot",
-    description: "Open @ccbotio_bot in Telegram and tap Start. Your wallet is created instantly.",
+    description: "Open @ccbotwallet_bot in Telegram and tap Start. Your wallet is created instantly.",
     icon: "play_arrow",
   },
   {
@@ -97,7 +97,7 @@ export default function HowItWorks() {
           className="text-center mt-12"
         >
           <a
-            href="https://t.me/ccbotio_bot"
+            href="https://t.me/ccbotwallet_bot"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#F3FF97] text-[#030206] px-6 py-3 rounded-full font-semibold hover:bg-[#e8f085] transition-all duration-200 glow-primary"

@@ -38,10 +38,10 @@ export default function GettingStarted() {
                 <div>
                   <h2 className="text-xl font-semibold text-white mb-3">Open CC Bot in Telegram</h2>
                   <p className="text-[#A89F91] mb-4">
-                    Start by opening our Telegram bot. Click the button below or search for <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#F3FF97]">@ccbotio_bot</code> in Telegram.
+                    Start by opening our Telegram bot. Click the button below or search for <code className="bg-[#1a1a1a] px-2 py-1 rounded text-[#F3FF97]">@ccbotwallet_bot</code> in Telegram.
                   </p>
                   <a
-                    href="https://t.me/ccbotio_bot"
+                    href="https://t.me/ccbotwallet_bot"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#875CFF] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#7a4fee] transition-colors"

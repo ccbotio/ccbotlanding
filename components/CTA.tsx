@@ -32,7 +32,7 @@ export default function CTA() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
-              href="https://t.me/ccbotio_bot"
+              href="https://t.me/ccbotwallet_bot"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}

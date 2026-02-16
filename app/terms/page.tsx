@@ -187,7 +187,7 @@ export default function TermsOfService() {
                 If you have questions about these Terms, please contact us:
               </p>
               <ul className="list-disc list-inside mt-4 space-y-2">
-                <li>Telegram: <a href="https://t.me/ccbotio_bot" className="text-[#F3FF97] hover:underline">@ccbotio_bot</a></li>
+                <li>Telegram: <a href="https://t.me/ccbotwallet_bot" className="text-[#F3FF97] hover:underline">@ccbotwallet_bot</a></li>
                 <li>X (Twitter): <a href="https://x.com/ccbotio" className="text-[#F3FF97] hover:underline">@ccbotio</a></li>
                 <li>GitHub: <a href="https://github.com/ccbotio" className="text-[#F3FF97] hover:underline">github.com/ccbotio</a></li>
               </ul>
