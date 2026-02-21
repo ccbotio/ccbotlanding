@@ -70,16 +70,20 @@ export default function Footer() {
             <div key={category}>
               <h4 className="text-white text-lg font-semibold mb-4 hover:text-[#875CFF] transition-colors duration-200 cursor-pointer">{category}</h4>
               <ul className="space-y-3">
-                {links.map((link, i) => (
-                  <li key={i}>
-                    <a
-                      href={link.href}
-                      className="text-[#FFFFFF] text-sm hover:text-[#875CFF] transition-colors duration-200"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {links.map((link, i) => {
+                  const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
+                  return (
+                    <li key={i}>
+                      <a
+                        href={link.href}
+                        {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+                        className="text-[#FFFFFF] text-sm hover:text-[#875CFF] transition-colors duration-200"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
