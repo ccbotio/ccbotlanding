@@ -41,9 +41,12 @@ const FeatureIcons = {
       <path d="M9 12l2 2 4-4" />
     </svg>
   ),
-  rewards: (
+  ai: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <polygon points="12,2 15,8.5 22,9.5 17,14.5 18,21.5 12,18 6,21.5 7,14.5 2,9.5 9,8.5" />
+      <path d="M12 2a4 4 0 014 4v1h1a3 3 0 013 3v2a3 3 0 01-3 3h-1v1a4 4 0 01-8 0v-1H7a3 3 0 01-3-3v-2a3 3 0 013-3h1V6a4 4 0 014-4z" />
+      <circle cx="9.5" cy="10.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="14.5" cy="10.5" r="1" fill="currentColor" stroke="none" />
+      <path d="M9.5 14.5c0 1.38 1.12 2 2.5 2s2.5-.62 2.5-2" />
     </svg>
   ),
 };
@@ -75,9 +78,9 @@ const features = [
     description: "Your keys, your crypto. Private keys are stored locally and never leave your device.",
   },
   {
-    icon: "rewards",
-    title: "Task Rewards",
-    description: "Complete daily tasks, maintain streaks, and earn CC tokens while using the wallet.",
+    icon: "ai",
+    title: "AI Agent",
+    description: "Your personal AI-powered assistant for smart transactions, portfolio insights, and on-chain analytics.",
   },
 ];
 
