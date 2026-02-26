@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
-import RewardsEngine from "@/components/RewardsEngine";
+
 import CTA from "@/components/CTA";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -61,7 +61,6 @@ export default function Home() {
             <Hero />
             <Features />
             <HowItWorks />
-            <RewardsEngine />
             <Partners />
             <CTA />
             <ContactForm />
