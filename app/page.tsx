@@ -1,73 +1,40 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import HowItWorks from "@/components/HowItWorks";
+import Waitlist from "@/components/Waitlist";
 
-import CTA from "@/components/CTA";
-import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
-import LoadingScreen from "@/components/LoadingScreen";
+import Features from "@/components/Features";
+import SecuritySection from "@/components/SecuritySection";
+import HowItWorks from "@/components/HowItWorks";
 import Partners from "@/components/Partners";
-import {
-  GlowingScrollProgress,
-  MagneticMouse,
-  FloatingParticles,
-  MorphingBlobs,
-  RippleEffect,
-  FilmGrain,
-  ScrollLightBeam,
-  CornerAccents,
-  ScrollVignette,
-} from "@/components/PremiumEffects";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
-    <>
-      {/* Quantum Genesis Loading Screen */}
-      <AnimatePresence>
-        {isLoading && (
-          <LoadingScreen onComplete={() => setIsLoading(false)} />
-        )}
-      </AnimatePresence>
+    <motion.main
+      className="min-h-screen bg-background-light relative overflow-x-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Header />
+      <Hero />
+      <div className="section-divider" />
+      <Waitlist />
 
-      {/* Main Content with staggered reveal */}
-      <AnimatePresence>
-        {!isLoading && (
-          <motion.main
-            className="min-h-screen bg-background-dark relative overflow-x-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Premium Visual Effects */}
-            <GlowingScrollProgress />
-            <MagneticMouse />
-            <FloatingParticles />
-            <MorphingBlobs />
-            <RippleEffect />
-            <FilmGrain />
-            <ScrollLightBeam />
-            <CornerAccents />
-            <ScrollVignette />
-
-            {/* Main Content */}
-            <Header />
-            <Hero />
-            <Features />
-            <HowItWorks />
-            <Partners />
-            <CTA />
-            <ContactForm />
-            <Footer />
-          </motion.main>
-        )}
-      </AnimatePresence>
-    </>
+      <div className="section-divider" />
+      <Features />
+      <div className="section-divider" />
+      <SecuritySection />
+      <div className="section-divider" />
+      <HowItWorks />
+      <div className="section-divider" />
+      <Partners />
+      <ContactSection />
+      <Footer />
+    </motion.main>
   );
 }

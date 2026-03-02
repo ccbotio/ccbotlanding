@@ -1,95 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useTranslation } from "@/lib/i18n";
 
-// Custom minimalist SVG icons
-const FeatureIcons = {
-  send: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <path d="M12 19V5M12 5l-4 4M12 5l4 4" />
-      <circle cx="12" cy="19" r="2" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  network: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <circle cx="12" cy="12" r="3" />
-      <circle cx="12" cy="4" r="1.5" fill="currentColor" />
-      <circle cx="19" cy="8" r="1.5" fill="currentColor" />
-      <circle cx="19" cy="16" r="1.5" fill="currentColor" />
-      <circle cx="12" cy="20" r="1.5" fill="currentColor" />
-      <circle cx="5" cy="16" r="1.5" fill="currentColor" />
-      <circle cx="5" cy="8" r="1.5" fill="currentColor" />
-      <path d="M12 9V5.5M14.6 10.5l3-1.75M14.6 13.5l3 1.75M12 15v3.5M9.4 13.5l-3 1.75M9.4 10.5l-3-1.75" />
-    </svg>
-  ),
-  at: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <circle cx="12" cy="12" r="4" />
-      <path d="M16 12v1a3 3 0 006 0v-1a10 10 0 10-4 8" />
-    </svg>
-  ),
-  passkey: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <rect x="3" y="11" width="18" height="10" rx="2" />
-      <circle cx="12" cy="16" r="2" />
-      <path d="M7 11V7a5 5 0 0110 0v4" />
-    </svg>
-  ),
-  shield: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <path d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z" />
-      <path d="M9 12l2 2 4-4" />
-    </svg>
-  ),
-  ai: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-      <path d="M12 2a4 4 0 014 4v1h1a3 3 0 013 3v2a3 3 0 01-3 3h-1v1a4 4 0 01-8 0v-1H7a3 3 0 01-3-3v-2a3 3 0 013-3h1V6a4 4 0 014-4z" />
-      <circle cx="9.5" cy="10.5" r="1" fill="currentColor" stroke="none" />
-      <circle cx="14.5" cy="10.5" r="1" fill="currentColor" stroke="none" />
-      <path d="M9.5 14.5c0 1.38 1.12 2 2.5 2s2.5-.62 2.5-2" />
-    </svg>
-  ),
-};
-
-const features = [
-  {
-    icon: "send",
-    title: "Send by Username",
-    description: "Transfer crypto to any Telegram user using just their @username. No complex wallet addresses required.",
-  },
-  {
-    icon: "network",
-    title: "Canton Network Native",
-    description: "Built on Canton Network, the privacy-first blockchain designed for institutional-grade transactions.",
-  },
-  {
-    icon: "at",
-    title: "Canton Name Service",
-    description: "Register your unique CNS name for easy-to-remember wallet addresses and seamless transfers.",
-  },
-  {
-    icon: "passkey",
-    title: "Passkey Security",
-    description: "Secure your wallet with Passkey, Face ID, Touch ID, or PIN. Next-gen authentication for your assets.",
-  },
-  {
-    icon: "shield",
-    title: "Non-Custodial",
-    description: "Your keys, your crypto. Private keys are stored locally and never leave your device.",
-  },
-  {
-    icon: "ai",
-    title: "AI Agent",
-    description: "Your personal AI-powered assistant for smart transactions, portfolio insights, and on-chain analytics.",
-  },
+const featuresMeta = [
+  { num: "01", icon: "key" },
+  { num: "02", icon: "swap_horiz" },
+  { num: "03", icon: "smart_toy" },
+  { num: "04", icon: "cable" },
+  { num: "05", icon: "alternate_email" },
 ];
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.08 },
   },
 };
 
@@ -98,57 +24,191 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-export default function Features() {
-  return (
-    <section id="features" className="py-24 relative">
-      <div className="absolute inset-0 grid-pattern opacity-30" />
+interface CantonData {
+  price: number;
+  change24h: number;
+  chartPoints: number[];
+}
 
-      <div className="relative max-w-7xl mx-auto px-6">
+function useCantonData() {
+  const [data, setData] = useState<CantonData | null>(null);
+
+  useEffect(() => {
+    async function fetchAll() {
+      try {
+        const [priceRes, chartRes] = await Promise.all([
+          fetch("/api/canton-price"),
+          fetch("/api/canton-chart"),
+        ]);
+        const priceJson = await priceRes.json();
+        const chartJson = await chartRes.json();
+
+        if (priceJson["canton-network"] && chartJson.prices) {
+          // Sample ~40 points from chart data
+          const prices: number[] = chartJson.prices.map((p: [number, number]) => p[1]);
+          const step = Math.max(1, Math.floor(prices.length / 40));
+          const sampled = prices.filter((_: number, i: number) => i % step === 0);
+
+          setData({
+            price: priceJson["canton-network"].usd,
+            change24h: priceJson["canton-network"].usd_24h_change,
+            chartPoints: sampled,
+          });
+        }
+      } catch {
+        // fallback
+      }
+    }
+    fetchAll();
+    const interval = setInterval(fetchAll, 60_000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return data;
+}
+
+function Sparkline({ points, positive }: { points: number[]; positive: boolean }) {
+  if (points.length < 2) return null;
+
+  const min = Math.min(...points);
+  const max = Math.max(...points);
+  const range = max - min || 1;
+  const h = 64;
+  const w = 300;
+
+  const coords = points.map((p, i) => ({
+    x: (i / (points.length - 1)) * w,
+    y: h - ((p - min) / range) * (h - 4) - 2,
+  }));
+
+  const linePath = coords.map((c, i) => (i === 0 ? `M${c.x},${c.y}` : `L${c.x},${c.y}`)).join(" ");
+  const areaPath = `${linePath} L${w},${h} L0,${h} Z`;
+  const color = "#F3FF97";
+  const colorFaded = "rgba(243,255,151,0.15)";
+
+  return (
+    <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-16" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={colorFaded} />
+          <stop offset="100%" stopColor="transparent" />
+        </linearGradient>
+      </defs>
+      <path d={areaPath} fill="url(#sparkFill)" />
+      <path d={linePath} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Last point glow */}
+      <circle cx={coords[coords.length - 1].x} cy={coords[coords.length - 1].y} r="3" fill={color} />
+      <circle cx={coords[coords.length - 1].x} cy={coords[coords.length - 1].y} r="6" fill={color} opacity="0.3" />
+    </svg>
+  );
+}
+
+export default function Features() {
+  const { t } = useTranslation();
+  const cantonData = useCantonData();
+
+  return (
+    <section className="py-24 px-6 bg-white" id="features">
+      <div className="max-w-7xl mx-auto">
         <motion.div
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
         >
-          <span className="inline-flex items-center gap-2 bg-[#0d0d0d]/80 backdrop-blur-sm border border-[#875CFF]/20 rounded-full px-4 py-2 mb-6">
-            <span className="material-symbols-outlined text-[#875CFF] text-sm">widgets</span>
-            <span className="text-sm text-[#A89F91]">Features</span>
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Powerful Features,{" "}
-            <span className="gradient-text">Simple Experience</span>
+          <h2 className="text-4xl md:text-5xl font-medium mb-6">
+            {t.features.title} <span className="italic text-accent">{t.features.titleAccent}</span>
           </h2>
-          <p className="text-[#A89F91] text-lg max-w-2xl mx-auto">
-            Everything you need to manage your crypto on Canton Network,
-            right inside Telegram.
+          <p className="text-slate-600 max-w-2xl text-lg">
+            {t.features.description}
           </p>
         </motion.div>
 
         <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {features.map((feature, i) => (
+          {featuresMeta.map((f, i) => (
             <motion.div
-              key={i}
+              key={f.num}
               variants={cardVariants}
-              className="group glass-card rounded-2xl p-6 card-hover"
+              className="group bg-background-surface border border-border-subtle rounded-2xl p-8 relative overflow-hidden bg-dots hover:border-accent/30 transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D5A5E3]/15 to-[#D5A5E3]/5 border border-[#D5A5E3]/20 flex items-center justify-center mb-4 group-hover:border-[#D5A5E3]/40 transition-colors duration-300 text-[#D5A5E3]">
-                {FeatureIcons[feature.icon as keyof typeof FeatureIcons]}
+              <div className="absolute top-6 right-6 text-accent/20 font-display text-4xl italic font-bold group-hover:text-accent/40 transition-colors">
+                {f.num}
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">
-                {feature.title}
+              <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-accent mb-6 border border-border-subtle group-hover:bg-accent group-hover:text-white group-hover:border-accent group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-300 overflow-hidden">
+                {f.icon === "smart_toy" ? (
+                  <motion.img
+                    src="/images/ccbotagentlogo.png"
+                    alt="CC Bot Agent"
+                    className="w-10 h-10 rounded-lg"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                ) : (
+                  <motion.span
+                    className="material-symbols-outlined"
+                    whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {f.icon}
+                  </motion.span>
+                )}
+              </div>
+              <h3 className="text-xl font-bold font-ui mb-3 text-slate-900">
+                {t.features.items[i].title}
               </h3>
-              <p className="text-[#A89F91] text-sm leading-relaxed">
-                {feature.description}
-              </p>
+              <p className="text-slate-600 text-sm leading-relaxed">{t.features.items[i].desc}</p>
             </motion.div>
           ))}
+
+          {/* Special Card 06: AI Agent / Canton Token */}
+          <motion.div
+            variants={cardVariants}
+            className="group bg-accent text-white rounded-2xl p-8 relative overflow-hidden flex flex-col justify-between"
+          >
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+            />
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-xs uppercase tracking-widest font-ui font-bold">
+                  {t.features.liveMarket}
+                </span>
+              </div>
+              <h3 className="text-3xl font-display italic mb-1 text-primary">
+                {t.features.cantonCoin}
+              </h3>
+              <p className="text-5xl font-ui font-bold mb-2">
+                {cantonData ? `$${cantonData.price.toFixed(4)}` : "—"}
+              </p>
+              <p className="text-sm text-primary">
+                {cantonData
+                  ? `${cantonData.change24h >= 0 ? "+" : ""}${cantonData.change24h.toFixed(2)}% (24h)`
+                  : t.features.loading}
+              </p>
+            </div>
+            <div className="mt-6 relative z-10">
+              {cantonData?.chartPoints ? (
+                <Sparkline points={cantonData.chartPoints} positive={cantonData.change24h >= 0} />
+              ) : (
+                <div className="h-16 w-full flex items-end gap-1 opacity-80">
+                  {[40, 60, 50, 70, 55, 85, 95].map((h, i) => (
+                    <div key={i} className="w-full rounded-t-sm bg-white/30" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

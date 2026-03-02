@@ -1,17 +1,32 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Playfair_Display, IBM_Plex_Sans, Inter } from "next/font/google";
 import Script from "next/script";
+import Providers from "@/components/Providers";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const playfairDisplay = Playfair_Display({
   variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
+
+const inter = Inter({
+  variable: "--font-ui",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "CC Bot Wallet - Your Telegram Crypto Companion",
-  description: "The ultimate crypto wallet for Telegram. Manage, earn, and secure your digital assets with ease.",
+  title: "CC Bot Wallet - First Passkey Wallet on Telegram",
+  description:
+    "The first passkey-enabled non-custodial wallet on the Canton Network. Secure, fast, and seamlessly integrated into Telegram.",
 };
 
 export default function RootLayout({
@@ -20,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-C3Z9ZTX9V2"
@@ -39,8 +54,10 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body className={`${spaceGrotesk.variable} antialiased bg-background-dark`}>
-        {children}
+      <body
+        className={`${playfairDisplay.variable} ${ibmPlexSans.variable} ${inter.variable} antialiased bg-background-light text-slate-900`}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

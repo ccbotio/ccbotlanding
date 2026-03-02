@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const faqs = [
   {
@@ -10,7 +12,7 @@ const faqs = [
     questions: [
       {
         q: "What is CC Bot Wallet?",
-        a: "CC Bot Wallet is a non-custodial cryptocurrency wallet built as a Telegram Mini App. It allows you to send, receive, and manage crypto directly within Telegram, using Passkey authentication for security.",
+        a: "CC Bot Wallet is a self-custodial cryptocurrency wallet built as a Telegram Mini App. It allows you to send, receive, and manage crypto directly within Telegram, secured by Ed25519 signing and 2-of-3 Shamir Secret Sharing.",
       },
       {
         q: "Is CC Bot Wallet free to use?",
@@ -18,11 +20,11 @@ const faqs = [
       },
       {
         q: "Which blockchain does CC Bot Wallet use?",
-        a: "CC Bot Wallet is built on the Canton Network, a privacy-enabled blockchain designed for institutional-grade security while maintaining decentralization.",
+        a: "CC Bot Wallet is built on the Canton Network, a privacy-enabled blockchain with sub-second finality designed for institutional-grade security while maintaining decentralization.",
       },
       {
         q: "What tokens are supported?",
-        a: "CC Bot Wallet supports CC tokens (our native token), USDCx, USDT, and other tokens on the Canton Network. More tokens will be added over time.",
+        a: "CC Bot Wallet supports Canton Coin (CC), USDCx, and other tokens on the Canton Network. You can also bridge assets from Ethereum via Circle and xReserve integration.",
       },
     ],
   },
@@ -30,20 +32,20 @@ const faqs = [
     category: "Security",
     questions: [
       {
-        q: "What is a Passkey?",
-        a: "A Passkey is a modern authentication method that uses your device's biometric sensors (Face ID, Touch ID, fingerprint) to create cryptographic keys. Unlike passwords, Passkeys can't be phished, guessed, or stolen.",
+        q: "How does Shamir Secret Sharing work?",
+        a: "Your Ed25519 private key is split into three shares: one on your device, one on our server (encrypted), and one Passkey-linked share. Any two of these three shares can reconstruct your signing key, so no single share alone can access your funds.",
       },
       {
-        q: "Is my wallet really non-custodial?",
-        a: "Yes, absolutely. We never have access to your private keys or funds. Your keys are generated and stored securely on your device. You have complete control over your assets.",
+        q: "What is a Passkey and how is it used?",
+        a: "A Passkey uses WebAuthn to create cryptographic credentials tied to your device's biometrics (Face ID, Touch ID). In CC Bot Wallet, Passkeys are used for wallet recovery. They replace traditional seed phrases with a phishing-resistant, biometric alternative.",
       },
       {
         q: "What happens if I lose my phone?",
-        a: "Your Passkey is synced across your devices through your platform's secure cloud (iCloud Keychain for Apple, Google Password Manager for Android). You can access your wallet from another device where you're signed into the same account.",
+        a: "You can recover your wallet using your Passkey on a new device. The Passkey unlocks one share and your device holds another, meeting the 2-of-3 threshold needed to reconstruct your key.",
       },
       {
-        q: "Can CC Bot team access my funds?",
-        a: "No. We cannot access, freeze, or control your funds in any way. This is the core principle of non-custodial wallets - you are the only one with access to your assets.",
+        q: "Can the CC Bot team access my funds?",
+        a: "No. The server only holds one encrypted share of your key. Without a second share from your device or Passkey, it's mathematically impossible to reconstruct the signing key. This is the core self-custody guarantee.",
       },
     ],
   },
@@ -51,41 +53,37 @@ const faqs = [
     category: "Sending & Receiving",
     questions: [
       {
-        q: "How do I send crypto to a Telegram user?",
-        a: "Simply enter the recipient's Telegram @username in the send screen. If they have a CC Bot Wallet, the funds will be sent directly. If they don't have one yet, they'll be notified to claim the funds.",
+        q: "How do I send crypto to someone on Telegram?",
+        a: "Use the Send command in the bot and enter the recipient's Telegram username or Canton wallet address. Verify the details and confirm with your PIN. The transaction settles in under one second.",
       },
       {
-        q: "Can I send to a regular wallet address?",
-        a: "Yes, you can send to any compatible wallet address on the Canton Network. Just enter the address in the send screen instead of a username.",
+        q: "Can I use CNS names instead of addresses?",
+        a: "Yes! If the recipient has registered a Canton Name Service (CNS) name, you can send directly to their human-readable .canton name instead of a long address.",
       },
       {
-        q: "How do I receive crypto?",
-        a: "Share your wallet address or @username with the sender. You can also generate a QR code from the receive screen for easy scanning.",
+        q: "How do I bridge assets from Ethereum?",
+        a: "CC Bot Wallet supports cross-chain bridging via Circle and xReserve. You can bridge ERC-20 tokens from Ethereum to Canton Network directly within the bot interface.",
       },
       {
         q: "Are there any transaction limits?",
-        a: "There are no artificial limits imposed by CC Bot Wallet. However, network conditions and your available balance will determine what you can send.",
+        a: "Transaction limits are tier-based. New wallets start with basic limits that increase as you verify your identity and build transaction history.",
       },
     ],
   },
   {
-    category: "Rewards & Staking",
+    category: "AI Agent",
     questions: [
       {
-        q: "How do I earn CC tokens?",
-        a: "You can earn CC tokens by completing daily missions, maintaining login streaks, achieving milestones, and participating in special events. Check the Rewards section in the app for current opportunities.",
+        q: "What is the AI Agent?",
+        a: "CC Bot Wallet includes an AI-powered chat assistant that helps you manage your wallet through natural language. You can check balances, send tokens, view transaction history, and get help by chatting normally.",
       },
       {
-        q: "What is staking?",
-        a: "Staking allows you to lock up your CC tokens to earn passive rewards. The longer you stake, the more you earn. You can unstake at any time, though some bonuses may require a minimum staking period.",
+        q: "Can the AI Agent access my private keys?",
+        a: "No. The AI Agent only processes your text commands and interacts with the wallet API. It never has access to your private keys, PIN, or key shares.",
       },
       {
-        q: "How are staking rewards calculated?",
-        a: "Staking rewards are calculated based on the amount staked and the duration. The exact rates are displayed in the staking section of the app.",
-      },
-      {
-        q: "When do I receive my rewards?",
-        a: "Daily mission rewards are credited immediately upon completion. Staking rewards accrue continuously and can be claimed at any time.",
+        q: "What commands does the AI Agent support?",
+        a: "The AI Agent can help with checking balances, sending tokens, viewing transaction history, swapping tokens, registering CNS names, and general wallet management. Just describe what you want to do in plain language.",
       },
     ],
   },
@@ -94,11 +92,11 @@ const faqs = [
     questions: [
       {
         q: "My transaction is pending for too long",
-        a: "Transactions on Canton Network typically confirm within seconds. If your transaction is pending for more than a few minutes, check your internet connection or try refreshing the app.",
+        a: "Transactions on Canton Network typically confirm within one second. If your transaction is pending, check your internet connection or try refreshing the app.",
       },
       {
-        q: "I can't see my balance",
-        a: "Try refreshing the app or checking your internet connection. If the issue persists, close and reopen Telegram, then launch the wallet again.",
+        q: "I forgot my PIN",
+        a: "You can reset your PIN using your Passkey. Go to Settings in the bot and select 'Reset PIN'. After 5 failed PIN attempts, your wallet locks for 15 minutes as a security measure.",
       },
       {
         q: "The app isn't loading properly",
@@ -106,7 +104,7 @@ const faqs = [
       },
       {
         q: "How do I contact support?",
-        a: "Join our Telegram community at @ccbotio for support. Our team and community members are there to help with any questions or issues.",
+        a: "Join our Telegram community at @ccbotwalletchat for support, or email support@ccbot.io. Our team is there to help with any questions or issues.",
       },
     ],
   },
@@ -116,23 +114,27 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-[#2a2a2a] last:border-b-0">
+    <div className="border-b border-border-subtle last:border-b-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between py-4 text-left"
       >
-        <span className="text-white font-medium pr-4">{question}</span>
-        <span className={`material-symbols-outlined text-[#875CFF] transition-transform ${isOpen ? 'rotate-180' : ''}`}>
+        <span className="text-slate-900 font-medium pr-4 font-ui">
+          {question}
+        </span>
+        <span
+          className={`material-symbols-outlined text-accent transition-transform ${isOpen ? "rotate-180" : ""}`}
+        >
           expand_more
         </span>
       </button>
       <motion.div
         initial={false}
-        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <p className="text-[#A89F91] pb-4">{answer}</p>
+        <p className="text-secondary pb-4 font-body">{answer}</p>
       </motion.div>
     </div>
   );
@@ -140,72 +142,89 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function FAQ() {
   return (
-    <main className="min-h-screen bg-[#030206] pt-24 pb-16">
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-[#A89F91] mb-8">
-          <Link href="/" className="hover:text-[#875CFF] transition-colors">Home</Link>
-          <span>/</span>
-          <span className="text-white">FAQ</span>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Frequently Asked <span className="gradient-text">Questions</span>
-          </h1>
-
-          <p className="text-[#A89F91] text-lg mb-12">
-            Find answers to common questions about CC Bot Wallet.
-          </p>
-
-          {/* FAQ Categories */}
-          <div className="space-y-8">
-            {faqs.map((category, i) => (
-              <motion.section
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-[#875CFF] rounded-full"></span>
-                  {category.category}
-                </h2>
-                <div className="glass-card rounded-2xl p-6">
-                  {category.questions.map((faq, j) => (
-                    <FAQItem key={j} question={faq.q} answer={faq.a} />
-                  ))}
-                </div>
-              </motion.section>
-            ))}
-          </div>
-
-          {/* Still Have Questions */}
-          <div className="mt-12 glass-card rounded-2xl p-6 text-center">
-            <span className="material-symbols-outlined text-[#875CFF] text-4xl mb-4">help_center</span>
-            <h3 className="text-xl font-semibold text-white mb-2">Still Have Questions?</h3>
-            <p className="text-[#A89F91] mb-6">
-              Can&apos;t find what you&apos;re looking for? Join our community for personalized help.
-            </p>
-            <a
-              href="https://t.me/ccbotio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#F3FF97] text-[#030206] px-6 py-3 rounded-full font-semibold hover:bg-[#e8f085] transition-colors"
+    <>
+      <Header />
+      <main className="min-h-screen bg-background-light pt-12 pb-16">
+        <div className="max-w-4xl mx-auto px-6">
+          {/* Breadcrumb */}
+          <div className="flex items-center gap-2 text-sm text-secondary mb-8 font-body">
+            <Link
+              href="/"
+              className="hover:text-accent transition-colors"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/>
-              </svg>
-              Join Community
-            </a>
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-slate-900">FAQ</span>
           </div>
-        </motion.div>
-      </div>
-    </main>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-4xl md:text-5xl font-display italic text-slate-900 mb-6">
+              Frequently Asked{" "}
+              <span className="text-accent not-italic">Questions</span>
+            </h1>
+
+            <p className="text-secondary text-lg mb-12 font-body">
+              Find answers to common questions about CC Bot Wallet.
+            </p>
+
+            {/* FAQ Categories */}
+            <div className="space-y-8">
+              {faqs.map((category, i) => (
+                <motion.section
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2 font-ui">
+                    <span className="w-2 h-2 bg-accent rounded-full" />
+                    {category.category}
+                  </h2>
+                  <div className="bg-white rounded-2xl p-6 border border-border-subtle">
+                    {category.questions.map((faq, j) => (
+                      <FAQItem key={j} question={faq.q} answer={faq.a} />
+                    ))}
+                  </div>
+                </motion.section>
+              ))}
+            </div>
+
+            {/* Still Have Questions */}
+            <div className="mt-12 bg-background-surface rounded-2xl p-8 text-center border border-border-subtle bg-dots">
+              <div className="relative z-10">
+                <span className="material-symbols-outlined text-accent text-4xl mb-4">
+                  help_center
+                </span>
+                <h3 className="text-xl font-bold text-slate-900 mb-2 font-ui">
+                  Still Have Questions?
+                </h3>
+                <p className="text-secondary mb-6 font-body">
+                  Can&apos;t find what you&apos;re looking for? Join our
+                  community for personalized help.
+                </p>
+                <a
+                  href="https://t.me/ccbotwalletchat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-[#eaff70] text-slate-900 px-6 py-3 rounded-full font-bold transition-all shadow-sm font-ui"
+                >
+                  <span className="material-symbols-outlined text-lg">
+                    send
+                  </span>
+                  Join Community Chat
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }
