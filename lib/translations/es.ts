@@ -3,6 +3,7 @@ export const es = {
     product: "Producto",
     features: "Características",
     howItWorks: "Cómo Funciona",
+    team: "Equipo",
     partners: "Socios",
     launchApp: "Abrir App",
     language: "Idioma",
@@ -85,6 +86,15 @@ export const es = {
       { title: "Empieza a Usar tu Wallet", desc: "Envía, recibe y gestiona tus activos de Canton directamente desde Telegram." },
     ],
     launchBot: "Abrir CC Bot",
+  },
+  team: {
+    title: "Conoce a los",
+    titleAccent: "Fundadores",
+    description: "Los visionarios que construyen el futuro de las finanzas descentralizadas en Telegram.",
+    members: {
+      seher: { name: "Seher Eroğlu", role: "Co-Fundadora y CEO" },
+      ferhat: { name: "Ferhat Nazlı", role: "Co-Fundador y CTO" },
+    },
   },
   partners: {
     title: "Socios del",

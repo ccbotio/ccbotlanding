@@ -16,6 +16,7 @@ export default function Header() {
 
   const navLinks = [
     { label: t.header.howItWorks, href: "#how-it-works" },
+    { label: t.header.team ?? "Team", href: "#team" },
     { label: t.header.partners, href: "#partners" },
   ];
 

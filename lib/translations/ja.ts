@@ -3,6 +3,7 @@ export const ja = {
     product: "プロダクト",
     features: "機能",
     howItWorks: "使い方",
+    team: "チーム",
     partners: "パートナー",
     launchApp: "アプリを起動",
     language: "言語",
@@ -85,6 +86,15 @@ export const ja = {
       { title: "ウォレットの利用を開始", desc: "Telegramから直接Cantonアセットの送受信と管理ができます。" },
     ],
     launchBot: "CC Botを起動",
+  },
+  team: {
+    title: "創業者を",
+    titleAccent: "紹介",
+    description: "Telegramで分散型金融の未来を築くビジョナリーたち。",
+    members: {
+      seher: { name: "Seher Eroğlu", role: "共同創業者 & CEO" },
+      ferhat: { name: "Ferhat Nazlı", role: "共同創業者 & CTO" },
+    },
   },
   partners: {
     title: "エコシステム",

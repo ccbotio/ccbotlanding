@@ -3,6 +3,7 @@ export const ko = {
     product: "제품",
     features: "기능",
     howItWorks: "이용 방법",
+    team: "팀",
     partners: "파트너",
     launchApp: "앱 실행",
     language: "언어",
@@ -85,6 +86,15 @@ export const ko = {
       { title: "지갑 사용 시작", desc: "Telegram에서 직접 Canton 자산을 전송, 수신 및 관리하세요." },
     ],
     launchBot: "CC Bot 실행",
+  },
+  team: {
+    title: "만나보세요",
+    titleAccent: "창립자",
+    description: "텔레그램에서 탈중앙 금융의 미래를 만들어가는 비전가들.",
+    members: {
+      seher: { name: "Seher Eroğlu", role: "공동 창립자 & CEO" },
+      ferhat: { name: "Ferhat Nazlı", role: "공동 창립자 & CTO" },
+    },
   },
   partners: {
     title: "생태계",
