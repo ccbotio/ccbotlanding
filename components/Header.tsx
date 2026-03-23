@@ -81,12 +81,12 @@ export default function Header() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2.5">
+        <a href="/" className="flex items-center gap-2.5">
           <img src="/images/ccbotlogo.png" alt="CC Bot" className="w-10 h-10 rounded-lg" />
           <h2 className="text-2xl font-bold tracking-tight font-ui text-white">
             CC Bot Wallet
           </h2>
-        </div>
+        </a>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
