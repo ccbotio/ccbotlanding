@@ -92,8 +92,8 @@ export const fr = {
     titleAccent: "Fondateurs",
     description: "Les visionnaires qui construisent l'avenir de la finance décentralisée sur Telegram.",
     members: {
-      seher: { name: "Seher Eroğlu", role: "Co-Fondatrice & CEO" },
-      ferhat: { name: "Ferhat Nazlı", role: "Co-Fondateur & CTO" },
+      seher: { name: "Seher Eroğlu", role: "Co-Fondatrice & CTO" },
+      ferhat: { name: "Ferhat Nazlı", role: "Co-Fondateur & CEO" },
     },
   },
   partners: {

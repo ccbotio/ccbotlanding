@@ -92,8 +92,8 @@ export const ja = {
     titleAccent: "紹介",
     description: "Telegramで分散型金融の未来を築くビジョナリーたち。",
     members: {
-      seher: { name: "Seher Eroğlu", role: "共同創業者 & CEO" },
-      ferhat: { name: "Ferhat Nazlı", role: "共同創業者 & CTO" },
+      seher: { name: "Seher Eroğlu", role: "共同創業者 & CTO" },
+      ferhat: { name: "Ferhat Nazlı", role: "共同創業者 & CEO" },
     },
   },
   partners: {

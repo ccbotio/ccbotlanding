@@ -92,8 +92,8 @@ export const ko = {
     titleAccent: "창립자",
     description: "텔레그램에서 탈중앙 금융의 미래를 만들어가는 비전가들.",
     members: {
-      seher: { name: "Seher Eroğlu", role: "공동 창립자 & CEO" },
-      ferhat: { name: "Ferhat Nazlı", role: "공동 창립자 & CTO" },
+      seher: { name: "Seher Eroğlu", role: "공동 창립자 & CTO" },
+      ferhat: { name: "Ferhat Nazlı", role: "공동 창립자 & CEO" },
     },
   },
   partners: {
