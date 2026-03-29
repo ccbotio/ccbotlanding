@@ -74,7 +74,7 @@ export const ko = {
       { title: "기관급 DLT", desc: "규제된 금융 시장을 위해 설계된 블록체인인 Canton Network 위에 구축되었습니다." },
       { title: "글로벌 싱크로나이저", desc: "프라이버시 우선 아키텍처로 애플리케이션 간 원자적 트랜잭션을 지원합니다." },
       { title: "Canton Coin", desc: "Canton Network 생태계를 구동하는 네이티브 유틸리티 토큰입니다." },
-      { title: "최상위 참여자", desc: "Goldman Sachs, Deutsche Borse, Microsoft 등의 지원을 받고 있습니다." },
+      { title: "최상위 참여자", desc: "Canton Network는 Goldman Sachs, Deutsche Borse, Microsoft 등의 지원을 받고 있습니다." },
     ],
   },
   howItWorks: {
@@ -227,7 +227,7 @@ export const ko = {
         {
           title: "AES-256-GCM 암호화",
           desc: "모든 키 조각은 AES-256-GCM을 사용하여 저장 시 암호화됩니다. 제로 메모리 키 처리로 개인 키가 평문 메모리에 저장되지 않습니다.",
-          details: ["군사급 암호화 표준", "사용 후 메모리에서 키 삭제", "디바이스의 암호화된 로컬 스토리지", "PBKDF2를 통한 안전한 키 파생"],
+          details: ["군사급 암호화 표준", "사용 후 메모리에서 키 삭제", "디바이스의 암호화된 로컬 스토리지", "HKDF-SHA256를 통한 안전한 키 파생"],
         },
         {
           title: "PIN 무차별 대입 방지",

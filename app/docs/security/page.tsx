@@ -39,7 +39,7 @@ const securityFeatures = [
       "Military-grade encryption standard",
       "Keys wiped from memory after use",
       "Encrypted local storage on device",
-      "Secure key derivation with PBKDF2",
+      "Secure key derivation with HKDF-SHA256",
     ],
   },
   {

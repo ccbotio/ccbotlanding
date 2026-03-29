@@ -74,7 +74,7 @@ export const fr = {
       { title: "DLT de qualité institutionnelle", desc: "Construit sur Canton Network, la blockchain conçue pour les marchés financiers réglementés." },
       { title: "Synchroniseur mondial", desc: "Transactions atomiques entre applications avec une architecture axée sur la confidentialité." },
       { title: "Canton Coin", desc: "Jeton utilitaire natif alimentant l'écosystème Canton Network." },
-      { title: "Participants de premier plan", desc: "Soutenu par Goldman Sachs, Deutsche Borse, Microsoft et d'autres." },
+      { title: "Participants de premier plan", desc: "Canton Network est soutenu par Goldman Sachs, Deutsche Borse, Microsoft et d'autres." },
     ],
   },
   howItWorks: {
@@ -227,7 +227,7 @@ export const fr = {
         {
           title: "Chiffrement AES-256-GCM",
           desc: "Toutes les parts de clé sont chiffrées au repos avec AES-256-GCM. La gestion en mémoire zéro garantit que les clés privées ne sont jamais stockées en clair dans la mémoire.",
-          details: ["Standard de chiffrement de niveau militaire", "Clés effacées de la mémoire après utilisation", "Stockage local chiffré sur l'appareil", "Dérivation de clé sécurisée avec PBKDF2"],
+          details: ["Standard de chiffrement de niveau militaire", "Clés effacées de la mémoire après utilisation", "Stockage local chiffré sur l'appareil", "Dérivation de clé sécurisée avec HKDF-SHA256"],
         },
         {
           title: "Protection contre la force brute du PIN",

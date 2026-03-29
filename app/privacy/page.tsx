@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
               Privacy <span className="text-accent not-italic">Policy</span>
             </h1>
             <p className="text-secondary mb-12 font-body">
-              Last updated: January 2025
+              Last updated: March 2026
             </p>
 
             <div className="space-y-8">

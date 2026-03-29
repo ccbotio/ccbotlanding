@@ -30,7 +30,7 @@ export default function TermsOfService() {
               <span className="text-accent not-italic">Service</span>
             </h1>
             <p className="text-secondary mb-12 font-body">
-              Last updated: January 2025
+              Last updated: March 2026
             </p>
 
             <div className="space-y-8">

@@ -74,7 +74,7 @@ export const es = {
       { title: "DLT de Grado Institucional", desc: "Construido sobre Canton Network, la blockchain diseñada para mercados financieros regulados." },
       { title: "Sincronizador Global", desc: "Transacciones atómicas entre aplicaciones con arquitectura que prioriza la privacidad." },
       { title: "Canton Coin", desc: "Token de utilidad nativo que impulsa el ecosistema de Canton Network." },
-      { title: "Participantes de Primer Nivel", desc: "Respaldado por Goldman Sachs, Deutsche Borse, Microsoft y más." },
+      { title: "Participantes de Primer Nivel", desc: "Canton Network cuenta con el apoyo de Goldman Sachs, Deutsche Borse, Microsoft y más." },
     ],
   },
   howItWorks: {
@@ -227,7 +227,7 @@ export const es = {
         {
           title: "Cifrado AES-256-GCM",
           desc: "Todas las partes de la clave están cifradas en reposo usando AES-256-GCM. El manejo de claves con memoria cero garantiza que las claves privadas nunca se almacenen en texto plano en la memoria.",
-          details: ["Estándar de cifrado de grado militar", "Las claves se eliminan de la memoria después de su uso", "Almacenamiento local cifrado en el dispositivo", "Derivación segura de claves con PBKDF2"],
+          details: ["Estándar de cifrado de grado militar", "Las claves se eliminan de la memoria después de su uso", "Almacenamiento local cifrado en el dispositivo", "Derivación segura de claves con HKDF-SHA256"],
         },
         {
           title: "Protección contra Fuerza Bruta del PIN",
