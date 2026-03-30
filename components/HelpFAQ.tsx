@@ -11,19 +11,15 @@ const faqs = [
   },
   {
     q: "How do I create a wallet?",
-    a: "Open @ccbotwallet_bot on Telegram, tap Start, set a secure PIN, and register a Passkey using your device biometrics. Your Ed25519 wallet is generated on-device with Shamir key splitting — no app download needed.",
-  },
-  {
-    q: "What is a Passkey and why do I need one?",
-    a: "A Passkey uses WebAuthn to create cryptographic credentials tied to your biometrics (Face ID, Touch ID). It enables wallet recovery without seed phrases and is phishing-resistant by design.",
+    a: "Open @ccbotwallet_bot on Telegram, tap Start, and set a secure PIN. Your Ed25519 wallet is generated on-device with Shamir key splitting — no app download needed. Save your recovery code securely.",
   },
   {
     q: "How does 2-of-3 Shamir Secret Sharing protect my wallet?",
-    a: "Your private key is split into 3 shares: device, server (encrypted), and Passkey-linked. Any 2 shares can reconstruct the key. No single share — including the server — can access your funds alone.",
+    a: "Your private key is split into 3 shares: device (encrypted with PIN), server (encrypted), and a recovery code. Any 2 shares can reconstruct the key. No single share — including the server — can access your funds alone.",
   },
   {
     q: "What is the Canton Network?",
-    a: "Canton Network is a privacy-enabled, institutional-grade blockchain with sub-second finality. CC Bot Wallet is built on Canton, backed by Goldman Sachs, Deutsche Borse, Microsoft and other top-tier participants.",
+    a: "Canton Network is a privacy-enabled, institutional-grade blockchain with sub-second finality. CC Bot Wallet is built on Canton, which is supported by Goldman Sachs, Deutsche Borse, Microsoft and other top-tier participants.",
   },
   {
     q: "Which tokens does CC Bot Wallet support?",
@@ -35,7 +31,7 @@ const faqs = [
   },
   {
     q: "Can the AI Agent or CC Bot team access my private keys?",
-    a: "No. The AI Agent only processes text commands via the wallet API. The server holds only one encrypted key share. Without a second share from your device or Passkey, it's mathematically impossible to reconstruct the signing key.",
+    a: "No. The AI Agent only processes text commands via the wallet API. The server holds only one encrypted key share. Without a second share from your device or recovery code, it's mathematically impossible to reconstruct the signing key.",
   },
   {
     q: "How do I send crypto on Telegram?",
@@ -43,7 +39,7 @@ const faqs = [
   },
   {
     q: "What if I lose my phone or forget my PIN?",
-    a: "Recover your wallet using your Passkey on a new device — it meets the 2-of-3 Shamir threshold. To reset your PIN, go to Settings and use your Passkey. After 5 failed PIN attempts, the wallet locks for 15 minutes.",
+    a: "Recover your wallet using your recovery code combined with the server share — it meets the 2-of-3 Shamir threshold. To reset your PIN, use your recovery code. After 5 failed PIN attempts, the wallet locks for 15 minutes.",
   },
 ];
 

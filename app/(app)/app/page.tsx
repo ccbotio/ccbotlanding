@@ -426,7 +426,7 @@ function Rewards() {
 // ==================== SETTINGS ====================
 const settingsItems = [
   { icon: "person", label: "Profile", description: "@cryptouser" },
-  { icon: "fingerprint", label: "Biometric Login", description: "Enabled" },
+  { icon: "shield", label: "Shamir Shares", description: "2-of-3 Active" },
   { icon: "lock", label: "PIN Code", description: "Change PIN" },
   { icon: "key", label: "Backup Phrase", description: "View recovery" },
   { icon: "notifications", label: "Notifications", description: "Enabled" },

@@ -21,7 +21,7 @@ export const en = {
     about: "About",
     aboutItems: {
       selfCustodial: { title: "Self-Custodial", desc: "Your keys, your crypto. No third party can access your funds." },
-      passkeySecurity: { title: "Passkey Security", desc: "Biometric authentication with WebAuthn. No seed phrases needed." },
+      shamirSecurity: { title: "Shamir Security", desc: "2-of-3 key splitting with recovery code. No seed phrases needed." },
       shamirSharing: { title: "2-of-3 Shamir", desc: "Private key split into 3 shares. Any 2 can sign transactions." },
       cantonNetwork: { title: "Canton Network", desc: "Institutional-grade blockchain with sub-second finality." },
       telegramNative: { title: "Telegram Native", desc: "Full wallet experience inside Telegram. No app download." },
@@ -32,8 +32,8 @@ export const en = {
     title1: "Self-Custodial",
     title2: "Wallet on",
     title3: "Telegram",
-    description: "Self-custodial Canton wallet on Telegram. Secured by Passkeys and Shamir Secret Sharing.",
-    subtitle: "Secured by Passkeys and 2-of-3 Shamir Secret Sharing. No seed phrases needed.",
+    description: "Self-custodial Canton wallet on Telegram. Secured by 2-of-3 Shamir Secret Sharing.",
+    subtitle: "Secured by 2-of-3 Shamir Secret Sharing and AES-256-GCM encryption. No seed phrases needed.",
     startNow: "Start Now",
   },
   features: {
@@ -82,7 +82,7 @@ export const en = {
     titleAccent: "seconds",
     steps: [
       { title: "Open Telegram Bot", desc: "Search @ccbotwallet_bot on Telegram and tap Start. No app download needed." },
-      { title: "Set PIN & Secure with Passkey", desc: "Choose a secure PIN and set up your Passkey. Your Ed25519 wallet is generated on-device with Shamir key splitting." },
+      { title: "Set Your PIN", desc: "Choose a secure PIN. Your Ed25519 wallet is generated on-device with Shamir key splitting." },
       { title: "Start Using Your Wallet", desc: "Send, receive and manage your Canton assets directly from Telegram." },
     ],
     launchBot: "Launch CC Bot",
@@ -188,10 +188,10 @@ export const en = {
       step2Desc: "Choose a secure PIN to protect your wallet. This PIN is used to authorize transactions and is stored only on your device.",
       pinSecurity: "PIN Security",
       pinSecurityDesc: "After 5 failed PIN attempts, your wallet locks for 15 minutes. Choose a PIN you can remember but others can't guess.",
-      step3Title: "Secure with Passkey",
-      step3Desc: "Set up a Passkey using your device's biometrics (Face ID, Touch ID). This secures your wallet and enables recovery on any device.",
-      passkeyTitle: "Passkey Security",
-      passkeyDesc: "Passkeys are phishing-resistant and synced across your Apple or Google devices automatically.",
+      step3Title: "Save Your Recovery Code",
+      step3Desc: "Store your recovery code safely. This is the third Shamir share that lets you recover your wallet if you lose your device.",
+      recoveryTitle: "Recovery Code",
+      recoveryDesc: "Your recovery code is a backup Shamir share. Keep it in a safe place — you'll need it to restore your wallet.",
       step4Title: "Start Using Your Wallet",
       step4Desc: "You're all set! Your Ed25519 wallet is ready on the Canton Network.",
       sendTokens: "Send Tokens",
@@ -217,12 +217,7 @@ export const en = {
         {
           title: "2-of-3 Shamir Secret Sharing",
           desc: "Your Ed25519 private key is split into three shares using Shamir Secret Sharing. Only two shares are needed to reconstruct the key for signing. No single point of failure.",
-          details: ["Device share stored locally on your phone", "Server share held in encrypted storage", "Passkey-based recovery on any device", "Any two shares reconstruct the signing key"],
-        },
-        {
-          title: "Passkey / WebAuthn Recovery",
-          desc: "Recover your wallet using WebAuthn Passkeys with biometric authentication tied to your device. No seed phrases to remember or lose.",
-          details: ["Face ID / Touch ID verification", "Phishing-resistant by design", "Synced across your Apple or Google devices", "Replaces traditional seed phrases"],
+          details: ["Device share stored locally on your phone", "Server share held in encrypted storage", "Recovery code as third share for backup", "Any two shares reconstruct the signing key"],
         },
         {
           title: "AES-256-GCM Encryption",
@@ -238,8 +233,8 @@ export const en = {
       bestPractices: "Security Best Practices",
       keepDeviceSecure: "Keep Your Device Secure",
       keepDeviceSecureDesc: "Always use screen lock and keep your device software updated.",
-      setupPasskey: "Set Up Your Passkey",
-      setupPasskeyDesc: "Enable Passkey authentication for secure wallet recovery across your devices.",
+      saveRecoveryCode: "Save Your Recovery Code",
+      saveRecoveryCodeDesc: "Store your recovery code securely for wallet recovery if you lose access to your device.",
       strongPin: "Choose a Strong PIN",
       strongPinDesc: "Use a unique PIN for CC Bot Wallet. Avoid common patterns like 1234 or your birthday.",
       verifyRecipients: "Verify Recipients",
@@ -268,10 +263,9 @@ export const en = {
         {
           category: "Security",
           questions: [
-            { q: "How does Shamir Secret Sharing work?", a: "Your Ed25519 private key is split into three shares: one on your device, one on our server (encrypted), and one Passkey-linked share. Any two of these three shares can reconstruct your signing key, so no single share alone can access your funds." },
-            { q: "What is a Passkey and how is it used?", a: "A Passkey uses WebAuthn to create cryptographic credentials tied to your device's biometrics (Face ID, Touch ID). In CC Bot Wallet, Passkeys are used for wallet recovery. They replace traditional seed phrases with a phishing-resistant, biometric alternative." },
-            { q: "What happens if I lose my phone?", a: "You can recover your wallet using your Passkey on a new device. The Passkey unlocks one share and your device holds another, meeting the 2-of-3 threshold needed to reconstruct your key." },
-            { q: "Can the CC Bot team access my funds?", a: "No. The server only holds one encrypted share of your key. Without a second share from your device or Passkey, it's mathematically impossible to reconstruct the signing key. This is the core self-custody guarantee." },
+            { q: "How does Shamir Secret Sharing work?", a: "Your Ed25519 private key is split into three shares: one on your device (encrypted with PIN), one on our server (encrypted), and a recovery code. Any two of these three shares can reconstruct your signing key, so no single share alone can access your funds." },
+            { q: "What happens if I lose my phone?", a: "You can recover your wallet using your recovery code combined with the server share, meeting the 2-of-3 threshold needed to reconstruct your key." },
+            { q: "Can the CC Bot team access my funds?", a: "No. The server only holds one encrypted share of your key. Without a second share from your device or recovery code, it's mathematically impossible to reconstruct the signing key. This is the core self-custody guarantee." },
           ],
         },
         {
@@ -295,7 +289,7 @@ export const en = {
           category: "Troubleshooting",
           questions: [
             { q: "My transaction is pending for too long", a: "Transactions on Canton Network typically confirm within one second. If your transaction is pending, check your internet connection or try refreshing the app." },
-            { q: "I forgot my PIN", a: "You can reset your PIN using your Passkey. Go to Settings in the bot and select 'Reset PIN'. After 5 failed PIN attempts, your wallet locks for 15 minutes as a security measure." },
+            { q: "I forgot my PIN", a: "You can reset your PIN using your recovery code. Go to Settings in the bot and select 'Reset PIN'. After 5 failed PIN attempts, your wallet locks for 15 minutes as a security measure." },
             { q: "The app isn't loading properly", a: "Ensure you have the latest version of Telegram installed. Clear the Telegram cache if needed, and try reopening the Mini App." },
             { q: "How do I contact support?", a: "Join our Telegram community at @ccbotwalletchat for support, or email support@ccbot.io. Our team is there to help with any questions or issues." },
           ],

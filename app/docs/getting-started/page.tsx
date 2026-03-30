@@ -115,25 +115,25 @@ export default function GettingStarted() {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold text-slate-900 mb-3 font-ui">
-                      Secure with Passkey
+                      Save Your Recovery Code
                     </h2>
                     <p className="text-secondary mb-4 font-body">
-                      Set up a Passkey using your device&apos;s biometrics
-                      (Face ID, Touch ID). This secures your wallet and
-                      enables recovery on any device.
+                      Store your recovery code safely. This is the third
+                      Shamir share that lets you recover your wallet if you
+                      lose your device.
                     </p>
                     <div className="bg-accent/5 rounded-xl p-4 border border-accent/20">
                       <div className="flex items-start gap-3">
                         <span className="material-symbols-outlined text-accent">
-                          fingerprint
+                          key
                         </span>
                         <div>
                           <p className="text-slate-900 text-sm font-medium font-ui mb-1">
-                            Passkey Security
+                            Recovery Code
                           </p>
                           <p className="text-secondary text-sm font-body">
-                            Passkeys are phishing-resistant and synced across
-                            your Apple or Google devices automatically.
+                            Your recovery code is a backup Shamir share. Keep
+                            it in a safe place — you&apos;ll need it to restore your wallet.
                           </p>
                         </div>
                       </div>

@@ -79,8 +79,8 @@ export default function PrivacyPolicy() {
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
                       check_circle
                     </span>
-                    Recovery requires your Passkey. We cannot recover your
-                    wallet alone
+                    Recovery requires your recovery code. We cannot recover
+                    your wallet alone
                   </li>
                 </ul>
               </section>
@@ -135,14 +135,13 @@ export default function PrivacyPolicy() {
                     <span className="material-symbols-outlined text-red-400 text-base mt-0.5">
                       cancel
                     </span>
-                    PINs or Passkey credentials (processed locally on your
-                    device only)
+                    PINs (processed locally on your device only)
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-red-400 text-base mt-0.5">
                       cancel
                     </span>
-                    Biometric data (processed locally by your device)
+                    Recovery codes (given to you at wallet creation)
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-red-400 text-base mt-0.5">
@@ -206,7 +205,7 @@ export default function PrivacyPolicy() {
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
                       check_circle
                     </span>
-                    WebAuthn / Passkey authentication support
+                    2-of-3 Shamir Secret Sharing key management
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">

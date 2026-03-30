@@ -93,7 +93,7 @@ export default function TermsOfService() {
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
                       check_circle
                     </span>
-                    You are responsible for securing your PIN and Passkey
+                    You are responsible for securing your PIN and recovery code
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
@@ -106,7 +106,7 @@ export default function TermsOfService() {
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
                       check_circle
                     </span>
-                    We cannot recover wallets without your Passkey
+                    We cannot recover wallets without your recovery code
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
@@ -135,13 +135,13 @@ export default function TermsOfService() {
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
                       check_circle
                     </span>
-                    Maintaining the confidentiality of your PIN and Passkey
+                    Maintaining the confidentiality of your PIN and recovery code
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">
                       check_circle
                     </span>
-                    Setting up Passkey authentication on your device
+                    Storing your recovery code in a safe place
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="material-symbols-outlined text-accent text-base mt-0.5">

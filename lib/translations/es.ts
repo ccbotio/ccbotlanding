@@ -21,7 +21,7 @@ export const es = {
     about: "Acerca de",
     aboutItems: {
       selfCustodial: { title: "Auto-Custodia", desc: "Tus claves, tu cripto. Ningún tercero puede acceder a tus fondos." },
-      passkeySecurity: { title: "Seguridad Passkey", desc: "Autenticación biométrica con WebAuthn. Sin frases semilla." },
+      shamirSecurity: { title: "Seguridad Shamir", desc: "División de claves 2-de-3 con código de recuperación. Sin frases semilla." },
       shamirSharing: { title: "Shamir 2-de-3", desc: "Clave privada dividida en 3 partes. Con 2 se pueden firmar transacciones." },
       cantonNetwork: { title: "Canton Network", desc: "Blockchain de grado institucional con finalidad en menos de un segundo." },
       telegramNative: { title: "Nativo en Telegram", desc: "Wallet completa dentro de Telegram. Sin descargas." },
@@ -32,8 +32,8 @@ export const es = {
     title1: "Wallet de",
     title2: "Auto-Custodia en",
     title3: "Telegram",
-    description: "Wallet de auto-custodia de Canton en Telegram. Asegurada con Passkey y Shamir Secret Sharing.",
-    subtitle: "Protegida por Passkeys y Shamir Secret Sharing 2-de-3. Sin frases semilla.",
+    description: "Wallet de auto-custodia de Canton en Telegram. Asegurada con Shamir Secret Sharing 2-de-3.",
+    subtitle: "Protegida por Shamir Secret Sharing 2-de-3 y cifrado AES-256-GCM. Sin frases semilla.",
     startNow: "Comenzar Ahora",
   },
   features: {
@@ -82,7 +82,7 @@ export const es = {
     titleAccent: "segundos",
     steps: [
       { title: "Abre el Bot en Telegram", desc: "Busca @ccbotwallet_bot en Telegram y pulsa Iniciar. No necesitas descargar ninguna app." },
-      { title: "Configura tu PIN y Asegura con Passkey", desc: "Elige un PIN seguro y configura tu Passkey. Tu wallet Ed25519 se genera en el dispositivo con división de claves Shamir." },
+      { title: "Configura tu PIN", desc: "Elige un PIN seguro. Tu wallet Ed25519 se genera en el dispositivo con división de claves Shamir." },
       { title: "Empieza a Usar tu Wallet", desc: "Envía, recibe y gestiona tus activos de Canton directamente desde Telegram." },
     ],
     launchBot: "Abrir CC Bot",
@@ -188,10 +188,10 @@ export const es = {
       step2Desc: "Elige un PIN seguro para proteger tu wallet. Este PIN se utiliza para autorizar transacciones y se almacena solo en tu dispositivo.",
       pinSecurity: "Seguridad del PIN",
       pinSecurityDesc: "Después de 5 intentos fallidos de PIN, tu wallet se bloquea durante 15 minutos. Elige un PIN que puedas recordar pero que otros no puedan adivinar.",
-      step3Title: "Asegura con Passkey",
-      step3Desc: "Configura un Passkey usando la biometría de tu dispositivo (Face ID, Touch ID). Esto asegura tu wallet y permite la recuperación en cualquier dispositivo.",
-      passkeyTitle: "Seguridad de Passkey",
-      passkeyDesc: "Los Passkeys son resistentes al phishing y se sincronizan automáticamente entre tus dispositivos Apple o Google.",
+      step3Title: "Guarda tu Código de Recuperación",
+      step3Desc: "Almacena tu código de recuperación de forma segura. Es la tercera parte Shamir que te permite recuperar tu wallet si pierdes tu dispositivo.",
+      recoveryTitle: "Código de Recuperación",
+      recoveryDesc: "Tu código de recuperación es una parte Shamir de respaldo. Guárdalo en un lugar seguro.",
       step4Title: "Empieza a Usar tu Wallet",
       step4Desc: "¡Todo listo! Tu wallet Ed25519 está lista en Canton Network.",
       sendTokens: "Enviar Tokens",
@@ -217,12 +217,7 @@ export const es = {
         {
           title: "Shamir Secret Sharing 2-de-3",
           desc: "Tu clave privada Ed25519 se divide en tres partes usando Shamir Secret Sharing. Solo se necesitan dos partes para reconstruir la clave de firma. Sin punto único de fallo.",
-          details: ["Parte del dispositivo almacenada localmente en tu teléfono", "Parte del servidor almacenada de forma cifrada", "Recuperación basada en Passkey en cualquier dispositivo", "Cualquier dos partes reconstruyen la clave de firma"],
-        },
-        {
-          title: "Recuperación con Passkey / WebAuthn",
-          desc: "Recupera tu wallet usando Passkeys de WebAuthn con autenticación biométrica vinculada a tu dispositivo. Sin frases semilla que recordar o perder.",
-          details: ["Verificación con Face ID / Touch ID", "Resistente al phishing por diseño", "Sincronizado entre tus dispositivos Apple o Google", "Reemplaza las frases semilla tradicionales"],
+          details: ["Parte del dispositivo almacenada localmente en tu teléfono", "Parte del servidor almacenada de forma cifrada", "Código de recuperación como tercera parte de respaldo", "Cualquier dos partes reconstruyen la clave de firma"],
         },
         {
           title: "Cifrado AES-256-GCM",
@@ -238,8 +233,8 @@ export const es = {
       bestPractices: "Mejores Prácticas de Seguridad",
       keepDeviceSecure: "Mantén tu Dispositivo Seguro",
       keepDeviceSecureDesc: "Usa siempre bloqueo de pantalla y mantén el software de tu dispositivo actualizado.",
-      setupPasskey: "Configura tu Passkey",
-      setupPasskeyDesc: "Habilita la autenticación con Passkey para una recuperación segura de la wallet en todos tus dispositivos.",
+      saveRecoveryCode: "Guarda tu Código de Recuperación",
+      saveRecoveryCodeDesc: "Almacena tu código de recuperación de forma segura para recuperar tu wallet si pierdes acceso a tu dispositivo.",
       strongPin: "Elige un PIN Fuerte",
       strongPinDesc: "Usa un PIN único para CC Bot Wallet. Evita patrones comunes como 1234 o tu fecha de nacimiento.",
       verifyRecipients: "Verifica los Destinatarios",
@@ -268,10 +263,9 @@ export const es = {
         {
           category: "Seguridad",
           questions: [
-            { q: "¿Cómo funciona Shamir Secret Sharing?", a: "Tu clave privada Ed25519 se divide en tres partes: una en tu dispositivo, una en nuestro servidor (cifrada) y una parte vinculada a Passkey. Cualquier dos de estas tres partes pueden reconstruir tu clave de firma, por lo que ninguna parte por sí sola puede acceder a tus fondos." },
-            { q: "¿Qué es un Passkey y cómo se usa?", a: "Un Passkey usa WebAuthn para crear credenciales criptográficas vinculadas a la biometría de tu dispositivo (Face ID, Touch ID). En CC Bot Wallet, los Passkeys se usan para la recuperación de la wallet. Reemplazan las frases semilla tradicionales con una alternativa biométrica resistente al phishing." },
-            { q: "¿Qué pasa si pierdo mi teléfono?", a: "Puedes recuperar tu wallet usando tu Passkey en un nuevo dispositivo. El Passkey desbloquea una parte y tu dispositivo tiene otra, cumpliendo el umbral de 2-de-3 necesario para reconstruir tu clave." },
-            { q: "¿Puede el equipo de CC Bot acceder a mis fondos?", a: "No. El servidor solo tiene una parte cifrada de tu clave. Sin una segunda parte de tu dispositivo o Passkey, es matemáticamente imposible reconstruir la clave de firma. Esta es la garantía fundamental de auto-custodia." },
+            { q: "¿Cómo funciona Shamir Secret Sharing?", a: "Tu clave privada Ed25519 se divide en tres partes: una en tu dispositivo, una en nuestro servidor (cifrada) y un código de recuperación. Cualquier dos de estas tres partes pueden reconstruir tu clave de firma, por lo que ninguna parte por sí sola puede acceder a tus fondos." },
+            { q: "¿Qué pasa si pierdo mi teléfono?", a: "Puedes recuperar tu wallet usando tu código de recuperación combinado con la parte del servidor, cumpliendo el umbral de 2-de-3 necesario." },
+            { q: "¿Puede el equipo de CC Bot acceder a mis fondos?", a: "No. El servidor solo tiene una parte cifrada de tu clave. Sin una segunda parte de tu dispositivo o código de recuperación, es matemáticamente imposible reconstruir la clave de firma. Esta es la garantía fundamental de auto-custodia." },
           ],
         },
         {
@@ -295,7 +289,7 @@ export const es = {
           category: "Solución de Problemas",
           questions: [
             { q: "Mi transacción está pendiente por demasiado tiempo", a: "Las transacciones en Canton Network normalmente se confirman en menos de un segundo. Si tu transacción está pendiente, verifica tu conexión a internet o intenta actualizar la app." },
-            { q: "Olvidé mi PIN", a: "Puedes restablecer tu PIN usando tu Passkey. Ve a Configuración en el bot y selecciona 'Restablecer PIN'. Después de 5 intentos fallidos de PIN, tu wallet se bloquea durante 15 minutos como medida de seguridad." },
+            { q: "Olvidé mi PIN", a: "Puedes restablecer tu PIN usando tu código de recuperación. Ve a Configuración en el bot y selecciona 'Restablecer PIN'. Después de 5 intentos fallidos de PIN, tu wallet se bloquea durante 15 minutos como medida de seguridad." },
             { q: "La app no carga correctamente", a: "Asegúrate de tener la última versión de Telegram instalada. Limpia la caché de Telegram si es necesario e intenta reabrir la Mini App." },
             { q: "¿Cómo contacto al soporte?", a: "Únete a nuestra comunidad de Telegram en @ccbotwalletchat para soporte, o envía un correo a support@ccbot.io. Nuestro equipo está disponible para ayudarte con cualquier pregunta o problema." },
           ],

@@ -24,9 +24,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CC Bot Wallet - First Passkey Wallet on Telegram",
+  title: "CC Bot Wallet - Self-Custodial Wallet on Telegram",
   description:
-    "The first passkey-enabled non-custodial wallet on the Canton Network. Secure, fast, and seamlessly integrated into Telegram.",
+    "Self-custodial wallet on the Canton Network secured by 2-of-3 Shamir Secret Sharing. Secure, fast, and seamlessly integrated into Telegram.",
 };
 
 export default function RootLayout({

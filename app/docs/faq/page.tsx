@@ -33,19 +33,15 @@ const faqs = [
     questions: [
       {
         q: "How does Shamir Secret Sharing work?",
-        a: "Your Ed25519 private key is split into three shares: one on your device, one on our server (encrypted), and one Passkey-linked share. Any two of these three shares can reconstruct your signing key, so no single share alone can access your funds.",
-      },
-      {
-        q: "What is a Passkey and how is it used?",
-        a: "A Passkey uses WebAuthn to create cryptographic credentials tied to your device's biometrics (Face ID, Touch ID). In CC Bot Wallet, Passkeys are used for wallet recovery. They replace traditional seed phrases with a phishing-resistant, biometric alternative.",
+        a: "Your Ed25519 private key is split into three shares: one on your device (encrypted with PIN), one on our server (encrypted), and a recovery code. Any two of these three shares can reconstruct your signing key, so no single share alone can access your funds.",
       },
       {
         q: "What happens if I lose my phone?",
-        a: "You can recover your wallet using your Passkey on a new device. The Passkey unlocks one share and your device holds another, meeting the 2-of-3 threshold needed to reconstruct your key.",
+        a: "You can recover your wallet using your recovery code combined with the server share, meeting the 2-of-3 threshold needed to reconstruct your key.",
       },
       {
         q: "Can the CC Bot team access my funds?",
-        a: "No. The server only holds one encrypted share of your key. Without a second share from your device or Passkey, it's mathematically impossible to reconstruct the signing key. This is the core self-custody guarantee.",
+        a: "No. The server only holds one encrypted share of your key. Without a second share from your device or recovery code, it's mathematically impossible to reconstruct the signing key. This is the core self-custody guarantee.",
       },
     ],
   },
@@ -96,7 +92,7 @@ const faqs = [
       },
       {
         q: "I forgot my PIN",
-        a: "You can reset your PIN using your Passkey. Go to Settings in the bot and select 'Reset PIN'. After 5 failed PIN attempts, your wallet locks for 15 minutes as a security measure.",
+        a: "You can reset your PIN using your recovery code. Go to Settings in the bot and select 'Reset PIN'. After 5 failed PIN attempts, your wallet locks for 15 minutes as a security measure.",
       },
       {
         q: "The app isn't loading properly",

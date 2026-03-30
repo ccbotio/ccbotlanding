@@ -41,7 +41,7 @@ export default function Header() {
 
   const aboutItems = [
     { title: t.header.aboutItems.selfCustodial.title, desc: t.header.aboutItems.selfCustodial.desc, icon: "key" },
-    { title: t.header.aboutItems.passkeySecurity.title, desc: t.header.aboutItems.passkeySecurity.desc, icon: "fingerprint" },
+    { title: t.header.aboutItems.shamirSecurity.title, desc: t.header.aboutItems.shamirSecurity.desc, icon: "lock" },
     { title: t.header.aboutItems.shamirSharing.title, desc: t.header.aboutItems.shamirSharing.desc, icon: "share" },
     { title: t.header.aboutItems.cantonNetwork.title, desc: t.header.aboutItems.cantonNetwork.desc, icon: "hub" },
     { title: t.header.aboutItems.telegramNative.title, desc: t.header.aboutItems.telegramNative.desc, icon: "send" },

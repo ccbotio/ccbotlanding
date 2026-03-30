@@ -14,20 +14,8 @@ const securityFeatures = [
     details: [
       "Device share stored locally on your phone",
       "Server share held in encrypted storage",
-      "Passkey-based recovery on any device",
+      "Recovery code as third share for backup",
       "Any two shares reconstruct the signing key",
-    ],
-  },
-  {
-    icon: "fingerprint",
-    title: "Passkey / WebAuthn Recovery",
-    description:
-      "Recover your wallet using WebAuthn Passkeys with biometric authentication tied to your device. No seed phrases to remember or lose.",
-    details: [
-      "Face ID / Touch ID verification",
-      "Phishing-resistant by design",
-      "Synced across your Apple or Google devices",
-      "Replaces traditional seed phrases",
     ],
   },
   {
@@ -190,11 +178,11 @@ export default function SecurityDocs() {
                     </span>
                     <div>
                       <h4 className="text-slate-900 font-medium font-ui">
-                        Set Up Your Passkey
+                        Save Your Recovery Code
                       </h4>
                       <p className="text-secondary text-sm font-body">
-                        Enable Passkey authentication for secure wallet
-                        recovery across your devices.
+                        Store your recovery code securely for wallet
+                        recovery if you lose access to your device.
                       </p>
                     </div>
                   </div>

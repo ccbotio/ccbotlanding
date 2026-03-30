@@ -21,7 +21,7 @@ export const ko = {
     about: "소개",
     aboutItems: {
       selfCustodial: { title: "셀프 커스터디", desc: "당신의 키, 당신의 자산. 제3자가 자금에 접근할 수 없습니다." },
-      passkeySecurity: { title: "Passkey 보안", desc: "WebAuthn 생체 인증. 시드 문구가 필요 없습니다." },
+      shamirSecurity: { title: "Shamir 보안", desc: "복구 코드를 통한 2-of-3 키 분할. 시드 문구가 필요 없습니다." },
       shamirSharing: { title: "2-of-3 Shamir", desc: "개인 키가 3조각으로 분할. 2조각으로 서명 가능합니다." },
       cantonNetwork: { title: "Canton Network", desc: "1초 미만 최종 확정의 기관급 블록체인." },
       telegramNative: { title: "Telegram 네이티브", desc: "Telegram 내 완전한 지갑 경험. 앱 다운로드 불필요." },
@@ -32,8 +32,8 @@ export const ko = {
     title1: "셀프 커스터디",
     title2: "지갑",
     title3: "Telegram",
-    description: "Telegram 기반의 셀프 커스터디 Canton 지갑. Passkey와 Shamir 비밀 공유로 보호됩니다.",
-    subtitle: "Passkey와 2-of-3 Shamir 비밀 공유로 보호됩니다. 시드 문구가 필요 없습니다.",
+    description: "Telegram 기반의 셀프 커스터디 Canton 지갑. 2-of-3 Shamir 비밀 공유로 보호됩니다.",
+    subtitle: "2-of-3 Shamir 비밀 공유와 AES-256-GCM 암호화로 보호됩니다. 시드 문구가 필요 없습니다.",
     startNow: "지금 시작하기",
   },
   features: {
@@ -82,7 +82,7 @@ export const ko = {
     titleAccent: "시작하기",
     steps: [
       { title: "Telegram 봇 열기", desc: "Telegram에서 @ccbotwallet_bot을 검색하고 시작을 탭하세요. 앱 다운로드가 필요 없습니다." },
-      { title: "PIN 설정 & Passkey로 보안", desc: "안전한 PIN을 선택하고 Passkey를 설정하세요. Ed25519 지갑이 Shamir 키 분할과 함께 디바이스에서 생성됩니다." },
+      { title: "PIN 설정", desc: "안전한 PIN을 선택하세요. Ed25519 지갑이 Shamir 키 분할과 함께 디바이스에서 생성됩니다." },
       { title: "지갑 사용 시작", desc: "Telegram에서 직접 Canton 자산을 전송, 수신 및 관리하세요." },
     ],
     launchBot: "CC Bot 실행",
@@ -188,10 +188,10 @@ export const ko = {
       step2Desc: "지갑을 보호할 안전한 PIN을 선택하세요. 이 PIN은 트랜잭션 승인에 사용되며 디바이스에만 저장됩니다.",
       pinSecurity: "PIN 보안",
       pinSecurityDesc: "5회 PIN 입력 실패 시 지갑이 15분간 잠깁니다. 기억하기 쉽지만 다른 사람이 추측할 수 없는 PIN을 선택하세요.",
-      step3Title: "Passkey로 보안 설정",
-      step3Desc: "디바이스의 생체 인식(Face ID, Touch ID)을 사용하여 Passkey를 설정하세요. 이를 통해 지갑이 보호되고 모든 디바이스에서 복구가 가능합니다.",
-      passkeyTitle: "Passkey 보안",
-      passkeyDesc: "Passkey는 피싱에 강하며 Apple 또는 Google 디바이스 간에 자동으로 동기화됩니다.",
+      step3Title: "복구 코드 저장",
+      step3Desc: "복구 코드를 안전하게 보관하세요. 디바이스를 분실했을 때 지갑을 복구할 수 있는 세 번째 Shamir 조각입니다.",
+      recoveryTitle: "복구 코드",
+      recoveryDesc: "복구 코드는 백업 Shamir 조각입니다. 안전한 곳에 보관하세요.",
       step4Title: "지갑 사용 시작",
       step4Desc: "모든 준비가 완료되었습니다! Canton Network에서 Ed25519 지갑을 사용할 수 있습니다.",
       sendTokens: "토큰 전송",
@@ -217,12 +217,7 @@ export const ko = {
         {
           title: "2-of-3 Shamir 비밀 공유",
           desc: "Ed25519 개인 키는 Shamir 비밀 공유를 사용하여 세 조각으로 분할됩니다. 서명을 위한 키 재구성에는 두 조각만 필요합니다. 단일 장애 지점이 없습니다.",
-          details: ["디바이스에 로컬로 저장되는 디바이스 조각", "암호화된 스토리지에 보관되는 서버 조각", "모든 디바이스에서 Passkey 기반 복구", "두 조각으로 서명 키 재구성"],
-        },
-        {
-          title: "Passkey / WebAuthn 복구",
-          desc: "디바이스에 연결된 생체 인증과 함께 WebAuthn Passkey를 사용하여 지갑을 복구하세요. 기억하거나 분실할 수 있는 시드 문구가 필요 없습니다.",
-          details: ["Face ID / Touch ID 인증", "설계상 피싱에 강함", "Apple 또는 Google 디바이스 간 동기화", "기존 시드 문구를 대체"],
+          details: ["디바이스에 로컬로 저장되는 디바이스 조각", "암호화된 스토리지에 보관되는 서버 조각", "백업용 세 번째 조각인 복구 코드", "두 조각으로 서명 키 재구성"],
         },
         {
           title: "AES-256-GCM 암호화",
@@ -238,8 +233,8 @@ export const ko = {
       bestPractices: "보안 모범 사례",
       keepDeviceSecure: "디바이스를 안전하게 유지하세요",
       keepDeviceSecureDesc: "항상 화면 잠금을 사용하고 디바이스 소프트웨어를 최신 상태로 유지하세요.",
-      setupPasskey: "Passkey 설정",
-      setupPasskeyDesc: "디바이스 간 안전한 지갑 복구를 위해 Passkey 인증을 활성화하세요.",
+      saveRecoveryCode: "복구 코드 저장",
+      saveRecoveryCodeDesc: "디바이스 접근을 잃었을 때 지갑을 복구할 수 있도록 복구 코드를 안전하게 보관하세요.",
       strongPin: "강력한 PIN 선택",
       strongPinDesc: "CC Bot Wallet 전용 고유 PIN을 사용하세요. 1234나 생년월일 같은 일반적인 패턴은 피하세요.",
       verifyRecipients: "수신자 확인",
@@ -268,10 +263,9 @@ export const ko = {
         {
           category: "보안",
           questions: [
-            { q: "Shamir 비밀 공유는 어떻게 작동하나요?", a: "Ed25519 개인 키는 세 조각으로 분할됩니다: 하나는 디바이스에, 하나는 서버에(암호화됨), 하나는 Passkey에 연결된 조각입니다. 세 조각 중 두 조각으로 서명 키를 재구성할 수 있으므로, 단일 조각만으로는 자금에 접근할 수 없습니다." },
-            { q: "Passkey란 무엇이며 어떻게 사용되나요?", a: "Passkey는 WebAuthn을 사용하여 디바이스의 생체 인식(Face ID, Touch ID)에 연결된 암호화 자격 증명을 생성합니다. CC Bot Wallet에서 Passkey는 지갑 복구에 사용됩니다. 피싱에 강한 생체 인식 대안으로 기존 시드 문구를 대체합니다." },
-            { q: "휴대폰을 분실하면 어떻게 되나요?", a: "새 디바이스에서 Passkey를 사용하여 지갑을 복구할 수 있습니다. Passkey가 하나의 조각을 잠금 해제하고 디바이스가 다른 조각을 보유하여, 키 재구성에 필요한 2-of-3 임계값을 충족합니다." },
-            { q: "CC Bot 팀이 내 자금에 접근할 수 있나요?", a: "아니요. 서버는 키의 암호화된 조각 하나만 보유합니다. 디바이스 또는 Passkey의 두 번째 조각 없이는 서명 키를 재구성하는 것이 수학적으로 불가능합니다. 이것이 핵심 셀프 커스터디 보장입니다." },
+            { q: "Shamir 비밀 공유는 어떻게 작동하나요?", a: "Ed25519 개인 키는 세 조각으로 분할됩니다: 하나는 디바이스에, 하나는 서버에(암호화됨), 하나는 복구 코드에 연결된 조각입니다. 세 조각 중 두 조각으로 서명 키를 재구성할 수 있으므로, 단일 조각만으로는 자금에 접근할 수 없습니다." },
+            { q: "휴대폰을 분실하면 어떻게 되나요?", a: "새 디바이스에서 복구 코드를 사용하여 지갑을 복구할 수 있습니다. 복구 코드가 하나의 조각을 잠금 해제하고 디바이스가 다른 조각을 보유하여, 키 재구성에 필요한 2-of-3 임계값을 충족합니다." },
+            { q: "CC Bot 팀이 내 자금에 접근할 수 있나요?", a: "아니요. 서버는 키의 암호화된 조각 하나만 보유합니다. 디바이스 또는 복구 코드의 두 번째 조각 없이는 서명 키를 재구성하는 것이 수학적으로 불가능합니다. 이것이 핵심 셀프 커스터디 보장입니다." },
           ],
         },
         {
@@ -295,7 +289,7 @@ export const ko = {
           category: "문제 해결",
           questions: [
             { q: "트랜잭션이 너무 오래 보류 중입니다", a: "Canton Network의 트랜잭션은 일반적으로 1초 이내에 확인됩니다. 트랜잭션이 보류 중이라면 인터넷 연결을 확인하거나 앱을 새로고침해 보세요." },
-            { q: "PIN을 잊어버렸습니다", a: "Passkey를 사용하여 PIN을 재설정할 수 있습니다. 봇의 설정으로 이동하여 'PIN 재설정'을 선택하세요. 보안 조치로 5회 PIN 입력 실패 시 지갑이 15분간 잠깁니다." },
+            { q: "PIN을 잊어버렸습니다", a: "복구 코드를 사용하여 PIN을 재설정할 수 있습니다. 봇의 설정으로 이동하여 'PIN 재설정'을 선택하세요. 보안 조치로 5회 PIN 입력 실패 시 지갑이 15분간 잠깁니다." },
             { q: "앱이 제대로 로드되지 않습니다", a: "최신 버전의 Telegram이 설치되어 있는지 확인하세요. 필요한 경우 Telegram 캐시를 지우고 미니 앱을 다시 열어보세요." },
             { q: "지원팀에 어떻게 연락하나요?", a: "지원을 위해 @ccbotwalletchat에서 Telegram 커뮤니티에 참여하거나 support@ccbot.io로 이메일을 보내주세요. 저희 팀이 모든 질문이나 문제에 대해 도움을 드립니다." },
           ],

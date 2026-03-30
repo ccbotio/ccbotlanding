@@ -21,7 +21,7 @@ export const fr = {
     about: "A propos",
     aboutItems: {
       selfCustodial: { title: "Auto-conservation", desc: "Vos clés, votre crypto. Aucun tiers ne peut accéder à vos fonds." },
-      passkeySecurity: { title: "Sécurité Passkey", desc: "Authentification biométrique avec WebAuthn. Sans phrase de récupération." },
+      shamirSecurity: { title: "Sécurité Shamir", desc: "Division de clé 2-sur-3 avec code de récupération. Sans phrase de récupération." },
       shamirSharing: { title: "Shamir 2-sur-3", desc: "Clé privée divisée en 3 parts. 2 suffisent pour signer les transactions." },
       cantonNetwork: { title: "Canton Network", desc: "Blockchain institutionnelle avec finalité en moins d'une seconde." },
       telegramNative: { title: "Natif Telegram", desc: "Portefeuille complet dans Telegram. Aucun téléchargement." },
@@ -32,8 +32,8 @@ export const fr = {
     title1: "Portefeuille",
     title2: "auto-hébergé sur",
     title3: "Telegram",
-    description: "Portefeuille Canton auto-hébergé sur Telegram. Sécurisé par Passkey et Shamir Secret Sharing.",
-    subtitle: "Sécurisé par Passkeys et Shamir Secret Sharing 2-sur-3. Aucune phrase de récupération.",
+    description: "Portefeuille Canton auto-hébergé sur Telegram. Sécurisé par Shamir Secret Sharing 2-sur-3.",
+    subtitle: "Sécurisé par Shamir Secret Sharing 2-sur-3 et chiffrement AES-256-GCM. Aucune phrase de récupération.",
     startNow: "Commencer",
   },
   features: {
@@ -82,7 +82,7 @@ export const fr = {
     titleAccent: "quelques secondes",
     steps: [
       { title: "Ouvrir le bot Telegram", desc: "Recherchez @ccbotwallet_bot sur Telegram et appuyez sur Démarrer. Aucun téléchargement d'application nécessaire." },
-      { title: "Définir un PIN et sécuriser avec Passkey", desc: "Choisissez un PIN sécurisé et configurez votre Passkey. Votre portefeuille Ed25519 est généré sur l'appareil avec le partage de clé Shamir." },
+      { title: "Définir votre PIN", desc: "Choisissez un PIN sécurisé. Votre portefeuille Ed25519 est généré sur l'appareil avec le partage de clé Shamir." },
       { title: "Commencez à utiliser votre portefeuille", desc: "Envoyez, recevez et gérez vos actifs Canton directement depuis Telegram." },
     ],
     launchBot: "Lancer CC Bot",
@@ -188,10 +188,10 @@ export const fr = {
       step2Desc: "Choisissez un PIN sécurisé pour protéger votre portefeuille. Ce PIN est utilisé pour autoriser les transactions et n'est stocké que sur votre appareil.",
       pinSecurity: "Sécurité du PIN",
       pinSecurityDesc: "Après 5 tentatives échouées, votre portefeuille se verrouille pendant 15 minutes. Choisissez un PIN dont vous pouvez vous souvenir mais que les autres ne peuvent pas deviner.",
-      step3Title: "Sécuriser avec Passkey",
-      step3Desc: "Configurez une Passkey en utilisant la biométrie de votre appareil (Face ID, Touch ID). Cela sécurise votre portefeuille et permet la récupération sur n'importe quel appareil.",
-      passkeyTitle: "Sécurité Passkey",
-      passkeyDesc: "Les Passkeys sont résistantes au hameçonnage et synchronisées automatiquement entre vos appareils Apple ou Google.",
+      step3Title: "Sauvegardez votre Code de Récupération",
+      step3Desc: "Conservez votre code de récupération en lieu sûr. C'est la troisième part Shamir qui vous permet de récupérer votre portefeuille.",
+      recoveryTitle: "Code de Récupération",
+      recoveryDesc: "Votre code de récupération est une part Shamir de secours. Conservez-le en lieu sûr.",
       step4Title: "Commencez à utiliser votre portefeuille",
       step4Desc: "C'est prêt ! Votre portefeuille Ed25519 est opérationnel sur le Canton Network.",
       sendTokens: "Envoyer des jetons",
@@ -217,12 +217,7 @@ export const fr = {
         {
           title: "Shamir Secret Sharing 2-sur-3",
           desc: "Votre clé privée Ed25519 est divisée en trois parts grâce à Shamir Secret Sharing. Seules deux parts sont nécessaires pour reconstruire la clé de signature. Aucun point de défaillance unique.",
-          details: ["Part de l'appareil stockée localement sur votre téléphone", "Part du serveur conservée dans un stockage chiffré", "Récupération par Passkey sur n'importe quel appareil", "Deux parts suffisent pour reconstruire la clé de signature"],
-        },
-        {
-          title: "Récupération par Passkey / WebAuthn",
-          desc: "Récupérez votre portefeuille en utilisant les Passkeys WebAuthn avec authentification biométrique liée à votre appareil. Aucune phrase de récupération à retenir ou à perdre.",
-          details: ["Vérification Face ID / Touch ID", "Résistant au hameçonnage par conception", "Synchronisé entre vos appareils Apple ou Google", "Remplace les phrases de récupération traditionnelles"],
+          details: ["Part de l'appareil stockée localement sur votre téléphone", "Part du serveur conservée dans un stockage chiffré", "Code de récupération comme troisième part de secours", "Deux parts suffisent pour reconstruire la clé de signature"],
         },
         {
           title: "Chiffrement AES-256-GCM",
@@ -238,8 +233,8 @@ export const fr = {
       bestPractices: "Bonnes pratiques de sécurité",
       keepDeviceSecure: "Protégez votre appareil",
       keepDeviceSecureDesc: "Utilisez toujours le verrouillage d'écran et maintenez le logiciel de votre appareil à jour.",
-      setupPasskey: "Configurez votre Passkey",
-      setupPasskeyDesc: "Activez l'authentification par Passkey pour une récupération sécurisée de votre portefeuille sur tous vos appareils.",
+      saveRecoveryCode: "Sauvegardez votre Code de Récupération",
+      saveRecoveryCodeDesc: "Conservez votre code de récupération pour récupérer votre portefeuille en cas de perte d'accès.",
       strongPin: "Choisissez un PIN robuste",
       strongPinDesc: "Utilisez un PIN unique pour CC Bot Wallet. Évitez les combinaisons courantes comme 1234 ou votre date de naissance.",
       verifyRecipients: "Vérifiez les destinataires",
@@ -268,10 +263,9 @@ export const fr = {
         {
           category: "Sécurité",
           questions: [
-            { q: "Comment fonctionne Shamir Secret Sharing ?", a: "Votre clé privée Ed25519 est divisée en trois parts : une sur votre appareil, une sur notre serveur (chiffrée) et une liée à votre Passkey. Deux de ces trois parts suffisent pour reconstruire votre clé de signature, donc aucune part seule ne peut accéder à vos fonds." },
-            { q: "Qu'est-ce qu'une Passkey et comment est-elle utilisée ?", a: "Une Passkey utilise WebAuthn pour créer des identifiants cryptographiques liés à la biométrie de votre appareil (Face ID, Touch ID). Dans CC Bot Wallet, les Passkeys sont utilisées pour la récupération du portefeuille. Elles remplacent les phrases de récupération traditionnelles par une alternative biométrique résistante au hameçonnage." },
-            { q: "Que se passe-t-il si je perds mon téléphone ?", a: "Vous pouvez récupérer votre portefeuille en utilisant votre Passkey sur un nouvel appareil. La Passkey déverrouille une part et votre appareil en détient une autre, atteignant le seuil de 2-sur-3 nécessaire pour reconstruire votre clé." },
-            { q: "L'équipe CC Bot peut-elle accéder à mes fonds ?", a: "Non. Le serveur ne détient qu'une seule part chiffrée de votre clé. Sans une deuxième part provenant de votre appareil ou de votre Passkey, il est mathématiquement impossible de reconstruire la clé de signature. C'est la garantie fondamentale de l'auto-conservation." },
+            { q: "Comment fonctionne Shamir Secret Sharing ?", a: "Votre clé privée Ed25519 est divisée en trois parts : une sur votre appareil, une sur notre serveur (chiffrée) et une sous forme de code de récupération. Deux de ces trois parts suffisent pour reconstruire votre clé de signature, donc aucune part seule ne peut accéder à vos fonds." },
+            { q: "Que se passe-t-il si je perds mon téléphone ?", a: "Vous pouvez récupérer votre portefeuille en utilisant votre code de récupération sur un nouvel appareil. Le code de récupération déverrouille une part et le serveur en détient une autre, atteignant le seuil de 2-sur-3 nécessaire pour reconstruire votre clé." },
+            { q: "L'équipe CC Bot peut-elle accéder à mes fonds ?", a: "Non. Le serveur ne détient qu'une seule part chiffrée de votre clé. Sans une deuxième part provenant de votre appareil ou de votre code de récupération, il est mathématiquement impossible de reconstruire la clé de signature. C'est la garantie fondamentale de l'auto-conservation." },
           ],
         },
         {
@@ -295,7 +289,7 @@ export const fr = {
           category: "Dépannage",
           questions: [
             { q: "Ma transaction est en attente depuis trop longtemps", a: "Les transactions sur Canton Network se confirment généralement en moins d'une seconde. Si votre transaction est en attente, vérifiez votre connexion internet ou essayez de rafraîchir l'application." },
-            { q: "J'ai oublié mon PIN", a: "Vous pouvez réinitialiser votre PIN en utilisant votre Passkey. Allez dans les Paramètres du bot et sélectionnez « Réinitialiser le PIN ». Après 5 tentatives échouées, votre portefeuille se verrouille pendant 15 minutes par mesure de sécurité." },
+            { q: "J'ai oublié mon PIN", a: "Vous pouvez réinitialiser votre PIN en utilisant votre code de récupération. Allez dans les Paramètres du bot et sélectionnez « Réinitialiser le PIN ». Après 5 tentatives échouées, votre portefeuille se verrouille pendant 15 minutes par mesure de sécurité." },
             { q: "L'application ne se charge pas correctement", a: "Assurez-vous d'avoir la dernière version de Telegram installée. Videz le cache de Telegram si nécessaire et réouvrez la Mini App." },
             { q: "Comment contacter le support ?", a: "Rejoignez notre communauté Telegram à @ccbotwalletchat pour du support, ou envoyez un e-mail à support@ccbot.io. Notre équipe est là pour vous aider avec toutes vos questions ou problèmes." },
           ],
