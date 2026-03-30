@@ -21,7 +21,7 @@ export const en = {
     about: "About",
     aboutItems: {
       selfCustodial: { title: "Self-Custodial", desc: "Your keys, your crypto. No third party can access your funds." },
-      shamirSecurity: { title: "Shamir Security", desc: "2-of-3 key splitting with recovery code. No seed phrases needed." },
+      shamirSecurity: { title: "Shamir Security", desc: "2-of-3 key splitting with recovery code." },
       shamirSharing: { title: "2-of-3 Shamir", desc: "Private key split into 3 shares. Any 2 can sign transactions." },
       cantonNetwork: { title: "Canton Network", desc: "Institutional-grade blockchain with sub-second finality." },
       telegramNative: { title: "Telegram Native", desc: "Full wallet experience inside Telegram. No app download." },
@@ -33,7 +33,7 @@ export const en = {
     title2: "Wallet on",
     title3: "Telegram",
     description: "Self-custodial Canton wallet on Telegram. Secured by 2-of-3 Shamir Secret Sharing.",
-    subtitle: "Secured by 2-of-3 Shamir Secret Sharing and AES-256-GCM encryption. No seed phrases needed.",
+    subtitle: "Secured by 2-of-3 Shamir Secret Sharing and AES-256-GCM encryption.",
     startNow: "Start Now",
   },
   features: {

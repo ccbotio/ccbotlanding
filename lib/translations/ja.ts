@@ -21,7 +21,7 @@ export const ja = {
     about: "概要",
     aboutItems: {
       selfCustodial: { title: "セルフカストディ", desc: "あなたの鍵、あなたの暗号資産。第三者はアクセスできません。" },
-      shamirSecurity: { title: "Shamir セキュリティ", desc: "リカバリーコードによる2-of-3鍵分割。シードフレーズ不要。" },
+      shamirSecurity: { title: "Shamir セキュリティ", desc: "リカバリーコードによる2-of-3鍵分割。" },
       shamirSharing: { title: "2-of-3 Shamir", desc: "秘密鍵を3つに分割。2つでトランザクションに署名可能。" },
       cantonNetwork: { title: "Canton Network", desc: "サブ秒ファイナリティの機関グレードブロックチェーン。" },
       telegramNative: { title: "Telegramネイティブ", desc: "Telegram内の完全なウォレット体験。ダウンロード不要。" },
@@ -33,7 +33,7 @@ export const ja = {
     title2: "ウォレット on",
     title3: "Telegram",
     description: "Telegram上のセルフカストディアルCantonウォレット。2-of-3 Shamir秘密分散法で保護されています。",
-    subtitle: "2-of-3 Shamir秘密分散法とAES-256-GCM暗号化で保護。シードフレーズは不要です。",
+    subtitle: "2-of-3 Shamir秘密分散法とAES-256-GCM暗号化で保護。",
     startNow: "今すぐ始める",
   },
   features: {

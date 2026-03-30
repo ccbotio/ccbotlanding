@@ -21,7 +21,7 @@ export const ko = {
     about: "소개",
     aboutItems: {
       selfCustodial: { title: "셀프 커스터디", desc: "당신의 키, 당신의 자산. 제3자가 자금에 접근할 수 없습니다." },
-      shamirSecurity: { title: "Shamir 보안", desc: "복구 코드를 통한 2-of-3 키 분할. 시드 문구가 필요 없습니다." },
+      shamirSecurity: { title: "Shamir 보안", desc: "복구 코드를 통한 2-of-3 키 분할." },
       shamirSharing: { title: "2-of-3 Shamir", desc: "개인 키가 3조각으로 분할. 2조각으로 서명 가능합니다." },
       cantonNetwork: { title: "Canton Network", desc: "1초 미만 최종 확정의 기관급 블록체인." },
       telegramNative: { title: "Telegram 네이티브", desc: "Telegram 내 완전한 지갑 경험. 앱 다운로드 불필요." },
@@ -33,7 +33,7 @@ export const ko = {
     title2: "지갑",
     title3: "Telegram",
     description: "Telegram 기반의 셀프 커스터디 Canton 지갑. 2-of-3 Shamir 비밀 공유로 보호됩니다.",
-    subtitle: "2-of-3 Shamir 비밀 공유와 AES-256-GCM 암호화로 보호됩니다. 시드 문구가 필요 없습니다.",
+    subtitle: "2-of-3 Shamir 비밀 공유와 AES-256-GCM 암호화로 보호됩니다.",
     startNow: "지금 시작하기",
   },
   features: {
