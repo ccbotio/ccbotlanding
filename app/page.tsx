@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Waitlist from "@/components/Waitlist";
@@ -15,11 +14,8 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <motion.main
+    <main
       className="min-h-screen bg-background-light relative overflow-x-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
     >
       <Header />
       <Hero />
@@ -38,6 +34,6 @@ export default function Home() {
       <Partners />
       <ContactSection />
       <Footer />
-    </motion.main>
+    </main>
   );
 }

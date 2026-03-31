@@ -44,6 +44,7 @@ export default function Footer() {
   ];
 
   const helpLinks: LinkItem[] = [
+    { label: "Documentation", href: "/docs/introduction" },
     { label: t.footer.help, href: "/help" },
   ];
 
