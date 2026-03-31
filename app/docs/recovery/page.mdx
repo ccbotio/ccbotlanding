@@ -1,0 +1,51 @@
+# Recovery
+
+How to recover your wallet if you lose access.
+
+## Recovery Code
+
+When you create your wallet, you receive a **recovery code**. This is the third Shamir share. Combined with the server share, it meets the 2-of-3 threshold to reconstruct your key.
+
+> **Keep your recovery code safe.** Store it offline in a secure location. Without it, wallet recovery may not be possible.
+
+## Recovery Scenarios
+
+### I forgot my PIN
+
+1. Go to **Settings > Reset PIN**
+2. Enter your **recovery code**
+3. The server share + recovery code reconstruct your key
+4. Set a new PIN
+5. Your device share is re-encrypted with the new PIN
+
+> After 5 failed PIN attempts, your wallet locks for 15 minutes as a security measure.
+
+### I lost my device
+
+1. Open **@ccbotwallet_bot** on a new device
+2. Select **Recover Wallet**
+3. Enter your **recovery code**
+4. The recovery code + server share reconstruct your key
+5. Set a new PIN on the new device
+6. Your wallet is restored with full access
+
+### I lost my recovery code (but have my device)
+
+If you still have access to your device and PIN, your wallet continues to work normally. The device share + server share are sufficient for all operations.
+
+However, you should **generate a new recovery code** as soon as possible from Settings, in case you lose your device in the future.
+
+## Email-Based Recovery
+
+If you have verified your email address with CC Bot Wallet:
+
+1. Select **Recover via Email**
+2. Enter your registered email address
+3. Enter the 6-digit verification code sent to your email
+4. Complete the recovery process
+
+## Important Notes
+
+- **We cannot recover your wallet** without your recovery code or verified email
+- **Recovery codes are one-time use** - after recovery, a new code is generated
+- **All recovery attempts are logged** in the security audit trail

@@ -1,0 +1,53 @@
+# Getting Started
+
+Set up your CC Bot Wallet in under a minute. No app download required.
+
+## Step 1: Open the Telegram Bot
+
+Search for **@ccbotwallet_bot** on Telegram and tap **Start**. The Mini App will open directly inside Telegram.
+
+## Step 2: Set Your PIN
+
+Choose a secure PIN to protect your wallet. This PIN is used to:
+
+- Authorize transactions
+- Decrypt your local key share
+- Unlock your wallet after inactivity
+
+> After 5 failed PIN attempts, your wallet locks for 15 minutes. Choose a PIN you can remember but others cannot guess. Avoid patterns like 1234 or your birthday.
+
+## Step 3: Enable Biometric Authentication
+
+Set up **Face ID** or **Touch ID** for quick and secure access. Biometric authentication lets you:
+
+- Unlock your wallet without entering your PIN every time
+- Approve transactions faster
+- Add an extra layer of device-level security
+
+> Biometric data is processed entirely on your device and never sent to our servers. It works alongside your PIN as a convenience layer.
+
+## Step 4: Save Your Recovery Code
+
+After wallet creation, you will receive a **recovery code**. This is the third Shamir share that allows you to recover your wallet if you lose your device.
+
+> **Important:** Store your recovery code in a safe place. Without it, you cannot recover your wallet if you lose access to your device. We cannot recover it for you.
+
+## Step 5: Start Using Your Wallet
+
+Your Ed25519 wallet is now ready on the Canton Network. You can:
+
+- **Send tokens** to Telegram usernames or Canton addresses
+- **Receive tokens** by sharing your Party ID or QR code
+- **Swap tokens** between CC and USDCx
+- **Bridge assets** from Ethereum via Circle xReserve
+- **Chat with AI Agent** for natural language wallet management
+
+## What Happens Behind the Scenes
+
+When you create a wallet:
+
+1. A 32-byte master seed is generated on-device
+2. An Ed25519 key pair is derived using HKDF-SHA256
+3. The seed is split into 3 Shamir shares (2-of-3 threshold)
+4. Your Canton party is created on the network
+5. A TransferPreapproval contract is set up for receiving tokens

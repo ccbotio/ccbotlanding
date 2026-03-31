@@ -1,0 +1,54 @@
+# Security
+
+CC Bot Wallet is built with security as the foundation.
+
+## 2-of-3 Shamir Secret Sharing
+
+Your Ed25519 private key is never stored as a single piece. It is split into **three shares** using Shamir Secret Sharing. Only **two shares** are needed to reconstruct the key for signing.
+
+| Share | Location | Protection |
+|-------|----------|------------|
+| **Device share** | Your device (IndexedDB) | Encrypted with your PIN (AES-256-GCM) |
+| **Server share** | Our server (PostgreSQL) | Encrypted with AES-256-GCM + optional AWS KMS |
+| **Recovery code** | Your backup | User-managed |
+
+**No single share can access your funds.** Even if our server is compromised, the attacker only gets one encrypted share - useless without a second share.
+
+## AES-256-GCM Encryption
+
+All key shares are encrypted at rest using AES-256-GCM, a military-grade authenticated encryption standard.
+
+- **Random 12-byte nonce** for each encryption operation
+- **Keys are wiped from memory** immediately after use (`secureZero()`)
+- **HKDF-SHA256** for all key derivation operations
+
+## PIN Protection
+
+Your wallet PIN protects the device share and authorizes all transactions.
+
+- **5 failed attempts** trigger a 15-minute lockout
+- **PIN is never sent to the server** - all PIN operations happen on your device
+- **Rate limiting** on authentication endpoints prevents brute-force attacks
+
+## Biometric Authentication
+
+CC Bot Wallet supports **Face ID** and **Touch ID** as a convenience layer on top of your PIN. Biometric data is processed entirely on your device and never leaves it.
+
+## Session Security
+
+- **Auto-lock** after 5 minutes of inactivity
+- **Device fingerprinting** binds sessions to specific devices
+- **JWT tokens** with 15-minute expiry and 7-day refresh tokens
+
+## Transaction Security
+
+- **Client-side signing** - Your private key is reconstructed in-memory, used to sign, and immediately zeroed
+- **Irreversible transactions** - Canton Network transactions settle in under one second and cannot be reversed
+- **Atomic swaps** - Token swaps use Delivery vs Payment (DvP) to prevent partial execution
+
+## What We Cannot Do
+
+- We **cannot access your funds** - we only hold one encrypted share
+- We **cannot reverse transactions** - blockchain transactions are final
+- We **cannot recover your wallet** without your recovery code
+- We **cannot see your PIN** - it never leaves your device

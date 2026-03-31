@@ -18,6 +18,7 @@ export default function Header() {
     { label: t.header.howItWorks, href: "#how-it-works" },
     { label: t.header.team ?? "Team", href: "#team" },
     { label: t.header.partners, href: "#partners" },
+    { label: "Docs", href: "/docs/introduction" },
   ];
 
   const productSections = [
@@ -197,6 +198,7 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
+              {...(link.href.startsWith("/") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="text-base font-semibold text-white/70 hover:text-[#F3FF97] transition-colors font-ui"
             >
               {link.label}

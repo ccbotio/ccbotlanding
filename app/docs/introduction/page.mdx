@@ -1,0 +1,43 @@
+# What is CC Bot Wallet?
+
+CC Bot Wallet is a **self-custodial cryptocurrency wallet** built on the Canton Network, accessible directly through Telegram as a Mini App.
+
+It lets you send, receive, swap, and bridge digital assets without ever leaving Telegram. Your private keys are split using **2-of-3 Shamir Secret Sharing**, meaning no single party - including us - can access your funds.
+
+## Key Features
+
+- **Self-Custodial** - You control your keys. We only hold one encrypted share.
+- **Telegram Native** - Full wallet experience inside Telegram. No app download needed.
+- **Canton Network** - Built on an institutional-grade blockchain with sub-second finality.
+- **Token Swap** - Swap CC and USDCx instantly within the wallet.
+- **Multi-Chain** - Built-in EVM support with Ethereum address derived from the same seed. No external wallet needed.
+- **Cross-Chain Bridge** - Bridge USDC from Ethereum to Canton via Circle xReserve, directly from the app.
+- **AI Agent** - Manage your wallet through natural language conversation.
+
+
+## Supported Tokens
+
+| Token | Description | Decimals |
+|-------|-------------|----------|
+| **CC** (Canton Coin) | Native utility token of Canton Network | 10 |
+| **USDCx** | Circle xReserve bridged USDC stablecoin | 6 |
+| **cBTC** | Bitcoin representation on Canton | - |
+
+## How It Works
+
+CC Bot Wallet operates as a Telegram Mini App. When you open the bot, you interact with a full-featured wallet interface powered by the Canton Network.
+
+Your Ed25519 private key is generated on-device and immediately split into three shares:
+
+1. **Device share** - Encrypted with your PIN, stored locally on your device
+2. **Server share** - Encrypted with AES-256-GCM, stored on our server
+3. **Recovery code** - Given to you at wallet creation for backup
+
+Any **two of three** shares can reconstruct your key. This means you can always access your funds, and we can never access them alone.
+
+## Contact
+
+- **Telegram Community:** [@ccbotwalletchat](https://t.me/ccbotwalletchat)
+- **Telegram Bot:** [@ccbotwallet_bot](https://t.me/ccbotwallet_bot)
+- **Email:** [support@ccbot.io](mailto:support@ccbot.io)
+- **Website:** [www.ccbot.io](https://www.ccbot.io)

@@ -1,0 +1,65 @@
+# Token Swap
+
+CC Bot Wallet uses two different swap modes to give you the best execution.
+
+## Instant Swap (Treasury DvP)
+
+The default mode for immediate execution.
+
+### How It Works
+
+1. You initiate a swap
+2. Your order is matched directly with the treasury
+3. Both legs execute simultaneously via Canton Network's **Atomic DvP** mechanism - CC goes out, USDCx comes in (or vice versa)
+4. Settles in **2-5 seconds**
+
+> **No counterparty risk.** Atomic DvP means either both transfers happen or neither does. Your funds are never at risk.
+
+## Batch Auction (P2P)
+
+A fair-price discovery mechanism that matches buyers and sellers.
+
+### How It Works
+
+1. User orders are collected during a **3-minute window**
+2. When the window closes, the system calculates a **clearing price**
+3. All buyers and sellers are matched at this uniform price
+4. All transfers settle atomically in a **single Canton transaction**
+5. The treasury only fills the unmatched portion
+
+### Why Batch Auctions?
+
+- **Fair pricing** - Everyone in the batch gets the same price
+- **MEV protection** - No front-running or sandwich attacks possible
+- **Better rates** - P2P matching can offer better prices than treasury
+
+## Which Mode Is Used?
+
+The system selects automatically:
+
+| Condition | Mode |
+|-----------|------|
+| P2P matching opportunity exists | **Batch Auction** |
+| Treasury has available liquidity | **Instant Swap** |
+
+You are protected by Canton's native security guarantees in both cases.
+
+## Supported Pairs
+
+| From | To | Fee |
+|------|----|-----|
+| CC | USDCx | 0.3% |
+| USDCx | CC | 0.3% |
+
+## Pricing
+
+- **CC price** is determined by Canton Network's mining round oracle
+- **USDCx** maintains a 1:1 USD peg
+- Batch auction clearing price is calculated from actual supply and demand
+
+## Safety Features
+
+- **Atomic settlement** - DvP ensures no partial execution
+- **Slippage protection** - Maximum 1% slippage from quoted price
+- **Automatic refund** - If the second leg fails, your tokens are returned automatically
+- **Large swap protection** - Swaps over 100 CC require additional confirmation

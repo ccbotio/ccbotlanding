@@ -1,0 +1,56 @@
+# Frequently Asked Questions
+
+## General
+
+### What is CC Bot Wallet?
+CC Bot Wallet is a self-custodial cryptocurrency wallet built as a Telegram Mini App on the Canton Network. It lets you send, receive, swap, and bridge tokens directly within Telegram.
+
+### Is CC Bot Wallet free to use?
+Yes. The wallet is free. You only pay standard network fees when making transactions.
+
+### Which blockchain does it use?
+CC Bot Wallet is built on the **Canton Network**, a privacy-enabled blockchain with sub-second finality, designed for institutional-grade security.
+
+### What tokens are supported?
+Canton Coin (CC), USDCx (bridged USDC stablecoin), and cBTC (Bitcoin on Canton). You can also bridge USDC from Ethereum.
+
+## Security
+
+### How does Shamir Secret Sharing work?
+Your private key is split into three shares: one on your device (encrypted with PIN), one on our server (encrypted), and a recovery code. Any two shares can reconstruct the key. No single share alone can access your funds.
+
+### Can the CC Bot team access my funds?
+No. We only hold one encrypted share. Without a second share from your device or recovery code, it is mathematically impossible to reconstruct the signing key.
+
+### What happens if I lose my phone?
+You can recover your wallet using your recovery code combined with the server share, meeting the 2-of-3 threshold needed to reconstruct your key.
+
+### What encryption is used?
+AES-256-GCM for key share encryption and HKDF-SHA256 for key derivation. All based on audited `@noble` cryptography libraries.
+
+## Transfers
+
+### How do I send tokens?
+Use the Send command and enter the recipient's Telegram username or Canton address. Confirm with your PIN. The transaction settles in under one second.
+
+### How do I bridge from Ethereum?
+CC Bot Wallet supports cross-chain bridging via Circle xReserve. You can bridge USDC from Ethereum to Canton Network as USDCx directly within the wallet.
+
+## AI Agent
+
+### What is the AI Agent?
+A built-in AI assistant that helps you manage your wallet through natural language. Check balances, send tokens, swap, and more by typing what you want.
+
+### Can the AI Agent access my keys?
+No. The AI Agent only processes text commands via the wallet API. It never has access to your private keys, PIN, or key shares.
+
+## Troubleshooting
+
+### My transaction is pending
+Transactions on Canton Network typically confirm within one second. If pending, check your internet connection or refresh the app.
+
+### I forgot my PIN
+Use your recovery code to reset your PIN. Go to Settings and select "Reset PIN". After 5 failed attempts, the wallet locks for 15 minutes.
+
+### How do I contact support?
+Join our Telegram community at [@ccbotwalletchat](https://t.me/ccbotwalletchat) or email [support@ccbot.io](mailto:support@ccbot.io).

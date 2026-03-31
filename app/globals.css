@@ -182,3 +182,42 @@ h1, h2, h3, h4, h5, h6 {
   background: conic-gradient(from var(--phone-angle), #F3FF97, #D5A5E3, #875CFF, #F3FF97, #D5A5E3, #875CFF, #F3FF97);
 }
 
+/* Docs styles */
+.callout {
+  position: relative;
+  overflow: hidden;
+}
+.callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: 20px 20px;
+  background-image: radial-gradient(#d0b8da 1px, transparent 1px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.nav-card {
+  transition: all 0.25s ease;
+}
+.nav-card:hover {
+  border-color: rgba(94, 45, 121, 0.3);
+  box-shadow: 0 4px 20px rgba(94, 45, 121, 0.08);
+  transform: translateY(-1px);
+}
+
+.step-number {
+  background: linear-gradient(135deg, #5e2d79, #875CFF);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+

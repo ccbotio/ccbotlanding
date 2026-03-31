@@ -1,0 +1,45 @@
+# Bridge
+
+CC Bot Wallet offers a bidirectional bridge between Ethereum and Canton Network, built on **Circle's xReserve** and **CCTP** (Cross-Chain Transfer Protocol) infrastructure.
+
+> **No external wallet needed.** CC Bot Wallet is a multi-chain wallet with built-in EVM support. Your Ethereum address is derived from the same master seed as your Canton key, so you can bridge directly from the app without connecting MetaMask or any other wallet.
+
+## Deposit: Ethereum to Canton
+
+Convert USDC on Ethereum into USDCx on Canton Network.
+
+### How It Works
+
+1. **Send USDC** - You send USDC to Circle's xReserve contract on Ethereum
+2. **Attestation** - Circle generates a cryptographic attestation confirming the deposit
+3. **Claim & Mint** - You claim on Canton Network, and USDCx is minted to your wallet
+
+### Fees
+
+Standard network fees apply. Bridge fees are dynamic and shown before you confirm each transaction.
+
+## Withdrawal: Canton to Ethereum
+
+Convert USDCx on Canton back to USDC on Ethereum.
+
+### How It Works
+
+1. **Burn USDCx** - You burn your USDCx tokens on Canton Network
+2. **Verification** - Circle verifies the burn via attestation
+3. **Release** - USDC is automatically released to your Ethereum address
+
+## Status Tracking
+
+Track your bridge transaction in the **Bridge History** section:
+
+| Status | Description |
+|--------|-------------|
+| `deposit_initiated` | Transaction submitted to Ethereum |
+| `eth_tx_confirmed` | Ethereum transaction confirmed |
+| `attestation_pending` | Waiting for Circle attestation |
+| `mint_completed` | USDCx minted to your Canton wallet |
+| `completed` | Bridge transaction complete |
+
+## Technology
+
+The bridge is powered by Circle's **CCTP** (Cross-Chain Transfer Protocol), the same infrastructure used by major DeFi protocols for cross-chain USDC transfers. This ensures institutional-grade security and reliability for every bridge operation.
