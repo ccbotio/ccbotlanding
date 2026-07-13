@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     q: "How do I create a wallet?",
-    a: "Open @ccbotwallet_bot on Telegram, tap Start, and set a secure PIN. Your Ed25519 wallet is generated on-device with Shamir key splitting — no app download needed. Save your recovery code securely.",
+    a: "Open @ccbot_wallet_bot on Telegram, tap Start, and set a secure PIN. Your Ed25519 wallet is generated on-device with Shamir key splitting — no app download needed. Save your recovery code securely.",
   },
   {
     q: "How does 2-of-3 Shamir Secret Sharing protect my wallet?",

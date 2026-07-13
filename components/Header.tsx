@@ -253,7 +253,7 @@ export default function Header() {
 
           {/* Launch App Button */}
           <a
-            href="https://t.me/ccbotwallet_bot"
+            href="https://t.me/ccbot_wallet_bot"
             target="_blank"
             rel="noopener noreferrer"
             className="flex bg-primary hover:bg-[#eaff70] text-slate-900 px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm font-ui items-center gap-2 group"
@@ -368,7 +368,7 @@ export default function Header() {
               <div className="h-px bg-[#D5A5E3]/20" />
 
               <a
-                href="https://t.me/ccbotwallet_bot"
+                href="https://t.me/ccbot_wallet_bot"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-primary hover:bg-[#eaff70] text-slate-900 px-6 py-3 rounded-full text-sm font-bold transition-all shadow-sm font-ui text-center block"

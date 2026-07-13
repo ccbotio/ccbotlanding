@@ -81,7 +81,7 @@ export const fr = {
     title: "Démarrez en",
     titleAccent: "quelques secondes",
     steps: [
-      { title: "Ouvrir le bot Telegram", desc: "Recherchez @ccbotwallet_bot sur Telegram et appuyez sur Démarrer. Aucun téléchargement d'application nécessaire." },
+      { title: "Ouvrir le bot Telegram", desc: "Recherchez @ccbot_wallet_bot sur Telegram et appuyez sur Démarrer. Aucun téléchargement d'application nécessaire." },
       { title: "Définir votre PIN", desc: "Choisissez un PIN sécurisé. Votre portefeuille Ed25519 est généré sur l'appareil avec le partage de clé Shamir." },
       { title: "Commencez à utiliser votre portefeuille", desc: "Envoyez, recevez et gérez vos actifs Canton directement depuis Telegram." },
     ],
@@ -182,7 +182,7 @@ export const fr = {
       titleAccent: "CC Bot Wallet",
       subtitle: "Configurez votre portefeuille Canton auto-hébergé en moins d'une minute.",
       step1Title: "Ouvrir CC Bot dans Telegram",
-      step1Desc: "Recherchez @ccbotwallet_bot dans Telegram et appuyez sur Démarrer. Aucun téléchargement d'application nécessaire.",
+      step1Desc: "Recherchez @ccbot_wallet_bot dans Telegram et appuyez sur Démarrer. Aucun téléchargement d'application nécessaire.",
       step1Button: "Ouvrir dans Telegram",
       step2Title: "Définir votre PIN",
       step2Desc: "Choisissez un PIN sécurisé pour protéger votre portefeuille. Ce PIN est utilisé pour autoriser les transactions et n'est stocké que sur votre appareil.",

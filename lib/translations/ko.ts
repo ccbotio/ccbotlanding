@@ -81,7 +81,7 @@ export const ko = {
     title: "몇 초 만에",
     titleAccent: "시작하기",
     steps: [
-      { title: "Telegram 봇 열기", desc: "Telegram에서 @ccbotwallet_bot을 검색하고 시작을 탭하세요. 앱 다운로드가 필요 없습니다." },
+      { title: "Telegram 봇 열기", desc: "Telegram에서 @ccbot_wallet_bot을 검색하고 시작을 탭하세요. 앱 다운로드가 필요 없습니다." },
       { title: "PIN 설정", desc: "안전한 PIN을 선택하세요. Ed25519 지갑이 Shamir 키 분할과 함께 디바이스에서 생성됩니다." },
       { title: "지갑 사용 시작", desc: "Telegram에서 직접 Canton 자산을 전송, 수신 및 관리하세요." },
     ],
@@ -182,7 +182,7 @@ export const ko = {
       titleAccent: "CC Bot Wallet",
       subtitle: "1분 이내에 셀프 커스터디 Canton 지갑을 설정하세요.",
       step1Title: "Telegram에서 CC Bot 열기",
-      step1Desc: "Telegram에서 @ccbotwallet_bot을 검색하고 시작을 탭하세요. 앱 다운로드가 필요 없습니다.",
+      step1Desc: "Telegram에서 @ccbot_wallet_bot을 검색하고 시작을 탭하세요. 앱 다운로드가 필요 없습니다.",
       step1Button: "Telegram에서 열기",
       step2Title: "PIN 설정",
       step2Desc: "지갑을 보호할 안전한 PIN을 선택하세요. 이 PIN은 트랜잭션 승인에 사용되며 디바이스에만 저장됩니다.",

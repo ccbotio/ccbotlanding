@@ -81,7 +81,7 @@ export const es = {
     title: "Empieza en",
     titleAccent: "segundos",
     steps: [
-      { title: "Abre el Bot en Telegram", desc: "Busca @ccbotwallet_bot en Telegram y pulsa Iniciar. No necesitas descargar ninguna app." },
+      { title: "Abre el Bot en Telegram", desc: "Busca @ccbot_wallet_bot en Telegram y pulsa Iniciar. No necesitas descargar ninguna app." },
       { title: "Configura tu PIN", desc: "Elige un PIN seguro. Tu wallet Ed25519 se genera en el dispositivo con división de claves Shamir." },
       { title: "Empieza a Usar tu Wallet", desc: "Envía, recibe y gestiona tus activos de Canton directamente desde Telegram." },
     ],
@@ -182,7 +182,7 @@ export const es = {
       titleAccent: "CC Bot Wallet",
       subtitle: "Configura tu wallet de auto-custodia de Canton en menos de un minuto.",
       step1Title: "Abre CC Bot en Telegram",
-      step1Desc: "Busca @ccbotwallet_bot en Telegram y pulsa Iniciar. No necesitas descargar ninguna app.",
+      step1Desc: "Busca @ccbot_wallet_bot en Telegram y pulsa Iniciar. No necesitas descargar ninguna app.",
       step1Button: "Abrir en Telegram",
       step2Title: "Configura tu PIN",
       step2Desc: "Elige un PIN seguro para proteger tu wallet. Este PIN se utiliza para autorizar transacciones y se almacena solo en tu dispositivo.",

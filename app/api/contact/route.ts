@@ -80,7 +80,7 @@ export async function POST(req: Request) {
               In the meantime, feel free to explore our resources:
             </p>
             <div style="text-align: center; margin: 24px 0;">
-              <a href="https://t.me/ccbotwallet_bot" style="display: inline-block; background: #F3FF97; color: #0f172a; padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px;">Open CC Bot Wallet</a>
+              <a href="https://t.me/ccbot_wallet_bot" style="display: inline-block; background: #F3FF97; color: #0f172a; padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px;">Open CC Bot Wallet</a>
             </div>
             <p style="color: #475569; font-size: 14px; line-height: 1.7; margin: 0;">
               Best regards,<br/>

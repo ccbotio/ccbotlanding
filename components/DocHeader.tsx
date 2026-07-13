@@ -53,7 +53,7 @@ export default function DocHeader({ onToggleSidebar }: { onToggleSidebar?: () =>
             Community
           </a>
           <a
-            href="https://t.me/ccbotwallet_bot"
+            href="https://t.me/ccbot_wallet_bot"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary hover:bg-[#eaff70] text-slate-900 px-5 py-2 rounded-full text-[13px] font-bold transition-all font-ui flex items-center gap-1.5 group"

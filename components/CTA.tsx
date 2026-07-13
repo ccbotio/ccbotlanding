@@ -26,7 +26,7 @@ export default function CTA() {
             {t.cta.description}
           </p>
           <a
-            href="https://t.me/ccbotwallet_bot"
+            href="https://t.me/ccbot_wallet_bot"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary hover:bg-[#eaff70] text-slate-900 px-10 py-5 rounded-full text-lg font-bold transition-all shadow-lg shadow-primary/20 font-ui transform hover:scale-105"

@@ -81,7 +81,7 @@ export const en = {
     title: "Get started in",
     titleAccent: "seconds",
     steps: [
-      { title: "Open Telegram Bot", desc: "Search @ccbotwallet_bot on Telegram and tap Start. No app download needed." },
+      { title: "Open Telegram Bot", desc: "Search @ccbot_wallet_bot on Telegram and tap Start. No app download needed." },
       { title: "Set Your PIN", desc: "Choose a secure PIN. Your Ed25519 wallet is generated on-device with Shamir key splitting." },
       { title: "Start Using Your Wallet", desc: "Send, receive and manage your Canton assets directly from Telegram." },
     ],
@@ -182,7 +182,7 @@ export const en = {
       titleAccent: "CC Bot Wallet",
       subtitle: "Set up your self-custodial Canton wallet in under a minute.",
       step1Title: "Open CC Bot in Telegram",
-      step1Desc: "Search for @ccbotwallet_bot in Telegram and tap Start. No app download needed.",
+      step1Desc: "Search for @ccbot_wallet_bot in Telegram and tap Start. No app download needed.",
       step1Button: "Open in Telegram",
       step2Title: "Set Your PIN",
       step2Desc: "Choose a secure PIN to protect your wallet. This PIN is used to authorize transactions and is stored only on your device.",

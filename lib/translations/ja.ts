@@ -81,7 +81,7 @@ export const ja = {
     title: "数秒で",
     titleAccent: "開始",
     steps: [
-      { title: "Telegram Botを開く", desc: "Telegramで@ccbotwallet_botを検索し、「スタート」をタップ。アプリのダウンロードは不要です。" },
+      { title: "Telegram Botを開く", desc: "Telegramで@ccbot_wallet_botを検索し、「スタート」をタップ。アプリのダウンロードは不要です。" },
       { title: "PINを設定", desc: "安全なPINを選択します。Ed25519ウォレットがデバイス上で生成され、Shamirによる鍵分割が行われます。" },
       { title: "ウォレットの利用を開始", desc: "Telegramから直接Cantonアセットの送受信と管理ができます。" },
     ],
@@ -182,7 +182,7 @@ export const ja = {
       titleAccent: "CC Bot Wallet",
       subtitle: "1分以内にセルフカストディアルCantonウォレットをセットアップ。",
       step1Title: "TelegramでCC Botを開く",
-      step1Desc: "Telegramで@ccbotwallet_botを検索し、「スタート」をタップ。アプリのダウンロードは不要です。",
+      step1Desc: "Telegramで@ccbot_wallet_botを検索し、「スタート」をタップ。アプリのダウンロードは不要です。",
       step1Button: "Telegramで開く",
       step2Title: "PINを設定",
       step2Desc: "ウォレットを保護するための安全なPINを選択してください。このPINはトランザクションの承認に使用され、デバイスにのみ保存されます。",

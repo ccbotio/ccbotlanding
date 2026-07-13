@@ -54,7 +54,7 @@ export default function HowItWorks() {
 
         <div className="mt-16">
           <a
-            href="https://t.me/ccbotwallet_bot"
+            href="https://t.me/ccbot_wallet_bot"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary hover:bg-[#eaff70] text-slate-900 px-10 py-4 rounded-full text-base font-bold transition-all shadow-md font-ui inline-flex items-center gap-2 group"

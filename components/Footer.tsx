@@ -51,7 +51,7 @@ export default function Footer() {
   const communityLinks: LinkItem[] = [
     { label: t.footer.communityChat, href: "https://t.me/ccbotwalletchat", external: true },
     { label: t.footer.announcements, href: "https://t.me/ccbotwallet", external: true },
-    { label: t.footer.telegramBot, href: "https://t.me/ccbotwallet_bot", external: true },
+    { label: t.footer.telegramBot, href: "https://t.me/ccbot_wallet_bot", external: true },
   ];
 
   const companyLinks: LinkItem[] = [
