@@ -16,7 +16,6 @@ export default function Header() {
 
   const navLinks = [
     { label: t.header.howItWorks, href: "#how-it-works" },
-    { label: t.header.team ?? "Team", href: "#team" },
     { label: t.header.partners, href: "#partners" },
     { label: "Docs", href: "/docs/introduction" },
   ];
@@ -83,7 +82,7 @@ export default function Header() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5">
-          <img src="/images/ccbotlogo.png" alt="CC Bot" className="w-10 h-10 rounded-lg" />
+          <img loading="lazy" width={40} height={40} src="/images/ccbotlogo.png" alt="CC Bot" className="w-10 h-10 rounded-lg" />
           <h2 className="text-2xl font-bold tracking-tight font-ui text-white">
             CC Bot Wallet
           </h2>
@@ -174,7 +173,7 @@ export default function Header() {
                               className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#f7f0fa] transition-colors group"
                             >
                               {"logo" in item && item.logo ? (
-                                <img src={item.logo} alt={item.label} className="w-5 h-5 rounded-full object-cover" />
+                                <img loading="lazy" width={20} height={20} src={item.logo} alt={item.label} className="w-5 h-5 rounded-full object-cover" />
                               ) : (
                                 <span className="material-symbols-outlined text-[#5e2d79] text-lg group-hover:text-[#875CFF] transition-colors">
                                   {item.icon}
@@ -321,7 +320,7 @@ export default function Header() {
                         className="flex items-center gap-1.5 text-sm text-white/70 hover:text-[#F3FF97] transition-colors font-ui"
                       >
                         {"logo" in item && item.logo ? (
-                          <img src={item.logo} alt={item.label} className="w-4 h-4 rounded-full object-cover" />
+                          <img loading="lazy" width={16} height={16} src={item.logo} alt={item.label} className="w-4 h-4 rounded-full object-cover" />
                         ) : (
                           <span className="material-symbols-outlined text-[#F3FF97] text-base">{item.icon}</span>
                         )}

@@ -252,7 +252,7 @@ export default function Hero() {
                   <div className="flex flex-col gap-2">
                     {/* CC Token */}
                     <div className="flex items-center gap-2.5 bg-white/[0.03] rounded-xl px-2.5 py-2">
-                      <img src="/images/cclogo.jpg" alt="CC" className="w-7 h-7 rounded-full flex-shrink-0" />
+                      <img loading="lazy" width={28} height={28} src="/images/cclogo.jpg" alt="CC" className="w-7 h-7 rounded-full flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-[10px] font-semibold">Canton Coin</p>
                         <p className="text-[#A89F91] text-[8px]">{ccPrice > 0 ? `$${ccPrice.toFixed(4)}` : "..."}</p>
@@ -266,7 +266,7 @@ export default function Hero() {
                     </div>
                     {/* USDCX Token */}
                     <div className="flex items-center gap-2.5 bg-white/[0.03] rounded-xl px-2.5 py-2">
-                      <img src="/images/usdcxlogo.jpg" alt="USDCx" className="w-7 h-7 rounded-full flex-shrink-0" />
+                      <img loading="lazy" width={28} height={28} src="/images/usdcxlogo.jpg" alt="USDCx" className="w-7 h-7 rounded-full flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-[10px] font-semibold">USDCx</p>
                         <p className="text-[#A89F91] text-[8px]">$1.00</p>
@@ -278,7 +278,7 @@ export default function Hero() {
                     </div>
                     {/* cBTC Token */}
                     <div className="flex items-center gap-2.5 bg-white/[0.03] rounded-xl px-2.5 py-2">
-                      <img src="/images/cbtclogo.jpg" alt="cBTC" className="w-7 h-7 rounded-full flex-shrink-0" />
+                      <img loading="lazy" width={28} height={28} src="/images/cbtclogo.jpg" alt="cBTC" className="w-7 h-7 rounded-full flex-shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-[10px] font-semibold">cBTC</p>
                         <p className="text-[#A89F91] text-[8px]">$67,420</p>
@@ -303,7 +303,7 @@ export default function Hero() {
                   </div>
                   <div className="flex flex-col items-center -mt-3">
                     <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#875CFF] to-[#D5A5E3] flex items-center justify-center shadow-lg shadow-[#875CFF]/30">
-                      <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-6 h-6 rounded-full" />
+                      <img loading="lazy" width={24} height={24} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-6 h-6 rounded-full" />
                     </div>
                     <span className="text-[#F3FF97] text-[7px] font-medium mt-0.5">CC Bot</span>
                   </div>

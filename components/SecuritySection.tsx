@@ -192,7 +192,7 @@ export default function SecuritySection() {
           </div>
           {/* Badge */}
           <div className="absolute bottom-6 right-6 bg-white px-4 py-2 rounded-lg shadow-md border border-border-subtle flex items-center gap-2">
-            <img src="/images/cantonlogo.png" alt="Canton Network" className="w-5 h-5 object-contain" />
+            <img loading="lazy" width={20} height={20} src="/images/cantonlogo.png" alt="Canton Network" className="w-5 h-5 object-contain" />
             <span className="text-xs font-bold font-ui text-slate-800">
               Canton Network
             </span>

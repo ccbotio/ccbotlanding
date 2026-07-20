@@ -80,7 +80,7 @@ export default function Footer() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#2a1845] to-[#4a2d6b]" />
               <div className="absolute inset-0 opacity-[0.3]" style={{ backgroundImage: "radial-gradient(circle, rgba(243,255,151,0.8) 1px, transparent 1px)", backgroundSize: "16px 16px" }} />
               <div className="relative z-10 flex items-center gap-3">
-                <img src="/images/ccbotlogo.png" alt="CC Bot" className="w-11 h-11 rounded-lg" />
+                <img loading="lazy" width={44} height={44} src="/images/ccbotlogo.png" alt="CC Bot" className="w-11 h-11 rounded-lg" />
                 <h2 className="text-xl font-bold font-ui text-white">
                   CC Bot Wallet
                 </h2>

@@ -25,7 +25,7 @@ export default function DocHeader({ onToggleSidebar }: { onToggleSidebar?: () =>
             <span className="material-symbols-outlined text-2xl">menu</span>
           </button>
           <Link href="/docs/introduction" className="flex items-center gap-2.5">
-            <img src="/images/ccbotlogo.png" alt="CC Bot" className="w-9 h-9 rounded-lg" />
+            <img loading="lazy" width={36} height={36} src="/images/ccbotlogo.png" alt="CC Bot" className="w-9 h-9 rounded-lg" />
             <h2 className="text-lg font-bold tracking-tight font-ui text-white">
               CC Bot Wallet
             </h2>

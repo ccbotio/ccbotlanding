@@ -3,7 +3,6 @@ export const es = {
     product: "Producto",
     features: "Características",
     howItWorks: "Cómo Funciona",
-    team: "Equipo",
     partners: "Socios",
     launchApp: "Abrir App",
     language: "Idioma",
@@ -58,8 +57,8 @@ export const es = {
         desc: "Transfiere activos entre Canton Network y Ethereum de forma fluida mediante la integración con Circle y xReserve.",
       },
       {
-        title: "Canton Name Service",
-        desc: "Registra nombres legibles en CNS. Envía tokens a nombres en lugar de direcciones largas.",
+        title: "Envía a @usernames",
+        desc: "Sin direcciones que copiar ni pegar. Envía tokens directamente a un nombre de usuario de Telegram.",
       },
     ],
     liveMarket: "Mercado en Vivo",
@@ -86,15 +85,6 @@ export const es = {
       { title: "Empieza a Usar tu Wallet", desc: "Envía, recibe y gestiona tus activos de Canton directamente desde Telegram." },
     ],
     launchBot: "Abrir CC Bot",
-  },
-  team: {
-    title: "Conoce a los",
-    titleAccent: "Fundadores",
-    description: "Los visionarios que construyen el futuro de las finanzas descentralizadas en Telegram.",
-    members: {
-      seher: { name: "Seher Eroğlu", role: "Co-Fundadora y CTO" },
-      ferhat: { name: "Ferhat Nazlı", role: "Co-Fundador y CEO" },
-    },
   },
   partners: {
     title: "Socios del",

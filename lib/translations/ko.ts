@@ -3,7 +3,6 @@ export const ko = {
     product: "제품",
     features: "기능",
     howItWorks: "이용 방법",
-    team: "팀",
     partners: "파트너",
     launchApp: "앱 실행",
     language: "언어",
@@ -58,8 +57,8 @@ export const ko = {
         desc: "Circle 및 xReserve 통합을 통해 Canton Network와 Ethereum 간 자산을 원활하게 브릿지하세요.",
       },
       {
-        title: "Canton Name Service",
-        desc: "CNS에서 사람이 읽을 수 있는 이름을 등록하세요. 긴 주소 대신 이름으로 토큰을 전송할 수 있습니다.",
+        title: "@사용자명으로 전송",
+        desc: "복사하거나 붙여넣을 주소가 없습니다. 토큰을 텔레그램 사용자명으로 바로 보내세요.",
       },
     ],
     liveMarket: "실시간 시장",
@@ -86,15 +85,6 @@ export const ko = {
       { title: "지갑 사용 시작", desc: "Telegram에서 직접 Canton 자산을 전송, 수신 및 관리하세요." },
     ],
     launchBot: "CC Bot 실행",
-  },
-  team: {
-    title: "만나보세요",
-    titleAccent: "창립자",
-    description: "텔레그램에서 탈중앙 금융의 미래를 만들어가는 비전가들.",
-    members: {
-      seher: { name: "Seher Eroğlu", role: "공동 창립자 & CTO" },
-      ferhat: { name: "Ferhat Nazlı", role: "공동 창립자 & CEO" },
-    },
   },
   partners: {
     title: "생태계",

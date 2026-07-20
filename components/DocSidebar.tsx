@@ -80,7 +80,7 @@ export default function DocSidebar({ open, onClose }: { open: boolean; onClose: 
                           : "bg-secondary/15 group-hover:bg-accent/20"
                       }`}>
                         {"logo" in item && item.logo ? (
-                          <img src={item.logo as string} alt={item.title} className="w-[18px] h-[18px] rounded-full" />
+                          <img loading="lazy" width={18} height={18} src={item.logo as string} alt={item.title} className="w-[18px] h-[18px] rounded-full" />
                         ) : (
                           <span className={`material-symbols-outlined text-[12px] ${
                             isActive ? "text-white" : "text-secondary group-hover:text-accent"

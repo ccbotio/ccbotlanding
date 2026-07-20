@@ -13,7 +13,7 @@ function TypingDots() {
   return (
     <div className="flex items-start gap-2">
       <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2a1845] to-[#4a2d6b] flex items-center justify-center flex-shrink-0">
-        <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-6 h-6 rounded-full" />
+        <img loading="lazy" width={24} height={24} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-6 h-6 rounded-full" />
       </div>
       <div className="bg-background-surface border border-border-subtle rounded-2xl rounded-bl-md px-4 py-3">
         <div className="flex gap-1">
@@ -103,7 +103,7 @@ export default function FloatingChat() {
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3 border-b border-border-subtle bg-gradient-to-r from-[#2a1845] to-[#4a2d6b]">
-              <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-9 h-9 rounded-full" />
+              <img loading="lazy" width={36} height={36} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-9 h-9 rounded-full" />
               <div className="flex-1">
                 <h3 className="text-white font-bold text-sm font-ui">{t.help.chatEmpty}</h3>
                 <p className="text-white/60 text-xs font-body">Online</p>
@@ -120,7 +120,7 @@ export default function FloatingChat() {
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3 no-scrollbar">
               {messages.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center px-2">
-                  <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-16 h-16 rounded-full mb-3" />
+                  <img loading="lazy" width={64} height={64} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-16 h-16 rounded-full mb-3" />
                   <h3 className="text-slate-900 font-bold font-ui text-sm mb-1">{t.help.chatEmpty}</h3>
                   <p className="text-secondary text-xs font-body mb-4">{t.help.chatEmptyDesc}</p>
                   <div className="flex flex-wrap justify-center gap-2">
@@ -148,7 +148,7 @@ export default function FloatingChat() {
                       >
                         {msg.role === "assistant" && (
                           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2a1845] to-[#4a2d6b] flex items-center justify-center flex-shrink-0">
-                            <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-6 h-6 rounded-full" />
+                            <img loading="lazy" width={24} height={24} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-6 h-6 rounded-full" />
                           </div>
                         )}
                         <div
@@ -223,7 +223,7 @@ export default function FloatingChat() {
         }
         className="w-16 h-16 rounded-full shadow-lg hover:shadow-xl transition-shadow overflow-hidden bg-gradient-to-br from-[#2a1845] to-[#4a2d6b] flex items-center justify-center border-2 border-[#5e2d79]/40"
       >
-        <img src="/images/ccbotagentlogo.png" alt="CC Bot Assistant" className="w-11 h-11 rounded-full" />
+        <img loading="lazy" width={44} height={44} src="/images/ccbotagentlogo.png" alt="CC Bot Assistant" className="w-11 h-11 rounded-full" />
       </motion.button>
     </div>
   );

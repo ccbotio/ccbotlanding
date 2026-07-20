@@ -12,7 +12,7 @@ type Message = {
 function TypingIndicator() {
   return (
     <div className="flex items-start gap-2">
-      <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-9 h-9 rounded-full flex-shrink-0" />
+      <img loading="lazy" width={36} height={36} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-9 h-9 rounded-full flex-shrink-0" />
       <div className="bg-background-surface border border-border-subtle rounded-2xl rounded-bl-md px-4 py-3">
         <div className="flex gap-1">
           <span className="w-2 h-2 bg-secondary/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
@@ -82,7 +82,7 @@ export default function HelpChat() {
   return (
     <div>
       <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2 font-ui">
-        <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-8 h-8 rounded-full" />
+        <img loading="lazy" width={32} height={32} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-8 h-8 rounded-full" />
         {t.help.chatTitle}
       </h2>
       <div className="bg-white rounded-2xl border border-border-subtle flex flex-col" style={{ height: 600 }}>
@@ -90,7 +90,7 @@ export default function HelpChat() {
         <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3 no-scrollbar">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center px-4">
-              <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-20 h-20 rounded-full mb-4" />
+              <img loading="lazy" width={80} height={80} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-20 h-20 rounded-full mb-4" />
               <h3 className="text-slate-900 font-bold font-ui mb-1">{t.help.chatEmpty}</h3>
               <p className="text-secondary text-sm font-body mb-6">{t.help.chatEmptyDesc}</p>
               <div className="flex flex-wrap justify-center gap-2">
@@ -117,7 +117,7 @@ export default function HelpChat() {
                     className={`flex ${msg.role === "user" ? "justify-end" : "items-start gap-2"}`}
                   >
                     {msg.role === "assistant" && (
-                      <img src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-9 h-9 rounded-full flex-shrink-0" />
+                      <img loading="lazy" width={36} height={36} src="/images/ccbotagentlogo.png" alt="CC Bot" className="w-9 h-9 rounded-full flex-shrink-0" />
                     )}
                     <div
                       className={`max-w-[80%] px-4 py-2.5 text-sm font-body whitespace-pre-wrap ${
